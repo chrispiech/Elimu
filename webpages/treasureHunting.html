@@ -1,0 +1,88 @@
+<style type="text/css">
+div.CodeMirror-wrapping {
+	float:left;
+	width:300px;
+	height:400px;
+	border-width:2px;
+	border-style:solid;
+	background:#fff;
+}
+
+#canvas {
+	width:450px;
+	height:400px;
+}
+</style>
+
+
+<!-- HTML --->
+
+<b id="title">Treasure Hunter</b>
+		  <p>
+Let&#39;s give conditionals a whirl! Karel stands on the brink of completing his quest to uncover buried treasure. The hole infront of Karel might contain contain either <b>one, two or three</b> beepers (Karel&#39;s version of gold). This program makes Karel retrieve the treasure without crashing. Before the program starts Karel can&#39;t know how many beepers there will be, so Karel must use conditions.</p>
+<br/>
+<div id="indented">
+<textarea name="code" id="code">
+/* Help Karel find hidden 
+ * treasure */
+
+function run() {
+	moveToGold();
+	safePickUpGold();
+	safePickUpGold();
+	safePickUpGold();
+	leaveHole();
+}
+
+function safePickUpGold(){
+	if(beepersPresent()) {
+		pickBeeper();
+	}
+}
+
+function moveToGold(){
+	move();
+	turnRight();
+	move();
+}
+
+function leaveHole() {
+	turnLeft();
+	turnLeft();
+	move();
+	turnRight();
+	move();
+}
+
+function turnRight() {
+	turnLeft();
+	turnLeft();
+	turnLeft();
+}</textarea>
+<canvas name="canvas" id="canvas">gold2.w,450,400,treasure</canvas>    
+
+                       
+	<br/><br/>
+                       <div float="left">
+                                
+                                        Run:
+                                        <button type='button' id='interactor' 
+                                                onClick='application.runButton()'><IMG SRC="./images/playButton.png" HEIGHT=30
+WIDTH=30 ALT="run" ALIGN="ABSMIDDLE"></button>
+
+										&nbsp;
+										
+                                        <button type='button' id='interactor' 
+                                                onClick='application.stopButton()'><IMG SRC="./images/stopButton.png" HEIGHT=30
+												WIDTH=30 ALT="run" ALIGN="ABSMIDDLE"></button>
+                                        &nbsp;
+                                        World:
+                                        <select name="world" size=0 id='interactor' 
+                                                onChange='application.changeWorld(this)'>
+                                                <option value="1" >gold1.w
+                                                <option value="2" selected="yes">gold2.w
+                                                <option value="3">gold3.w
+                                        </select> 
+                        </div> 
+
+</div>

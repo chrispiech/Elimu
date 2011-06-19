@@ -1,0 +1,308 @@
+
+
+#inner {
+	width:990px;
+	margin:0px auto; 
+	padding-left:15px;
+	padding-right:15px;
+	background:#fff;
+	height:100%;
+	position:absolute;
+	top: 0px;
+    left: 50%;
+    margin-left: -510px;
+}
+#indented {
+	position:relative;
+	left:40px;
+	margin: 0;
+}
+
+html, body {
+	margin:0px;
+	height:100%;
+	padding:0px;
+	font-family: Optima, "Lucida Grande", Lucida, Verdana, Geneva, Arial, sans-serif;
+	font-size: medium;
+	background:#fff;
+}
+
+#content {
+	margin: 0;
+}
+
+#title {
+	font-size: 150%;
+	
+}
+
+#lessonsDiv {
+    float:left;
+    width:150px;
+    height:700px;
+	padding:10px;
+	border-right-color: #535352;
+	border-right-style: solid;
+	border-right-width: 1px;
+	margin: 0;
+	
+	font-size: 85%;
+	
+	overflow:hidden;
+}
+
+#lessonsDiv a{
+	color:#4E387E;
+}
+
+#lessonsDiv a:hover {
+	text-decoration:underline;
+}
+
+#learnDiv {
+	float:right;
+    width:790px;
+	padding:10px;
+	padding-top:5px;
+    height:100%;
+	margin: 0;
+}
+
+#learnBody {
+	height:650px;
+	margin: 0;
+}
+
+#buttonBar {
+	text-align: left;
+	font-weight: bold;
+	height:50px;
+	margin: 0;
+}
+
+#deploy {
+	width:400px;
+	margin-left: auto ;
+  	margin-right: auto ;
+}
+
+#nextButton {
+	float:right;
+	margin: 0;
+}
+
+#codeText {
+	font-family:"Courier New";
+	font-weight:bolder;
+	vertical-align:top;
+}
+
+#codeText2 {
+	font-family:"Courier New";
+	font-weight:bolder;
+}
+
+#stepButton {
+	font-size:medium;
+	min-width:130px;
+	min-height:50px;
+	font-family:"Courier New";
+	font-weight:bolder;
+}
+
+
+#smallLink:link {
+	font-size:12px;
+}
+
+A:link {
+	color:'blue';
+	text-decoration:none;
+}
+
+A:visited {
+	color:'blue';
+	text-decoration:none;
+}
+
+A:hover {
+	text-decoration: none; 
+	color: #C11B17;
+}
+
+#line {
+	margin: 0;
+}
+
+* {
+	margin: 0;
+}
+
+p {
+	margin-top: 15px;
+}
+
+.stress {
+	color:#D14545;
+	font-weight:bolder;
+}
+
+.rightBar {
+	
+	font-size: 75%;
+	float:right;
+	height:700px;
+	background:#FFF;
+}
+
+.programLink {
+	width:130px;
+	overflow:hidden;
+	
+}
+
+.author {
+	font-size: 75%;
+}
+
+.programLink a{
+
+	color:#4E387E;
+}
+
+.programLink a:hover {
+	text-decoration:underline;
+}
+
+
+/********************* Footers **************************************/
+
+
+.wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -90px; 
+	float:left;/* the bottom margin is the negative value of the footer's height */
+}
+
+.stickyfooter, .push {
+	font-size: 80%;
+	float:top;
+	clear: both;
+	width: 100%;
+	height: 90px; /* .push must be the same height as .footer */
+	position: relative;
+	width: 700px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.footer{
+	clear: both;
+	width: 100%;
+	height: 60px;
+	position: relative;
+	width: 700px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+/********************* Tabs **************************************/
+#header {
+	height:40px;
+	/*background:transparent url("../images/header.gif") repeat-x 0 0;*/
+	position:relative;
+	z-index:90000;
+	margin: 0;
+	border-bottom: 2px solid #000;
+}
+
+#social {
+	float:left;
+	height:32px;
+	overflow:hidden;
+	text-align:center;
+	font-size: 16px;
+	line-height: 40px;
+	padding: 0px 25px;	
+	padding-top:8px;
+}
+
+#logo{
+	border-right-color: #535352;
+	border-right-style: solid;
+	border-right-width: 1px;
+	padding: 0px 10px;
+	float:left;
+	height:40px;
+	width:306px;
+	text-indent:-5000px;
+	background:transparent url(../images/logo2.png) no-repeat 0 0; 
+	margin: 0;
+}
+
+a.tab {
+	height:100%;
+			float:left;
+			height:40px;
+			overflow:hidden;
+  	border-right-color: #535352;
+border-right-style: solid;
+border-right-width: 1px;
+	width:83px;
+	text-align:center;
+float: left;
+font-size: 16px;
+height: 100%;
+line-height: 40px;
+padding: 0px 10px;
+	color: #000;	
+	margin: 0;
+}
+
+a.tab, a.tab:visited {
+	text-decoration:none;
+	margin: 0;
+}
+
+a.tab:hover {
+  	color: #999;
+	margin: 0;
+}
+
+a.selectedtab {
+	height:100%;
+			float:left;
+			height:40px;
+			overflow:hidden;
+  	border-right-color: #535352;
+border-right-style: solid;
+border-right-width: 1px;
+	width:83px;
+	text-align:center;
+float: left;
+font-size: 16px;
+height: 100%;
+line-height: 40px;
+padding: 0px 10px;	
+	border-bottom: 2px solid #fff;
+	color: #000;
+	margin: 0;
+}
+
+a.selectedtab, a.selectedtab:visited {
+	text-decoration:none;
+	margin: 0;
+}
+
+a.selectedtab:hover {
+  	color: #999;
+	margin: 0;
+}
+
+.smallLink {
+	float:right;
+	line-height: 40px;
+margin: 0;
+}

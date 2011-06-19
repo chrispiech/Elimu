@@ -1,0 +1,2074 @@
+
+
+<b id="title">Word Search</b> by Chris Piech
+<br/><br/>
+<div float="left">
+                                
+	<button type='button' id='interactor' onClick='application.runButton()'>
+		<IMG SRC="./images/playButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
+	</button>
+
+	&nbsp;
+	<button type='button' id='interactor' onClick='application.stopButton()'>
+		<IMG SRC="./images/stopButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
+	</button>
+	
+</div>
+<br/>
+  
+
+
+<textarea name="code" id="code">function run() {        
+    createPuzzle();                //SLOW RUN
+    solvePuzzle();                //SLOW RUN
+}
+    
+function createPuzzle()    {
+    placeCardinal();
+    returnToStart();
+    placeChris();
+    returnToStart();
+    placeCS();
+    returnToStart();
+    fillEmptySpaces();
+    returnToStart();
+}
+
+function solvePuzzle(){
+    checkForKarel();
+    returnToStart();
+    
+    checkForCardinal();
+    returnToStart();
+
+    checkForChris();
+    returnToStart();
+    checkForJava();
+    returnToStart();
+}
+
+function placeCS()    {
+    do {
+        if(beepersPresent()) {
+            if(rightIsClear()) {
+                pickBeeper();
+                returnToStart();
+            }
+        }
+        if(randomChance(0.2000)) {        //place in row 1
+            for(var i=0;i<7;i++)
+                moveOneLetterUp();
+            placeCSInColumn();
+        }
+        else {
+            if(randomChance(0.2500)) {    //place in row 2
+                for(var i=0;i<6;i++)
+                    moveOneLetterUp();
+                placeCSInColumn();
+            }
+            else {
+                if(randomChance(0.3333)) {    //place in row 3
+                    for(var i=0;i<5;i++)
+                        moveOneLetterUp();
+                    placeCSInColumn();
+                }
+                else {
+                    if(randomChance(0.5000)) {    //place in row 4
+                        for(var i=0;i<4;i++)
+                            moveOneLetterUp();
+                        placeCSInColumn();
+                    }
+                    else {                        //place in row 5
+                        for(var i=0;i<3;i++)
+                            moveOneLetterUp();
+                        placeCSInColumn();
+                    }
+                }
+            }
+        }
+    }
+    while(beepersPresent());
+}
+
+function placeCardinal()
+{
+    for(var i=0;i<7;i++)
+        moveOneLetterUp();
+    if(randomChance(0.25))
+        writeCardinal();
+    else {
+        if(randomChance(.3333))    {
+            moveForwardOneLetter();
+            writeCardinal();
+        }
+        else {
+            if(randomChance(.5)){
+                for(var i=0;i<8;i++)
+                    moveForwardOneLetter();
+                writeCardinal();
+            }
+            else{
+                for(var i=0;i<9;i++)
+                    moveForwardOneLetter();
+                writeCardinal();
+            }
+        }
+    }
+}
+
+function placeChris(){
+    if(randomChance(0.125))
+        writeChrisInRow();
+    else if(randomChance(0.1429))    {
+        moveOneLetterUp();
+        writeChrisInRow();
+    }
+    else if(randomChance(0.1667))    {
+        for(var i=0;i<2;i++)
+            moveOneLetterUp();
+        writeChrisInRow();
+    }
+    else if(randomChance(0.2)){
+        for(var i=0;i<3;i++)
+            moveOneLetterUp();
+        writeChrisInRow();
+    }
+    else if(randomChance(0.25)){
+        for(var i=0;i<4;i++)
+            moveOneLetterUp();
+        writeChrisInRow();
+    }
+    else if(randomChance(0.3333)){
+        for(var i=0;i<5;i++)
+            moveOneLetterUp();
+        writeChrisInRow();
+    }
+    else if(randomChance(0.5)){
+        for(var i=0;i<6;i++)
+            moveOneLetterUp();
+        writeChrisInRow();
+    }
+    else{
+        for(var i=0;i<7;i++)
+            moveOneLetterUp();
+        writeChrisInRow();
+    }
+}
+
+function writeChrisInRow() {
+    if(beepersPresent()) {    
+        if(randomChance(.2))
+            moveForwardOneLetter();
+        else if(randomChance(.25)) {
+            for(var i=0;i<2;i++)
+                moveForwardOneLetter();
+        }
+        else if(randomChance(.3333)) {
+            for(var i=0;i<3;i++)
+                moveForwardOneLetter();
+        }
+        else if(randomChance(.5))    {
+            for(var i=0;i<4;i++)
+                moveForwardOneLetter();
+        }
+        else {
+            for(var i=0;i<5;i++)
+                moveForwardOneLetter();
+        }
+    }
+    else {
+        moveForwardOneLetter();
+        if(beepersPresent()) {
+            if(randomChance(.25)) {
+                moveForwardOneLetter();
+            }
+            else if(randomChance(.3333)) {
+                for(var i=0;i<2;i++)
+                    moveForwardOneLetter();
+            }
+            else if(randomChance(.5))    {
+                for(var i=0;i<3;i++)
+                    moveForwardOneLetter();
+            }
+            else {
+                for(var i=0;i<4;i++)
+                    moveForwardOneLetter();
+            }
+        }
+        else {
+            for(var i=0;i<7;i++)
+                moveForwardOneLetter();
+            if(beepersPresent()) {
+                if(randomChance(.25)) {
+                    for(var i=0;i<8;i++)
+                        moveBackOneLetter();
+                }
+                else if(randomChance(.3333)) {
+                    for(var i=0;i<7;i++)
+                        moveBackOneLetter();
+                }
+                else if(randomChance(.5))    {
+                    for(var i=0;i<6;i++)
+                        moveBackOneLetter();
+                }
+                else {
+                    for(var i=0;i<5;i++)
+                        moveBackOneLetter();
+                }    
+            }
+            else {
+                if(randomChance(.2))    {
+                    for(var i=0;i<8;i++)
+                        moveBackOneLetter();
+                }
+                else if(randomChance(.25)) {
+                    for(var i=0;i<7;i++)
+                        moveBackOneLetter();
+                }
+                else if(randomChance(.3333)) {
+                    for(var i=0;i<6;i++)
+                        moveBackOneLetter();
+                }
+                else if(randomChance(.5))    {
+                    for(var i=0;i<5;i++)
+                        moveBackOneLetter();
+                }
+                else {
+                    for(var i=0;i<4;i++)
+                        moveBackOneLetter();
+                }
+            }
+        }                
+    }
+    writeChris();
+}
+
+function checkForCardinal(){
+    for(var i=0;i<7;i++)
+        moveOneLetterUp();
+    checkIfCardinal();
+    moveForwardOneLetter();
+    checkIfCardinal();
+    for(var i=0;i<7;i++)
+        moveForwardOneLetter();
+    checkIfCardinal();
+    moveForwardOneLetter();
+    checkIfCardinal();
+}
+
+function checkForKarel(){
+    for(var j=0;j<7;j++){
+        for(var i=0;i<6;i++){    
+            checkIfKarel();
+            moveForwardOneLetter();
+        }
+        turnLeft();
+        for(var i=0;i<6;i++)
+            move();
+        turnLeft();
+        while(frontIsClear())
+            move();
+        turnAround();
+    }
+    for(var i=0;i<6;i++){    
+        checkIfKarel();
+        moveForwardOneLetter();
+    }
+}
+
+function checkForChris(){
+    for(var j=0;j<7;j++){
+        for(var i=0;i<6;i++){    
+            checkIfChris();
+            moveForwardOneLetter();
+        }
+        turnLeft();
+        for(var i=0;i<6;i++)
+            move();
+        turnLeft();
+        while(frontIsClear())
+            move();
+        turnAround();
+    }
+    for(var i=0;i<6;i++){    
+        checkIfChris();
+        moveForwardOneLetter();
+    }
+}
+
+function checkForJava(){
+    for(var i=0;i<3;i++)
+        moveOneLetterUp();
+    for(var j=0;j<4;j++){
+        for(var i=0;i<7;i++){    
+            checkIfJava();
+            moveForwardOneLetter();
+        }
+        turnLeft();
+        for(var i=0;i<6;i++)
+            move();
+        turnLeft();
+        while(frontIsClear())
+            move();
+        turnAround();
+    }
+    for(var i=0;i<7;i++){    
+        checkIfJava();
+        moveForwardOneLetter();
+    }
+}
+
+function checkIfCardinal()
+{
+    if(beepersPresent())
+    {
+        moveBeeperOver();
+        if(beepersPresent())
+        {
+            moveBeeperOver();
+            if(noBeepersPresent()) //C found
+            {
+                putBeepersBack();
+                moveOneLetterDown();
+                if(rightIsClear())
+                {
+                    moveBeeperOver();
+                    if(noBeepersPresent()) //A found
+                    {
+                        putBeepersBack();
+                        moveOneLetterDown();
+                        if(rightIsClear())
+                        {
+                            for(var i=0;i<11;i++)
+                            {
+                                if(beepersPresent())
+                                    moveBeeperOver();
+                            }
+                            if(beepersPresent())
+                            {
+                                moveBeeperOver();
+                                if(noBeepersPresent())    //R found
+                                {
+                                    putBeepersBack();
+                                    moveOneLetterDown();
+                                    if(rightIsClear())
+                                    {
+                                        for(var i=0;i<2;i++)
+                                        {
+                                            if(beepersPresent())
+                                                moveBeeperOver();
+                                        }
+                                        if(beepersPresent())
+                                        {
+                                            moveBeeperOver();
+                                            if(noBeepersPresent())    //D found
+                                            {
+                                                putBeepersBack();
+                                                moveOneLetterDown();
+                                                if(rightIsClear())
+                                                {
+                                                    for(var i=0;i<5;i++)
+                                                    {
+                                                        if(beepersPresent())
+                                                            moveBeeperOver();
+                                                    }
+                                                    if(beepersPresent())
+                                                    {
+                                                        moveBeeperOver();
+                                                        if(noBeepersPresent())    //I found
+                                                        {
+                                                            putBeepersBack();
+                                                            moveOneLetterDown();
+                                                            if(rightIsClear())
+                                                            {
+                                                                for(var i=0;i<9;i++)
+                                                                {
+                                                                    if(beepersPresent())
+                                                                        moveBeeperOver();
+                                                                }
+                                                                if(beepersPresent())
+                                                                {
+                                                                    moveBeeperOver();
+                                                                    if(noBeepersPresent())    //N found
+                                                                    {
+                                                                        putBeepersBack();
+                                                                        moveOneLetterDown();
+                                                                        if(rightIsClear())
+                                                                        {
+                                                                            moveBeeperOver();
+                                                                            if(noBeepersPresent()) //A found
+                                                                            {
+                                                                                putBeepersBack();
+                                                                                moveOneLetterDown();    
+                                                                                for(var i=0;i<8;i++)
+                                                                                {
+                                                                                    if(beepersPresent())
+                                                                                        moveBeeperOver();
+                                                                                }
+                                                                                if(beepersPresent())
+                                                                                {
+                                                                                    moveBeeperOver();
+                                                                                    if(noBeepersPresent())    //CARDINAL found
+                                                                                    {
+                                                                                        putBeepersBack();
+                                                                                        circleCardinal();
+                                                                                    }
+                                                                                    else {
+                                                                                        putBeepersBack();
+                                                                                        for(var i=0;i<7;i++)
+                                                                                            moveOneLetterUp();
+                                                                                    }
+                                                                                }
+                                                                                else {
+                                                                                    putBeepersBack();
+                                                                                    for(var i=0;i<7;i++)
+                                                                                        moveOneLetterUp();
+                                                                                }
+                                                                            }
+                                                                            else {
+                                                                                putBeepersBack();
+                                                                                for(var i=0;i<6;i++)
+                                                                                    moveOneLetterUp();
+                                                                            }
+                                                                        }
+                                                                        else {
+                                                                            putBeepersBack();
+                                                                            for(var i=0;i<6;i++)
+                                                                                moveOneLetterUp();
+                                                                        }
+                                                                    }
+                                                                    else {
+                                                                        putBeepersBack();
+                                                                        for(var i=0;i<5;i++)
+                                                                            moveOneLetterUp();
+                                                                    }
+                                                                }
+                                                                else {
+                                                                    putBeepersBack();
+                                                                    for(var i=0;i<5;i++)
+                                                                        moveOneLetterUp();
+                                                                }
+                                                            }
+                                                            else {
+                                                                putBeepersBack();
+                                                                for(var i=0;i<4;i++)
+                                                                    moveOneLetterUp();
+                                                            }
+                                                        }
+                                                        else {
+                                                            putBeepersBack();
+                                                            for(var i=0;i<4;i++)
+                                                                moveOneLetterUp();
+                                                        }
+                                                    }
+                                                    else {
+                                                        putBeepersBack();
+                                                        for(var i=0;i<4;i++)
+                                                            moveOneLetterUp();
+                                                    }
+                                                }
+                                                else {
+                                                    putBeepersBack();
+                                                    for(var i=0;i<3;i++)
+                                                        moveOneLetterUp();
+                                                }
+                                            }
+                                            else {
+                                                putBeepersBack();
+                                                for(var i=0;i<3;i++)
+                                                    moveOneLetterUp();
+                                            }
+                                        }
+                                        else {
+                                            putBeepersBack();
+                                            for(var i=0;i<3;i++)
+                                                moveOneLetterUp();
+                                        }
+                                    }
+                                    else {
+                                        putBeepersBack();
+                                        for(var i=0;i<2;i++)
+                                            moveOneLetterUp();
+                                    }
+                                }
+                                else {
+                                    putBeepersBack();
+                                    for(var i=0;i<2;i++)
+                                        moveOneLetterUp();
+                                }
+                            }
+                            else {
+                                putBeepersBack();
+                                for(var i=0;i<2;i++)
+                                    moveOneLetterUp();
+                            }
+                        }
+                        else {
+                            putBeepersBack();
+                            moveOneLetterUp();
+                        }
+                    }
+                    else {
+                        putBeepersBack();
+                        moveOneLetterUp();
+                    }
+                }
+                else {
+                    putBeepersBack();
+                    moveOneLetterUp();
+                }
+            }
+            else
+                putBeepersBack();
+        }
+        else
+            putBeepersBack();
+    }
+    else
+        putBeepersBack();
+}
+                    
+function checkIfJava(){
+    if(beepersPresent()) {
+        for(var i=0;i<6;i++) {
+            if(beepersPresent())
+                moveBeeperOver();
+        }
+        if(beepersPresent()) {
+            moveBeeperOver();
+            if(noBeepersPresent()) {    //J found
+                putBeepersBack();
+                moveForwardOneLetter();
+                moveOneLetterDown();
+                moveBeeperOver();
+                if(noBeepersPresent()) {    // A found
+                    putBeepersBack();
+                    moveForwardOneLetter();
+                    moveOneLetterDown();
+                    for(var i=0;i<13;i++) {
+                        if(beepersPresent())
+                            moveBeeperOver();
+                    }
+                    if(beepersPresent()) {
+                        moveBeeperOver();
+                        if(noBeepersPresent()) {    //V found
+                            putBeepersBack();
+                            moveForwardOneLetter();
+                            moveOneLetterDown();
+                            moveBeeperOver();
+                            if(noBeepersPresent()) {    //JAVA found
+                                putBeepersBack();
+                                circleJava();
+                            }
+                            else {
+                                putBeepersBack();
+                                for(var i=0;i<3;i++) {
+                                    moveBackOneLetter();
+                                    moveOneLetterUp();
+                                }                        
+                            }
+                        }
+                        else {
+                            putBeepersBack();
+                            for(var i=0;i<2;i++) {
+                                moveBackOneLetter();
+                                moveOneLetterUp();
+                            }                        
+                        }
+                    }
+                    else {
+                        putBeepersBack();
+                        for(var i=0;i<2;i++) {
+                            moveBackOneLetter();
+                            moveOneLetterUp();
+                        }                        
+                    }
+                }
+                else {
+                    putBeepersBack();
+                    moveBackOneLetter();
+                    moveOneLetterUp();
+                }
+            }
+            else
+                putBeepersBack();
+        }
+        else
+            putBeepersBack();
+    }
+}
+
+function checkIfChris()
+{
+    if(beepersPresent())
+    {
+        moveBeeperOver();
+        if(beepersPresent())
+        {
+            moveBeeperOver();
+            if(noBeepersPresent()) //C found
+            {
+                putBeepersBack();
+                for(var i=0;i<5;i++)
+                    safeMove();
+                if(frontIsClear())
+                {
+                    for(var i=0;i<4;i++)
+                    {
+                        if(beepersPresent())
+                            moveBeeperOver();
+                    }
+                    if(beepersPresent())
+                    {
+                        moveBeeperOver();
+                        if(noBeepersPresent())    //H found
+                        {
+                            putBeepersBack();
+                            for(var i=0;i<5;i++)
+                                safeMove();
+                            if(frontIsClear())
+                            {
+                                for(var i=0;i<11;i++)
+                                {
+                                    if(beepersPresent())
+                                        moveBeeperOver();
+                                }
+                                if(beepersPresent())
+                                {
+                                    moveBeeperOver();
+                                    if(noBeepersPresent()) //R found
+                                    {
+                                        putBeepersBack();
+                                        for(var i=0;i<5;i++)
+                                            safeMove();
+                                        if(frontIsClear())
+                                        {
+                                            for(var i=0;i<5;i++)
+                                            {
+                                                if(beepersPresent())
+                                                    moveBeeperOver();
+                                            }
+                                            if(beepersPresent())
+                                            {
+                                                moveBeeperOver();
+                                                if(noBeepersPresent()) //I found
+                                                {
+                                                    putBeepersBack();
+                                                    for(var i=0;i<5;i++)
+                                                        safeMove();
+                                                    for(var i=0;i<12;i++)
+                                                    {
+                                                        if(beepersPresent())
+                                                            moveBeeperOver();
+                                                    }
+                                                    if(beepersPresent())
+                                                    {
+                                                        moveBeeperOver();
+                                                        if(noBeepersPresent()) //CHRIS found
+                                                        {
+                                                            putBeepersBack();
+                                                            circleChris();
+                                                        }
+                                                        else
+                                                        {
+                                                            putBeepersBack();
+                                                            for(var i=0;i<4;i++)
+                                                                moveBackOneLetter();
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        putBeepersBack();
+                                                        for(var i=0;i<4;i++)
+                                                            moveBackOneLetter();
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    putBeepersBack();
+                                                    for(var i=0;i<3;i++)
+                                                        moveBackOneLetter();
+                                                }    
+                                            }
+                                            else
+                                            {
+                                                putBeepersBack();
+                                                for(var i=0;i<3;i++)
+                                                    moveBackOneLetter();
+                                            }
+                                        }
+                                        else
+                                        {
+                                            putBeepersBack();
+                                            for(var i=0;i<3;i++)
+                                                moveBackOneLetter();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        putBeepersBack();
+                                        moveBackOneLetter();
+                                        moveBackOneLetter();
+                                    }
+                                }
+                                else
+                                {
+                                    putBeepersBack();
+                                    moveBackOneLetter();
+                                    moveBackOneLetter();
+                                }
+                            }
+                            else
+                            {
+                                putBeepersBack();
+                                moveBackOneLetter();
+                                moveBackOneLetter();
+                            }
+                        }
+                        else
+                        {
+                            putBeepersBack();
+                            moveBackOneLetter();
+                        }
+                    }
+                    else
+                    {
+                        putBeepersBack();
+                        moveBackOneLetter();
+                    }
+                }
+                else
+                {
+                    putBeepersBack();
+                    moveBackOneLetter();
+                }    
+            }
+            else
+                putBeepersBack();
+        }
+        else
+            putBeepersBack();
+    }
+}
+
+function checkIfKarel(){
+    if(beepersPresent()){
+        for(var i=0;i<7;i++) {
+            if(beepersPresent())
+                moveBeeperOver();
+        }
+        if(beepersPresent()){
+            moveBeeperOver();
+            if(noBeepersPresent()) {//K found
+                putBeepersBack();
+                for(var i=0;i<5;i++)
+                    safeMove();
+                if(frontIsClear())    {
+                    if(beepersPresent()){
+                        moveBeeperOver();
+                        if(noBeepersPresent()){    //A found
+                            putBeepersBack();
+                            for(var i=0;i<5;i++)
+                                safeMove();
+                            if(frontIsClear()){
+                                for(var i=0;i<11;i++){
+                                    if(beepersPresent())
+                                        moveBeeperOver();
+                                }
+                                if(beepersPresent()){
+                                    moveBeeperOver();
+                                    if(noBeepersPresent()) {//R found
+                                        putBeepersBack();
+                                        for(var i=0;i<5;i++)
+                                            safeMove();
+                                        if(frontIsClear()){
+                                            for(var i=0;i<3;i++){
+                                                if(beepersPresent())
+                                                    moveBeeperOver();
+                                            }
+                                            if(beepersPresent()){
+                                                moveBeeperOver();
+                                                if(noBeepersPresent()) {//E found
+                                                    putBeepersBack();
+                                                    for(var i=0;i<5;i++)
+                                                        safeMove();
+                                                    for(var i=0;i<8;i++){
+                                                        if(beepersPresent())
+                                                            moveBeeperOver();
+                                                    }
+                                                    if(beepersPresent()){
+                                                        moveBeeperOver();
+                                                        if(noBeepersPresent()){ //KAREL found
+                                                            putBeepersBack();
+                                                            circleKarel();
+                                                        }
+                                                        else{
+                                                            putBeepersBack();
+                                                            for(var i=0;i<4;i++)
+                                                                moveBackOneLetter();
+                                                        }
+                                                    }
+                                                    else{
+                                                        putBeepersBack();
+                                                        for(var i=0;i<4;i++)
+                                                            moveBackOneLetter();
+                                                    }
+                                                }
+                                                else{
+                                                    putBeepersBack();
+                                                    for(var i=0;i<3;i++)
+                                                        moveBackOneLetter();
+                                                }    
+                                            }
+                                            else{
+                                                putBeepersBack();
+                                                for(var i=0;i<3;i++)
+                                                    moveBackOneLetter();
+                                            }
+                                        }
+                                        else{
+                                            putBeepersBack();
+                                            for(var i=0;i<3;i++)
+                                                moveBackOneLetter();
+                                        }
+                                    }
+                                    else{
+                                        putBeepersBack();
+                                        moveBackOneLetter();
+                                        moveBackOneLetter();
+                                    }
+                                }
+                                else{
+                                    putBeepersBack();
+                                    moveBackOneLetter();
+                                    moveBackOneLetter();
+                                }
+                            }
+                            else{
+                                putBeepersBack();
+                                moveBackOneLetter();
+                                moveBackOneLetter();
+                            }
+                        }
+                        else{
+                            putBeepersBack();
+                            moveBackOneLetter();
+                        }
+                    }
+                    else{
+                        putBeepersBack();
+                        moveBackOneLetter();
+                    }
+                }
+                else{
+                    putBeepersBack();
+                    moveBackOneLetter();
+                }    
+            }
+            else
+                putBeepersBack();
+        }
+        else
+            putBeepersBack();
+    }
+}
+
+function fillEmptySpaces(){
+    for(var i=0;i<9;i++){
+        if(noBeepersPresent())
+            randomChanceLeter();
+        else{
+            for(var j=0;j<3;j++)
+                move();
+        }
+        move();
+        move();
+    }
+    if(noBeepersPresent())
+        randomChanceLeter();
+    else{
+        for(var j=0;j<3;j++)
+            move();
+    }
+    for(var i=0;i<7;i++){
+        turnLeft();
+        for(var j=0;j<6;j++)
+            move();
+        turnLeft();
+        while(frontIsClear())
+            move();
+        turnAround();
+        
+        for(var j=0;j<9;j++){
+            if(noBeepersPresent())
+                randomChanceLeter();
+            else{
+                for(var k=0;k<3;k++)
+                    move();
+            }
+            move();
+            move();
+        }
+        if(noBeepersPresent())
+            randomChanceLeter();
+    }
+}
+
+function safeMove(){
+    if(frontIsClear())
+        move();
+}
+
+function randomChanceLeter(){
+    if(randomChance(0.0714))        drawA();
+    else if(randomChance(.0769))    drawC();
+    else if(randomChance(.0833))    drawD();
+    else if(randomChance(.0909))    drawE();
+    else if(randomChance(.1000))    drawH();
+    else if(randomChance(.1111))    drawI();
+    else if(randomChance(.1250))    drawJ();
+    else if(randomChance(.1429))    drawK();
+    else if(randomChance(.1667))    drawL();
+    else if(randomChance(.2000))    drawN();
+    else if(randomChance(.2500))    drawP();
+    else if(randomChance(.3333))    drawR();
+    else if(randomChance(.5000))    drawS();
+    else                     drawV();
+}
+
+function delay(){
+    for(var i=0;i<500000;i++)     
+        turnLeft();
+}
+
+function putBeepersBack(){
+    move();
+    while(beepersPresent())    {
+        pickBeeper();
+        turnAround();
+        move();
+        putBeeper();
+        turnAround();
+        move();
+    }
+    turnAround();
+    move();
+    turnAround();
+}
+
+function moveBeeperOver(){
+    pickBeeper();
+    move();
+    putBeeper();
+    turnAround();
+    move();
+    turnAround();
+}
+
+function moveForwardOneLetter(){
+    for(var i=0;i<5;i++)
+        move();
+}
+
+function moveBackOneLetter(){
+    turnAround();
+    for(var i=0;i<5;i++)
+        move();
+    turnAround();
+}
+
+function returnToStart(){
+    turnAround();
+    while(frontIsClear())
+        move();
+    turnLeft();
+    while(frontIsClear())
+        move();
+    turnLeft();
+}
+
+function moveOneLetterUp(){
+    turnLeft();
+    for(var i=0;i<6;i++)
+        move();
+    turnRight();
+}
+
+function moveOneLetterDown(){
+    turnRight();
+    for(var i=0;i<6;i++)
+        move();
+    turnLeft();
+}
+
+function writeChris(){
+    drawC();
+    move();
+    move();
+    drawH();
+    move();
+    move();
+    drawR();
+    move();
+    move();
+    drawI();
+    move();
+    move();
+    drawS();
+}
+
+function writeCS(){
+    drawJ();
+    move();
+    move();
+    moveOneLetterDown();
+    drawA();
+    move();
+    move();
+    moveOneLetterDown();
+    drawV();
+    move();
+    move();
+    moveOneLetterDown();
+    drawA();
+    moveOneLetterUp();
+    moveOneLetterUp();
+    for(var i=0;i<3;i++)
+        moveBackOneLetter();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    drawK();
+    move();
+    move();
+    moveForwardOneLetter();
+    drawR();
+    move();
+    move();
+    drawE();
+    move();
+    move();
+    drawL();
+}
+
+function writeCardinal(){
+    drawC();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawA();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawR();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawD();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawI();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawN();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawA();
+    turnAround();
+    for(var i=0;i<3;i++)
+        move();
+    turnAround();
+    moveOneLetterDown();
+    drawL();
+}
+
+function moveToErrorMarker(){
+    turnLeft();
+    move();
+}
+
+function returnFromErrorMarker(){
+    turnAround();
+    move();
+    turnLeft();
+}
+
+function checkForSpace() {
+    if(beepersPresent()) {
+        moveToErrorMarker();
+        putBeeper();
+        returnFromErrorMarker();
+    }
+    moveToErrorMarker();
+    for(var j=0;j<3;j++) {
+        if(noBeepersPresent()) {
+            for(var i=0;i<4;i++){
+                if(noBeepersPresent()) {
+                    returnFromErrorMarker();
+                    if(noBeepersPresent()) {
+                        moveForwardOneLetter();
+                        if(beepersPresent()) {
+                            moveToErrorMarker();
+                            putBeeper();
+                        }
+                        else
+                            moveToErrorMarker();
+                    }
+                    else {
+                        moveToErrorMarker();
+                        putBeeper();
+                    }
+                }
+            }
+            if(noBeepersPresent()) {
+                turnRight();
+                for(var i=0;i<4;i++)
+                    moveBackOneLetter();
+                moveOneLetterDown();    
+                turnLeft();
+            }
+        }
+    }
+    for(var i=0;i<4;i++){
+        if(noBeepersPresent()) {
+            returnFromErrorMarker();
+            if(noBeepersPresent()) {
+                moveForwardOneLetter();
+                if(beepersPresent()) {
+                    moveToErrorMarker();
+                    putBeeper();
+                }
+                else
+                    moveToErrorMarker();
+            }
+            else {
+                moveToErrorMarker();
+                putBeeper();
+            }
+        }
+    }
+    if(noBeepersPresent()) {
+        turnAround();
+        move();
+        turnLeft();
+    }
+}
+
+function placeCSInColumn()
+{
+    if(randomChance(0.1667)) {        // column 1
+        checkForSpace();
+        writeCSIfFree();
+    }
+    else {
+        if(randomChance(0.2)) {
+            moveForwardOneLetter();
+            checkForSpace();
+            writeCSIfFree();
+        }
+        else {
+            if(randomChance(0.25)){
+                for(var i=0;i<2;i++)
+                    moveForwardOneLetter();
+                checkForSpace();
+                writeCSIfFree();
+            }
+            else {
+                if(randomChance(0.3333)){
+                    for(var i=0;i<3;i++)
+                        moveForwardOneLetter();
+                    checkForSpace();
+                    writeCSIfFree();
+                }
+                else {
+                    if(randomChance(0.5)){
+                        for(var i=0;i<4;i++)
+                            moveForwardOneLetter();
+                        checkForSpace();
+                        writeCSIfFree();
+                    }
+                    else {
+                        for(var i=0;i<5;i++)
+                            moveForwardOneLetter();
+                        checkForSpace();
+                        writeCSIfFree();
+                    }
+                }
+            }
+        }
+    }
+}
+
+function writeCSIfFree()
+{
+    if(noBeepersPresent()) {
+        for(var i=0;i<4;i++)
+            moveBackOneLetter();
+        for(var i=0;i<3;i++)
+            moveOneLetterUp();
+        writeCS();
+        turnLeft();
+        move();
+    }
+    else {
+        while(beepersPresent())
+            pickBeeper();
+        putBeeper();
+    }    
+    turnRight();
+}
+
+function varro() {
+    for(var i=0;i<7;i++)
+        moveOneLetterUp();
+    turnRight();
+    move();
+    move();
+    turnLeft();
+    for(var i=0;i<3;i++)
+        moveForwardOneLetter();
+    turnAround();
+    move();
+    move();
+    turnAround();
+    drawK();
+    move();
+    move();
+    drawA();
+    move();
+    move();
+    drawR();
+    move();
+    move();
+    drawE();
+    move();
+    move();
+    drawL();
+    move();
+    move();
+    moveOneLetterDown();
+    for(var i=0;i<4;i++)
+        moveBackOneLetter();
+    drawC();
+    move();
+    move();
+    drawA();
+    move();
+    move();
+    drawN();
+    move();
+    move();
+    moveOneLetterDown();
+    for(var i=0;i<4;i++)
+        moveBackOneLetter();
+    drawS();
+    move();
+    move();
+    drawP();
+    move();
+    move();
+    drawE();
+    move();
+    move();
+    drawL();
+    move();
+    move();
+    drawL();
+    move();
+    move();
+    moveOneLetterDown();
+    moveOneLetterDown();
+    for(var i=0;i<4;i++)
+        moveBackOneLetter();
+    move();
+    move();
+    drawD();
+    move();
+    move();
+    drawE();
+    move();
+    move();
+    moveOneLetterDown();
+    for(var i=0;i<3;i++)
+        moveBackOneLetter();
+    turnAround();
+    move();
+    move();
+    turnAround();
+    drawC();
+    move();
+    move();
+    drawH();
+    move();
+    move();
+    drawR();
+    move();
+    move();
+    drawI();
+    move();
+    move();
+    drawS();
+    move();
+    move();
+    moveOneLetterDown();
+    for(var i=0;i<5;i++)
+        moveBackOneLetter();
+    drawP();
+    move();
+    move();
+    drawI();
+    move();
+    move();
+    drawE();
+    move();
+    move();
+    drawC();
+    move();
+    move();
+    drawH();
+    returnToStart();
+}
+function end(){
+    for(var i=0;i<4;i++)
+        moveOneLetterUp();
+    for(var i=0;i<3;i++)
+        moveForwardOneLetter();
+    move();
+    move();
+    move();
+    drawE();
+    move();
+    move();
+    drawN();
+    move();
+    move();
+    drawD();
+    returnToStart();
+}
+function clearScrean(){
+    for(var i=0;i<46;i++){
+        for(var j=0;j<48;j++){
+            paintCorner('white');
+            if(beepersPresent()){
+                while(beepersPresent())
+                    pickBeeper();
+            }
+            move();
+        }
+        paintCorner('white');
+        if(beepersPresent()){
+            while(beepersPresent())
+                pickBeeper();
+        }
+        if(facingEast()){
+            turnLeft();
+            move();
+            turnLeft();
+        }
+        else {
+            turnRight();
+            move();
+            turnRight();
+        }
+    }
+    for(var j=0;j<48;j++){
+        paintCorner('white');
+        if(beepersPresent()){
+            while(beepersPresent())
+                pickBeeper();
+        }
+        move();
+    }
+    paintCorner('white');
+    if(beepersPresent()){
+        while(beepersPresent())
+            pickBeeper();
+    }
+    returnToStart();
+}
+
+function circleChris()
+{
+    for(var i=0;i<3;i++)
+        move();
+    turnLeft();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+    paintCorner('black');
+    for(var i=0;i<22;i++){
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+    paintCorner('black');
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+    paintCorner('black');
+    for(var i=0;i<23;i++){
+        move();
+        paintCorner('black');
+    }
+    turnAround();
+    for(var i=0;i<23;i++)
+        move();
+    turnAround();
+}
+
+function circleJava()
+{
+    for(var i=0;i<3;i++) {
+        moveBackOneLetter();
+        moveOneLetterUp();
+    }        
+    for(var j=0;j<2;j++) {
+        for(var i=0;i<5;i++) {
+            paintCorner('black');
+            move();
+            turnRight();
+            move();
+            turnLeft();
+        }
+        paintCorner('black');
+        turnRight();
+        move();
+        paintCorner('black');
+        turnLeft();
+    }
+    for(var i=0;i<6;i++) {
+        paintCorner('black');
+        move();
+        turnRight();
+        move();
+        turnLeft();
+    }
+    paintCorner('black');
+    move();
+    paintCorner('black');
+    move();
+    turnLeft();
+    for(var i=0;i<4;i++) {
+        move();
+        paintCorner('black');
+    }
+    for(var j=0;j<3;j++) {
+        for(var i=0;i<5;i++) {
+            paintCorner('black');
+            move();
+            turnLeft();
+            move();
+            turnRight();
+        }
+        paintCorner('black');
+        move();
+    }
+
+    turnLeft();
+    move();
+    for(var i=0;i<2;i++) {
+        paintCorner('black');
+        move();
+    }
+    turnLeft();
+    for(var i=0;i<3;i++) {
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+}
+
+function circleKarel(){
+    for(var i=0;i<3;i++)
+        move();
+    turnLeft();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+    paintCorner('black');
+    for(var i=0;i<22;i++){
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+    paintCorner('black');
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('black');
+    }
+    move();
+    turnLeft();
+    paintCorner('black');
+    for(var i=0;i<23;i++){
+        move();
+        paintCorner('black');
+    }
+    turnAround();
+    for(var i=0;i<23;i++)
+        move();
+    turnAround();
+}
+
+function circleCardinal(){
+    paintCorner('black');
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('black');
+    }
+    if(frontIsBlocked()) {
+        turnLeft();
+        for(var i=0;i<46;i++){
+            move();
+            paintCorner('black');
+        }
+        turnLeft();
+        for(var i=0;i<4;i++){
+            move();
+            paintCorner('black');
+        }
+        turnLeft();
+        for(var i=0;i<46;i++){
+            move();
+            paintCorner('black');
+        }
+        turnAround();
+        for(var i=0;i<46;i++)
+            move();
+        turnRight();
+        move();
+    }
+    else {
+        move();        
+        paintCorner('black');
+        turnLeft();
+        for(var i=0;i<46;i++){
+            move();
+            paintCorner('black');
+        }
+        turnLeft();
+        for(var i=0;i<4;i++){
+            move();
+            paintCorner('black');
+        }
+        turnLeft();
+        for(var i=0;i<46;i++){
+            move();
+            paintCorner('black');
+        }
+        turnAround();
+        for(var i=0;i<46;i++)
+            move();
+        turnRight();
+    }
+}
+function drawA()
+{
+    putBeeper();
+    turnLeft();
+    for(var i=0; i<4;i++){
+        paintCorner('green');
+        move();
+    }
+    turnRight();
+    move();
+    for(var i=0; i<2;i++){
+        paintCorner('green');
+        move();
+    }
+    turnRight();
+    move();
+    for(var i=0; i<3;i++){
+        paintCorner('green');
+        move();
+    }
+    paintCorner('green');
+    turnAround();
+    move();
+    move();
+    turnLeft();
+    for(var i=0; i<2;i++){
+        move();
+        paintCorner('green');
+    }
+    turnAround();
+    move();
+    move();
+    turnRight();
+    move();
+    move();
+    turnLeft();
+}
+function drawC()
+{
+    for(var i=0;i<2;i++)
+        putBeeper();
+    move();
+    move();
+    turnAround();
+    for(var i=0; i<2;i++){
+        paintCorner('blue');
+        move();
+    }
+    turnRight();
+    move();
+    for(var i=0; i<3;i++){
+        paintCorner('blue');
+        move();
+    }
+    turnRight();
+    move();
+    for(var i=0; i<2;i++){
+        paintCorner('blue');
+        move();
+    }
+    turnRight();
+    move();
+    paintCorner('blue');
+    move();
+    move();
+    paintCorner('blue');
+    move();
+    turnLeft();
+}
+
+function drawD()
+{
+    for(var i=0;i<3;i++)
+        putBeeper();
+    for(var i=0;i<3;i++){
+        paintCorner('#0ff');
+        move();
+    }
+    turnLeft();
+    move();
+    for(var i=0;i<3;i++){
+        paintCorner('#0ff');
+        move();
+    }
+    turnLeft();
+    move();
+    for(var i=0;i<2;i++){
+        paintCorner('#0ff');
+        move();
+    }
+    turnLeft();
+    for(var i=0;i<4;i++){
+        paintCorner('#0ff');
+        move();
+    }
+    turnLeft();
+    for(var i=0;i<3;i++){
+        paintCorner('#0ff');
+        move();
+    }
+}
+
+function drawE()
+{
+    for(var i=0;i<4;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0; i<4;i++){
+        paintCorner('green');
+        move();
+    }
+    paintCorner('green');
+    turnRight();
+    for(var i=0; i<3;i++){
+        move();
+        paintCorner('green');
+    }
+    turnRight();
+    move();
+    move();
+    turnRight();
+    for(var i=0; i<2;i++){
+        move();
+        paintCorner('green');
+    }
+    move();
+    turnLeft();
+    move();
+    move();
+    turnLeft();
+    for(var i=0; i<3;i++){
+        move();
+        paintCorner('green');
+    }
+    
+}
+
+function drawH()
+{
+    for(var i=0;i<5;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0; i<4;i++){
+        paintCorner('#800080');
+        move();
+    }
+    paintCorner('#800080');
+    turnAround();
+    move();
+    move();
+    turnLeft();
+    for(var i=0; i<2;i++){
+        move();
+        paintCorner('#800080');
+    }
+    move();
+    turnLeft();
+    move();
+    move();
+    turnAround();
+    for(var i=0; i<4;i++){
+        paintCorner('#800080');
+        move();
+    }
+    paintCorner('#800080');
+    turnLeft();
+}
+
+function drawI()
+{
+    for(var i=0;i<6;i++)
+        putBeeper();
+    move();
+    move();
+    turnLeft();
+    for(var i=0; i<4;i++){
+        paintCorner('#FF8040');
+        move();
+    }
+    paintCorner('#FF8040');
+    turnAround();
+    for(var i=0; i<4; i++)
+        move();
+    turnLeft();
+    move();
+}
+
+function drawJ()
+{
+    for(var i=0;i<7;i++)
+        putBeeper();
+    turnLeft();
+    move();
+    paintCorner('#F44');
+    turnRight();
+    move();
+    turnRight();
+    move();
+    paintCorner('#F44');
+    turnLeft();
+    move();
+    turnLeft();
+    for(var i=0; i<3;i++){
+        move();
+        paintCorner('#F44');
+    }
+    turnLeft();
+    move();
+    move();
+    turnRight();
+    move();
+    turnRight();
+    for(var i=0; i<3;i++){
+        paintCorner('#F44');
+        move();
+    }
+    paintCorner('#F44');
+    turnRight();
+    for(var i=0; i<4; i++)
+        move();
+    turnLeft();
+}
+
+function drawK()
+{
+    for(var i=0;i<8;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0; i<4;i++){
+        paintCorner('red');
+        move();
+    }
+    paintCorner('red');
+    turnRight();
+    for(var i=0; i<3; i++)
+        move();
+    paintCorner('red');
+    turnRight();
+    move();
+    turnRight();
+    move();
+    paintCorner('red');
+    turnLeft();
+    move();
+    turnRight();
+    move();
+    paintCorner('red');
+    turnLeft();
+    move();
+    turnLeft();
+    move();
+    paintCorner('red');
+    turnRight();
+    move();
+    turnLeft();
+    move();
+    paintCorner('red');
+}
+
+function drawL()
+{
+    for(var i=0;i<9;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0;i<4;i++)
+        move();
+    turnAround();
+    for(var i=0;i<4;i++){
+        paintCorner('#FDD017');
+        move();
+    }
+    paintCorner('#FDD017');
+    turnLeft();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('#FDD017');
+    }
+}
+
+function drawN()
+{
+    for(var i=0;i<10;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0;i<4;i++){
+        paintCorner('blue');
+        move();
+    }
+    paintCorner('blue');
+    turnRight();
+    move();
+    turnRight();
+    move();
+    paintCorner('blue');
+    turnLeft();
+    move();
+    turnRight();
+    move();
+    paintCorner('blue');
+    move();
+    move();
+    turnLeft();
+    move();
+    turnLeft();
+    for(var i=0;i<4;i++){
+        paintCorner('blue');
+        move();
+    }
+    paintCorner('blue');
+    turnAround();
+    for(var i=0;i<4;i++)
+        move();
+    turnLeft();
+}
+
+function drawO() {
+    for(var i=0;i<14;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('#0ff');
+    }
+    move();
+    turnRight();
+    for(var i=0;i<2;i++){
+        move();
+        paintCorner('#0ff');
+    }
+    move();
+    turnRight();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('#0ff');
+    }
+    move();
+    turnRight();
+    for(var i=0;i<2;i++){
+        move();
+        paintCorner('#0ff');
+    }
+    move();
+}
+
+function drawP()
+{
+    for(var i=0;i<11;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0;i<4;i++){
+        paintCorner('blue');
+        move();
+    }
+    paintCorner('blue');
+    turnRight();
+    move();
+    for(var i=0;i<2;i++){
+        paintCorner('blue');
+        move();
+    }
+    turnRight();
+    move();
+    paintCorner('blue');
+    move();
+    turnRight();
+    for(var i=0;i<2;i++){
+        move();
+        paintCorner('blue');
+    }
+    turnLeft();
+    move();
+    move();
+    turnLeft();
+    move();
+    move();        
+}
+
+function drawR()
+{
+    for(var i=0;i<12;i++)
+        putBeeper();
+    turnLeft();
+    for(var i=0;i<4;i++){
+        paintCorner('#0ff');
+        move();
+    }
+    paintCorner('#0ff');
+    turnRight();
+    move();
+    for(var i=0;i<2;i++){
+        paintCorner('#0ff');
+        move();
+    }
+    turnRight();
+    move();
+    paintCorner('#0ff');
+    move();
+    turnRight();
+    for(var i=0;i<2;i++){
+        move();
+        paintCorner('#0ff');
+    }
+    turnAround();
+    move();
+    move();
+    turnRight();
+    move();
+    paintCorner('#0ff');
+    move();
+    paintCorner('#0ff');
+    turnLeft();
+}
+
+function drawS()
+{
+    for(var i=0;i<13;i++)
+        putBeeper();
+    for(var i=0;i<3;i++){
+        paintCorner('red');
+        move();
+    }
+    turnLeft();
+    move();
+    paintCorner('red');
+    move();
+    turnLeft();
+    move();
+    for(var i=0;i<2;i++){
+        paintCorner('red');
+        move();
+    }
+    turnRight();
+    move();
+    paintCorner('red');
+    move();
+    turnRight();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('red');
+    }
+    turnRight();
+    for(var i=0;i<4;i++)
+        move();
+    turnLeft();
+}
+
+function drawV()
+{
+    for(var i=0;i<14;i++)
+        putBeeper();
+    turnLeft();
+    move();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('green');
+    }
+    turnAround();
+    for(var i=0;i<4;i++)
+        move();
+    turnLeft();
+    move();
+    paintCorner('green');
+    turnLeft();
+    move();
+    turnRight();
+    for(var i=0;i<2;i++){
+        paintCorner('green');
+        move();
+    }
+    turnLeft();
+    for(var i=0;i<3;i++){
+        move();
+        paintCorner('green');
+    }
+    turnAround();
+    for(var i=0;i<4;i++)
+        move();
+    turnLeft();
+}</textarea>
+<canvas name="canvas" id="canvas">47x49.w,470,470,userProgram,true</canvas>    
+
+
+</div>

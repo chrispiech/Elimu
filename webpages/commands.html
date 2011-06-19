@@ -1,0 +1,52 @@
+<!--- CSS ---->
+<style type="text/css">
+#canvas {
+	width:350px;
+	height:210px;
+}
+</style>
+
+<!--- Body --->
+<b id="title">Commands</b>
+
+<p>
+When Karel is shipped from the factory, it responds to a very small set of commands:</p>
+<br/>
+<table border="0" id="indented" valign="top" width="90%">
+<tr>
+<td id="codeText">move()</td>
+<td>Asks Karel to move forward one block. Karel cannot respond to a
+move command if there is a wall blocking its way.</td>
+</tr>
+
+<tr>
+<td id="codeText">turnLeft()</td>
+<td>Asks Karel to rotate 90 degrees to the left (counterclockwise).</td>
+</tr>
+<tr>
+<td id="codeText">pickBeeper()</td>
+<td>Asks Karel to pick up one beeper from a corner and stores the beeper
+in its beeper bag, which can hold an infinite number of beepers. Karel
+cannot respond to a pickBeeper command unless there is a beeper
+on the current corner.</td>
+</tr>
+<tr>
+<td id="codeText">putBeeper()</td>
+<td>Asks Karel to take a beeper from its beeper bag and put it down on
+the current corner. </td>
+</tr>
+</table>
+       
+<br/>
+<div align="center">
+ <canvas name="canvas" id="canvas">firstProgram.w,350,210,stepper</canvas>     
+</div>
+<br/>
+<div id = "stepButton" align="center">
+<button type='button' id="stepButton" onClick='application.stepMoveKarel();'>move()</button>
+<button type='button' id="stepButton" onClick='application.stepTurnLeftKarel()'>turnLeft()</button>
+<button type='button' id="stepButton" onClick='application.stepPickBeeper()'>pickBeeper()</button>
+<button type='button' id="stepButton" onClick='application.stepPutBeeper()'>putBeeper()</button>
+</div>
+<br/>
+<p>Here, give it a try! Clicking on any of the buttons above will execute the corresponding command. Can you pick up that beeper infront of you and drop it ontop of the pillar?</p>

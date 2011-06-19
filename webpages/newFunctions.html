@@ -1,0 +1,33 @@
+<b id="title">Defining New Functions</b>
+		  <p>Even though the Turn Right program demonstrates that it is possible to
+perform the turnRight operation using only Karel&#39;s built-in commands, the resulting
+code is not particularly clear conceptually. The fact that you have to use three
+<b id="codeText2">turnLeft</b> commands to do so is annoying. It would be much simpler if you could simply
+say <b id="codeText2">turnRight</b>. </p>
+
+<p>Fortunately, JavaScript makes it possible to define new
+commands simply by including new function definitions. Whenever you have a sequence
+of Karel commands that performs some useful task, such as turning right, you can
+define a new function that executes that sequence of commands when called. The format for defining a
+new Karel function is much the same as the definition of run in the preceding examples,
+which is a function definition in its own right. A typical function definition looks like this:</p>
+
+<div id = "indent">
+	<p id="codeText">&nbsp;&nbsp;&nbsp;&nbsp;function <em>name</em>() {<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>commands that make up the body of the method</em><br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+</div>
+
+<p>In this pattern, name represents the name you have chosen for the new method. To
+complete the definition, all you have to do is provide the sequence of commands in the
+lines between the curly braces. For example, you can define <b id="codeText2">turnRight</b> as follows:</p>
+<p id="codeText">&nbsp;&nbsp;&nbsp;&nbsp;function turnRight() {<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;}<br/></p>
+<p>If you provide the above definition of <b id="codeText2">turnRight</b> in your program code, the method is added to the list of Karel 
+commands. So you can now call it like <b id="codeText2">turnLeft</b>!</p>
+<p id="codeText">&nbsp;&nbsp;&nbsp;&nbsp;function run() {<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnRight();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;}<br/></p>

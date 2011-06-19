@@ -1,0 +1,79 @@
+<style type="text/css">
+div.CodeMirror-wrapping {
+	float:left;
+	width:275px;
+	height:303px;
+	border-width:2px;
+	border-style:solid;
+	background:#fff;
+}
+
+#canvas {
+	width:470px;
+	height:303px;
+}
+</style>
+
+
+<b id="title">Advanced</b>
+
+<p>To help spice up your Karel programs we have granted Karel some bonus functionality. We have given Karel the ability to paint and to perform actions randomly.</p>
+
+<p>The new command <b id="codeText2">paintCorner('<em>color</em>')</b> will floodfill Karel&#39;s current corner. <em>Color</em> must be an HTML color code. For information on HTML color codes <a href="http://html-color-codes.info/">click here</a>. Note that the color must be surrounded by quotes.
+
+<p>The new command <b id="codeText2">randomChance(<em>p</em>)</b> is a new condition statement that will evaluate to true with probability <em>p</em>. If no value of <em>p</em> is provided it assumes the default value of 0.5.
+
+<p>Here's an example that uses both the advanced Karel features:</p>
+
+<br/>
+<!-- start code, karel and run buttons -->
+<div id ="indented">
+<textarea name="code" id="code">/* This program colors Karel's
+ * world. */
+function run(){
+	while(leftIsClear()) {
+		fillRow();
+		changeRow();
+	}
+	fillRow();
+}
+
+function fillRow() {
+	while(frontIsClear()) {
+		paint();
+		move();
+	}
+	paint();
+}
+
+function paint() {
+	paintCorner('green');
+	if(randomChance(0.6)) {
+		paintCorner('blue');
+	} 
+}
+
+function changeRow() {
+	turnLeft();
+	move();
+	turnLeft();
+	while(frontIsClear()) {
+		move();
+	}
+	turnLeft();
+	turnLeft();
+}</textarea>
+<canvas name="canvas" id="canvas">7x7.w,470,303,advanced</canvas>    
+<br/><br/>
+<div float="left">
+	Run:
+	<button type='button' id='interactor' onClick='application.runButton()'>
+		<IMG SRC="./images/playButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
+	</button>
+	&nbsp;
+	<button type='button' id='interactor' onClick='application.stopButton()'>
+		<IMG SRC="./images/stopButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
+	</button>
+</div> 
+</div>
+<!-- end code, karel and run buttons -->

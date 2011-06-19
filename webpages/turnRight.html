@@ -1,0 +1,33 @@
+<b id="title">Turning Right</b>
+		  <p>One interesting facet of Karel that you may have noticed is that Kare&#39;s language includes a <b id="codeText2">turnLeft</b> command, but no <b id="codeText2">turnRight</b>
+command. It&#39s as if you bought the economy model and have now discovered that it is
+missing some important features. Lets say you needed to write a program that accomplished the task of making Karel face
+South: </p>
+<br/>
+<center>
+<div style="text-align: center; width:500px">
+<div style="float:left;">
+Before<br/>
+<img SRC="./images/turnRightBefore.png" ALT="Before" align="center"/>
+</div>
+<div>
+After<br/>
+<img SRC="./images/turnRightAfter.png" ALT="Before" align="center"/>
+</div>
+</div>
+</center>
+
+<p>At this point, you have your first opportunity to begin thinking like a programmer. You
+have one set of commands, but not exactly the set you need. What can you do? Can you
+accomplish the effect of a <b id="codeText2">turnRight</b> command using only the capabilities you have? 
+The answer, of course, is yes. You can accomplish the effect of turning right by turning
+left three times. After three left turns, Karel will be facing in the desired direction. 
+A complete implementation of a Turn Right program that accomplishes the task is shown below.</p>
+
+<div id = "indent">
+	<p id="codeText">&nbsp;&nbsp;&nbsp;&nbsp;function run() {<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;turnLeft();<br/>
+         &nbsp;&nbsp;&nbsp;&nbsp;}<br/>
+</div>
