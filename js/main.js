@@ -2,6 +2,10 @@
 // constants
 var DEFAULT_CORNER_SIZE = 40;
 var BACKGROUND_COLOR = "#fff";
+var DEFAULT_WORLD = '15x15.w';
+var CANVAS_WIDTH = 557;
+var CANVAS_HEIGHT = 475;
+var COOKIE_NAME = 'karelCode';
 
 // globals
 var application = new Application();
@@ -16,29 +20,17 @@ window.onload = function() {
 
 	try {
   		canvas = document.getElementById('canvas');
+  		canvas.width = width;
+		canvas.height = height;
+		application.init(world, width, height, cookieName, deployed);		
   	} catch(err) {
   		var wrapper = document.getElementById('content');
   		wrapper.innerHTML = '<br/><center><h3>Oh snap! It looks like you are using a browser that does not support HTML 5. Try loading this website using Firefox, Chrome or IE 9.</h3></center>';
-  		application.addSocialButtons();
   	}
-	
-	if (!canvas) {
-		application.addSocialButtons();
-		return;
-	}
-
-	parameters = canvas.innerHTML.split(',');
-	world = parameters[0];
-	width = parameters[1];
-	height = parameters[2];
-	cookieName = parameters[3];
-	deployed = parameters[4] == "true";
 
 	// Check the element is in the DOM and the browser supports canvas
 	if(canvas && canvas.getContext) {
-		canvas.width = width;
-		canvas.height = height;
-		application.init(world, width, height, cookieName, deployed);			
+			
 	} else {
 		alert("canvas not supported by your browser");	
 	}

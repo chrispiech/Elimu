@@ -1,0 +1,77 @@
+
+
+<!DOCTYPE html> 
+<html> 
+   <head> 
+      <title>Karel Engine Test</title> 
+
+      <!-- CSS Imports -->
+      <link rel="stylesheet" href="css/ide.css" type="text/css" />
+      <link rel="stylesheet" href="css/style.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/tabs.css" />
+
+      <!-- Standard Imports -->
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> 
+		<script type="text/javascript" src="lib/util.js"></script>
+      <script type="text/javascript" src="lib/point.js"></script>
+      <script type="text/javascript" src="lib/circle.js"></script>
+		<script type="text/javascript" src="lib/cookie.js"></script>
+		<script type="text/javascript" src="lib/tabs.js"></script>
+
+		<!-- Third Party Lib Imports -->
+      <script type="text/javascript" src="codeMirror/js/codemirror.js"></script>
+
+      <!-- Karel Imports -->
+		<script type="text/javascript" src="js/karelImages.js"></script>
+		<script type="text/javascript" src="js/action.js"></script>
+      <script type="text/javascript" src="js/karel.js"></script>
+      <script type="text/javascript" src="js/beepers.js"></script>
+      <script type="text/javascript" src="js/walls.js"></script>
+      <script type="text/javascript" src="js/karelWorld.js"></script>
+      <script type="text/javascript" src="js/karelApplication.js"></script>
+      <script type="text/javascript" src="js/main.js"></script>
+   </head> 
+
+   <body> 
+      <br/>
+      <div id="buttonBar">
+         <button type='button' id='interactor' onClick='application.runButton()'>
+            <IMG SRC="./images/playButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
+         </button>
+         &nbsp;						
+         <button type='button' id='interactor' onClick='application.stopButton()'>
+            <IMG SRC="./images/stopButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
+         </button>
+         &nbsp;
+	      World:
+         <select name="world" size=0 id='interactor' onChange='application.changeWorld(this)'>
+            <option value="1">60x60.w
+            <option value="2">50x50.w
+            <option value="3">30x30.w
+            <option value="4" selected="yes">15x15.w
+            <option value="5">14x13.w
+            <option value="6">12x12.w
+            <option value="7">9x9.w
+            <option value="8">8x2.w
+            <option value="9">7x12.w
+            <option value="10">1x6.w
+            <option value="11">4x4.w
+            <option value="12">1x1.w
+            <option value="12">maze.w
+         </select>      
+      </div>
+		          		
+      <textarea name="code" id="code">/* write your karel javascript
+ * code here. */
+
+function run() {
+
+}
+      </textarea>
+
+
+		<canvas name="canvas" id="canvas">15x15.w,557,475,karel_code,false</canvas>
+
+			
+  	</body> 
+</html>
