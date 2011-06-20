@@ -1,6 +1,6 @@
 How to program in the Elimu Project:
 
-You can test changes to the Karel Engine using karelEngineTest.html under the webpages directory. The code for the karel engine lives in the js directory. 
+You can test changes to the Karel Engine using karelEngineTest.html in the root directory. The code for the karel engine lives in the js directory. 
 
 This project uses the codeMirror library for displaying sytax highlighted text.
 
