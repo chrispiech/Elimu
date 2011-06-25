@@ -6,7 +6,7 @@
       <title>Karel Engine Test</title> 
 
       <!-- CSS Imports -->
-      <link rel="stylesheet" href="css/ide.css" type="text/css" />
+      <link rel="stylesheet" href="css/engineTest.css" type="text/css" />
       <link rel="stylesheet" href="css/style.css" type="text/css" />
 		<link rel="stylesheet" type="text/css" href="css/tabs.css" />
 
@@ -22,6 +22,7 @@
       <script type="text/javascript" src="codeMirror/js/codemirror.js"></script>
 
       <!-- Karel Imports -->
+      <script type = "text/javascript" src="js/karelConstants.js"></script>
 		<script type="text/javascript" src="js/karelImages.js"></script>
 		<script type="text/javascript" src="js/action.js"></script>
       <script type="text/javascript" src="js/karel.js"></script>
@@ -29,17 +30,17 @@
       <script type="text/javascript" src="js/walls.js"></script>
       <script type="text/javascript" src="js/karelWorld.js"></script>
       <script type="text/javascript" src="js/karelApplication.js"></script>
-      <script type="text/javascript" src="js/main.js"></script>
+      <script type="text/javascript" src="js/karelIde.js"></script>
    </head> 
 
    <body> 
       <br/>
       <div id="buttonBar">
-         <button type='button' id='interactor' onClick='application.runButton()'>
+         <button type='button' id='playButton'>
             <IMG SRC="./images/playButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
          </button>
          &nbsp;						
-         <button type='button' id='interactor' onClick='application.stopButton()'>
+         <button type='button' id='stopButton' onClick='application.stopButton()'>
             <IMG SRC="./images/stopButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
          </button>
          &nbsp;
@@ -61,16 +62,16 @@
          </select>      
       </div>
 		          		
-      <textarea name="code" id="code">/* write your karel javascript
- * code here. */
+        <textarea name="code" id="code">//hello</textarea>
 
-function run() {
+		<canvas name="canvas" id="canvas"></canvas>
 
-}
-      </textarea>
-
-
-		<canvas name="canvas" id="canvas">15x15.w,557,475,karel_code,false</canvas>
+		<script>
+		    karelIde = KarelIde('code', 'canvas');
+		    runButton = document.getElementById('runButton');
+		    alert(runButton);
+		    runButton.onclick = karelIde.runButton();
+		</script>
 
 			
   	</body> 

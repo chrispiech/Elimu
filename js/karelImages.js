@@ -1,8 +1,10 @@
 
 
 function KarelImages() {
-	images = new Array();
-	imageNames = new Array();
+    var that = {};
+
+	var images = new Array();
+	var imageNames = new Array();
 	imageNames[0] = "karelNorth.png";
 	imageNames[1] = "karelSouth.png";
 	imageNames[2] = "karelEast.png";
@@ -22,8 +24,9 @@ function KarelImages() {
 	var callback = null;
 	var imagesLoaded = 0;
 	var calledLoadImages = false;
+	
 
-	this.checkLoaded = function() {
+	that.checkLoaded = function() {
 		for ( var i = 0; i < images.length; i++ ) {
 			if (!images[i].complete) {
 				return;
@@ -34,9 +37,9 @@ function KarelImages() {
 		callback();
 	}
 
-	this.loadImages = function(func) {
+	that.loadImages = function(callbackFn) {
 		if (calledLoadImages) alert("called loadImages twice");
-		callback = func;
+		callback = callbackFn;
 		calledLoadImages = true;
 		imagesLoaded = 0;
 	
@@ -51,7 +54,7 @@ function KarelImages() {
 
 	
 
-	this.imageProcessed = function() {
+	that.imageProcessed = function() {
 		imagesLoaded += 1;
  
 		if (imagesLoaded == imageNames.length) {
@@ -60,20 +63,22 @@ function KarelImages() {
 		}
 	}
 
-	this.createVariables = function() {
-		this.karelNorth = images[0];
-		this.karelSouth = images[1];
-		this.karelEast = images[2];
-		this.karelWest = images[3];
-		this.cross = images[4];
-		this.beeper = images[5];
-		this.karelNorthSmall = images[6];
-		this.karelSouthSmall = images[7];
-		this.karelEastSmall = images[8];
-		this.karelWestSmall = images[9];
-		this.karelNorthTiny = images[10];
-		this.karelSouthTiny = images[11];
-		this.karelEastTiny = images[12];
-		this.karelWestTiny = images[13];
+	that.createVariables = function() {
+		that.karelNorth = images[0];
+		that.karelSouth = images[1];
+		that.karelEast = images[2];
+		that.karelWest = images[3];
+		that.cross = images[4];
+		that.beeper = images[5];
+		that.karelNorthSmall = images[6];
+		that.karelSouthSmall = images[7];
+		that.karelEastSmall = images[8];
+		that.karelWestSmall = images[9];
+		that.karelNorthTiny = images[10];
+		that.karelSouthTiny = images[11];
+		that.karelEastTiny = images[12];
+		that.karelWestTiny = images[13];
 	}
+	
+	return that;
 }
