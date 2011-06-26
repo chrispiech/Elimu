@@ -12,13 +12,13 @@
 
       <!-- Standard Imports -->
       <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script> 
-		<script type="text/javascript" src="lib/util.js"></script>
+	  <script type="text/javascript" src="lib/util.js"></script>
       <script type="text/javascript" src="lib/point.js"></script>
       <script type="text/javascript" src="lib/circle.js"></script>
-		<script type="text/javascript" src="lib/cookie.js"></script>
-		<script type="text/javascript" src="lib/tabs.js"></script>
+	  <script type="text/javascript" src="lib/cookie.js"></script>
+	  <script type="text/javascript" src="lib/tabs.js"></script>
 
-		<!-- Third Party Lib Imports -->
+	  <!-- Third Party Lib Imports -->
       <script type="text/javascript" src="codeMirror/js/codemirror.js"></script>
 
       <!-- Karel Imports -->
@@ -35,17 +35,22 @@
 
    <body> 
       <br/>
-      <div id="buttonBar">
+      <script>
+
+        document.body.innerHTML += "<button type='button' id='playButton'><IMG SRC='./images/playButton.png' HEIGHT=30 WIDTH=30 ALT='run' ALIGN='ABSMIDDLE'></button>"
+      
+      </script>
+      <!--<div id="buttonBar">
          <button type='button' id='playButton'>
             <IMG SRC="./images/playButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
          </button>
          &nbsp;						
-         <button type='button' id='stopButton' onClick='application.stopButton()'>
+         <button type='button' id='stopButton'>
             <IMG SRC="./images/stopButton.png" HEIGHT=30 WIDTH=30 ALT="run" ALIGN="ABSMIDDLE">
          </button>
          &nbsp;
 	      World:
-         <select name="world" size=0 id='interactor' onChange='application.changeWorld(this)'>
+         <select name="world" size=0 id='worldSelector' >
             <option value="1">60x60.w
             <option value="2">50x50.w
             <option value="3">30x30.w
@@ -67,11 +72,17 @@
 		<canvas name="canvas" id="canvas"></canvas>
 
 		<script>
-		    karelIde = KarelIde('code', 'canvas');
-		    runButton = document.getElementById('runButton');
-		    alert(runButton);
-		    runButton.onclick = karelIde.runButton();
-		</script>
+		    var karelIde = KarelIde('code', 'canvas');
+		    var playButton = document.getElementById('playButton');
+		    var stopButton = document.getElementById('stopButton');
+		    var worldSelector = document.getElementById('worldSelector');
+		    
+		    playButton.onclick = karelIde.runButton;
+		    stopButton.onclick = karelIde.stopButton;
+		    worldSelector.onchange = function() {
+		        karelIde.changeWorld(worldSelector);
+		    }
+		</script>-->
 
 			
   	</body> 
