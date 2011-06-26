@@ -81,7 +81,7 @@ function KarelWorld(appWidth, appHeight) {
 		cols = parseInt(dimensionStrings[2]);
 
 		// reset variables
-		cornerSize = KarelConstants.DEFAULT_CORNER_SIZE;
+		cornerSize = Const.DEFAULT_CORNER_SIZE;
 		worldWidth = cols * cornerSize;
 		worldHeight = rows * cornerSize;
 

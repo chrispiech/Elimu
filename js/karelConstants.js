@@ -1,13 +1,13 @@
-var KarelConstants = {};
-KarelConstants.DEFAULT_CORNER_SIZE = 40;
-KarelConstants.KAREL_NORTH = 0;
-KarelConstants.KAREL_EAST = 1;
-KarelConstants.KAREL_SOUTH = 2;
-KarelConstants.KAREL_WEST = 3;
+var Const = {};
+Const.DEFAULT_CORNER_SIZE = 40;
+Const.KAREL_NORTH = 0;
+Const.KAREL_EAST = 1;
+Const.KAREL_SOUTH = 2;
+Const.KAREL_WEST = 3;
 
-KarelConstants.KAREL_SMALL_SIZE = 30;
-KarelConstants.KAREL_TINY_SIZE = 19;
+Const.KAREL_SMALL_SIZE = 30;
+Const.KAREL_TINY_SIZE = 19;
 
-KarelConstants.BORDER_SIZE = 2;
-KarelConstants.CROSS_FRACTION = 0.25;
-KarelConstants.MIN_CROSS_SIZE = 5;
+Const.BORDER_SIZE = 2;
+Const.CROSS_FRACTION = 0.25;
+Const.MIN_CROSS_SIZE = 5;

@@ -17,12 +17,12 @@ function CanvasModel(canvasWidth, canvasHeight) {
    }
 
    that.setKarelDimensions = function(rows, cols) {
-      cornerSize = KarelConstants.DEFAULT_CORNER_SIZE;
+      cornerSize = Const.DEFAULT_CORNER_SIZE;
 		worldWidth = cols * cornerSize;
 		worldHeight = rows * cornerSize;
 
-		var maxWorldWidth = canvasWidth - KarelConstants.BORDER_SIZE * 2;
-		var maxWorldHeight = canvasHeight - KarelConstants.BORDER_SIZE * 2;
+		var maxWorldWidth = canvasWidth - Const.BORDER_SIZE * 2;
+		var maxWorldHeight = canvasHeight - Const.BORDER_SIZE * 2;
 		if(worldWidth > maxWorldWidth || worldHeight > maxWorldHeight) {
 			var xScale = maxWorldWidth / worldWidth;
 			var yScale = maxWorldHeight / worldHeight;
@@ -32,8 +32,8 @@ function CanvasModel(canvasWidth, canvasHeight) {
 			cornerSize = cornerSize * maxScale;
 		}
 
-		worldTop = (maxWorldHeight - worldHeight)/2 + KarelConstants.BORDER_SIZE;
-		worldLeft = (maxWorldWidth - worldWidth)/2 + KarelConstants.BORDER_SIZE;
+		worldTop = (maxWorldHeight - worldHeight)/2 + Const.BORDER_SIZE;
+		worldLeft = (maxWorldWidth - worldWidth)/2 + Const.BORDER_SIZE;
    }
 
    that.getCornerSize = function() {

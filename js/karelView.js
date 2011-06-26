@@ -12,38 +12,38 @@ KarelView.getCornerY = function(canvasModel, row) {
 //---------------------------------- DRAW KAREL -----------------------------//
 KarelView.getImage = function(karelModel) {
 	switch(karelModel.getDirection()){
-		case KarelConstants.KAREL_NORTH: return karelImages.karelNorth; 	
-		case KarelConstants.KAREL_SOUTH: return karelImages.karelSouth;
-		case KarelConstants.KAREL_EAST: return karelImages.karelEast;
-		case KarelConstants.KAREL_WEST: return karelImages.karelWest;	
+		case Const.KAREL_NORTH: return karelImages.karelNorth; 	
+		case Const.KAREL_SOUTH: return karelImages.karelSouth;
+		case Const.KAREL_EAST: return karelImages.karelEast;
+		case Const.KAREL_WEST: return karelImages.karelWest;	
 	}
 	return null;
 }
 
 KarelView.getTinyImage = function(karelModel) {
 	switch(karelModel.getDirection()){
-		case KarelConstants.KAREL_NORTH: return karelImages.karelNorthTiny; 	
-		case KarelConstants.KAREL_SOUTH: return karelImages.karelSouthTiny;
-		case KarelConstants.KAREL_EAST: return karelImages.karelEastTiny;
-		case KarelConstants.KAREL_WEST: return karelImages.karelWestTiny;	
+		case Const.KAREL_NORTH: return karelImages.karelNorthTiny; 	
+		case Const.KAREL_SOUTH: return karelImages.karelSouthTiny;
+		case Const.KAREL_EAST: return karelImages.karelEastTiny;
+		case Const.KAREL_WEST: return karelImages.karelWestTiny;	
 	}
 	return null;
 }
 
 KarelView.getSmallImage = function(karelModel) {
 	switch(karelModel.getDirection()){
-		case KarelConstants.KAREL_NORTH: return karelImages.karelNorthSmall; 	
-		case KarelConstants.KAREL_SOUTH: return karelImages.karelSouthSmall;
-		case KarelConstants.KAREL_EAST: return karelImages.karelEastSmall;
-		case KarelConstants.KAREL_WEST: return karelImages.karelWestSmall;	
+		case Const.KAREL_NORTH: return karelImages.karelNorthSmall; 	
+		case Const.KAREL_SOUTH: return karelImages.karelSouthSmall;
+		case Const.KAREL_EAST: return karelImages.karelEastSmall;
+		case Const.KAREL_WEST: return karelImages.karelWestSmall;	
 	}
 	return null;
 }
 
 KarelView.getKarelImage = function(cornerSize, karelModel) {
-	if (cornerSize <= KarelConstants.KAREL_TINY_SIZE) {
+	if (cornerSize <= Const.KAREL_TINY_SIZE) {
 		return KarelView.getTinyImage(karelModel);
-	} else if (cornerSize <= KarelConstants.KAREL_SMALL_SIZE) {
+	} else if (cornerSize <= Const.KAREL_SMALL_SIZE) {
 		return KarelView.getSmallImage(karelModel);
 	} else {
 		return KarelView.getImage(karelModel);
@@ -71,10 +71,10 @@ KarelView.drawKarel = function(canvasModel, karelModel, c) {
 
 KarelView.drawBorder = function(canvasModel, c) {
 
-   var borderLeft = canvasModel.getWorldLeft() - KarelConstants.BORDER_SIZE;
-   var borderTop = canvasModel.getWorldTop() - KarelConstants.BORDER_SIZE;
-   var borderWidth = canvasModel.getWorldWidth() + KarelConstants.BORDER_SIZE*2;
-   var borderHeight = canvasModel.getWorldHeight() + KarelConstants.BORDER_SIZE*2;
+   var borderLeft = canvasModel.getWorldLeft() - Const.BORDER_SIZE;
+   var borderTop = canvasModel.getWorldTop() - Const.BORDER_SIZE;
+   var borderWidth = canvasModel.getWorldWidth() + Const.BORDER_SIZE*2;
+   var borderHeight = canvasModel.getWorldHeight() + Const.BORDER_SIZE*2;
    c.fillStyle = "#000";
 	c.fillRect(borderLeft, borderTop, borderWidth, borderHeight);
 
@@ -84,7 +84,7 @@ KarelView.drawBorder = function(canvasModel, c) {
 }
 
 KarelView.drawCorners = function(canvasModel, karelModel, c) {
-   var crossSize = canvasModel.getCornerSize() * KarelConstants.CROSS_FRACTION;
+   var crossSize = canvasModel.getCornerSize() * Const.CROSS_FRACTION;
    var cornerSize = canvasModel.getCornerSize();
 
 	for (var rIndex = 0; rIndex < karelModel.getNumRows(); rIndex++) {
@@ -100,7 +100,7 @@ KarelView.drawCorners = function(canvasModel, karelModel, c) {
 				c.fillRect(squareLeft, squareTop, cornerSize, cornerSize);
 			} else {				
 				
-				if (crossSize > KarelConstants.MIN_CROSS_SIZE) {
+				if (crossSize > Const.MIN_CROSS_SIZE) {
 					var x = squareLeft + (cornerSize - crossSize)/2;
 					var y = squareTop + (cornerSize - crossSize)/2;
 					c.drawImage(karelImages.cross, x, y, crossSize, crossSize);

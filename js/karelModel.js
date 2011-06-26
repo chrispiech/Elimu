@@ -2,7 +2,7 @@ function KarelModel() {
 
    var that = {};
 
-   var direction = KarelConstants.KAREL_EAST;
+   var direction = Const.KAREL_EAST;
    var karelRow = 0;
    var karelCol = 0;
    var beepers = null;
@@ -15,10 +15,10 @@ function KarelModel() {
       var newRow = karelRow;
 		var newCol = karelCol;
 		switch(direction) {
-			case KarelConstants.KAREL_EAST: newCol = newCol + 1; break;
-			case KarelConstants.KAREL_WEST: newCol = newCol - 1; break;
-			case KarelConstants.KAREL_NORTH: newRow = newRow - 1; break;
-			case KarelConstants.KAREL_SOUTH: newRow = newRow + 1; break;
+			case Const.KAREL_EAST: newCol = newCol + 1; break;
+			case Const.KAREL_WEST: newCol = newCol - 1; break;
+			case Const.KAREL_NORTH: newRow = newRow - 1; break;
+			case Const.KAREL_SOUTH: newRow = newRow + 1; break;
 			default: alert("invalid direction: " + direction); break;		
 		}
 		if(walls.isMoveValid(karelRow, newCol, newRow, newCol)) {
@@ -32,10 +32,10 @@ function KarelModel() {
    that.turnLeft = function() {
       var newD = direction;
 		switch(direction) {
-			case KAREL_EAST:  newD = KAREL_NORTH; break;
-			case KAREL_WEST:  newD = KAREL_SOUTH; break;
-			case KAREL_NORTH: newD = KAREL_WEST; break;
-			case KAREL_SOUTH: newD = KAREL_EAST; break;	
+			case Const.KAREL_EAST:  newD = Const.KAREL_NORTH; break;
+			case Const.KAREL_WEST:  newD = Const.KAREL_SOUTH; break;
+			case Const.KAREL_NORTH: newD = Const.KAREL_WEST; break;
+			case Const.KAREL_SOUTH: newD = Const.KAREL_EAST; break;	
 			default: alert("invalid direction: " + direction); break;	
 		}
 		direction = newD;
@@ -44,10 +44,10 @@ function KarelModel() {
    that.turnRight = function() {
       var newD = direction;
 		switch(direction) {
-			case KAREL_EAST:  newD = KAREL_SOUTH; break;
-			case KAREL_WEST:  newD = KAREL_NORTH; break;
-			case KAREL_NORTH: newD = KAREL_EAST; break;
-			case KAREL_SOUTH: newD = KAREL_WEST; break;	
+			case Const.KAREL_EAST:  newD = Const.KAREL_SOUTH; break;
+			case Const.KAREL_WEST:  newD = Const.KAREL_NORTH; break;
+			case Const.KAREL_NORTH: newD = Const.KAREL_EAST; break;
+			case Const.KAREL_SOUTH: newD = Const.KAREL_WEST; break;	
 			default: alert("invalid direction: " + direction); break;	
 		}
 		direction = newD;
