@@ -1,8 +1,8 @@
 
 // Walls class	
-function Walls(rows, cols, left, top) {
+function Walls(rows, cols) {
 
-	var WALL_THICKNESS_FRACTION = 0.1;
+   var that = {};
 
 	var topWalls = new Array();
 	for (var i = 0; i < rows; i++) {
@@ -20,51 +20,35 @@ function Walls(rows, cols, left, top) {
 		}
 	}
 
-	function getWallThickness(cornerSize) {
-		var thickness = cornerSize * WALL_THICKNESS_FRACTION;
-		if (thickness < 2) return 2;
-		return thickness;
-	}
-
-	this.draw = function(c, cornerSize) {
-		var wallThickness = getWallThickness(cornerSize);
-
-		for (var rIndex = 0; rIndex < rows; rIndex++) {
-			for (var cIndex = 0; cIndex < cols; cIndex++) {
-
-				if (topWalls[rIndex][cIndex] != 0) {
-					var x = left + cIndex * cornerSize - wallThickness/2;
-					var y = top + rIndex * cornerSize - wallThickness/2;
-
-					c.fillStyle = "#000";
-					c.fillRect(x, y, cornerSize + wallThickness, wallThickness);
-				} 
-
-				if (rightWalls[rIndex][cIndex] != 0) {
-					var x = left + (cIndex + 1) * cornerSize - wallThickness/2;
-					var y = top + rIndex * cornerSize - wallThickness/2;
-
-					c.fillStyle = "#000";
-					c.fillRect(x, y, wallThickness, cornerSize + wallThickness);
-				} 
-			}
-		}
-	}
-
-	this.addTopWall = function(r, c) {
+	that.addTopWall = function(r, c) {
 		topWalls[r][c] = 1;
 	}
 
-	this.addRightWall = function(r, c) {
+	that.addRightWall = function(r, c) {
 		rightWalls[r][c] = 1;
 	}
 
-	this.rightWall = function(r, c) {
+	that.rightWall = function(r, c) {
 		return rightWalls[r][c] != 0;
 	}
 
-	this.topWall = function(r, c) {
+	that.topWall = function(r, c) {
 		return topWalls[r][c] != 0;
 	}
+
+	that.isMoveValid = function(startR, startC, endR, endC) {
+	   if(endC < 0 || endC >= cols) return false;
+		if(endR < 0 || endR >= rows) return false;
+		
+		if(startC + 1 == endC && rightWalls[startR][startC]) return false;
+		if(startC - 1 == endC && rightWalls[endR][endC]) return false;
+
+		if(startR + 1 == endR && topWalls[endR][endC]) return false;
+		if(startR - 1 == endR && topWalls[startR][endC]) return false;
+
+		return true;
+	}
+
+	return that;
 
 }

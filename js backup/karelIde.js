@@ -37,10 +37,10 @@ function KarelIde(codeArea, canvas) {
 	var actionCountdown = ACTION_HEARTBEATS;
 	var refreshCountdown = REFRESH_HEARTBEATS;
 	var worldName = DEFAULT_WORLD;
-	var canvasModel = CanvasModel(DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT);
-	
-	var karel = Karel(canvasModel);
-	var compileEngine = KarelEvalEngine(karel);
+	var canvasWidth = DEFAULT_CANVAS_WIDTH;
+	var canvasHeight = DEFAULT_CANVAS_HEIGHT;
+	var karel = Karel(canvasWidth, canvasHeight);
+	var compileEngine = KarelEvalEngine();
 
 	// state flags
 	var animating = false;
@@ -53,8 +53,8 @@ function KarelIde(codeArea, canvas) {
     * and load images.
     */ 
 	function init() {
-		canvas.width = canvasModel.getWidth();
-	   canvas.height = canvasModel.getHeight();
+		canvas.width = canvasWidth;
+	   canvas.height = canvasHeight;
 	   karelImages.loadImages(imagesLoaded);
 	   setInterval(heartbeat, HEART_BEAT);	
 	}
@@ -85,7 +85,7 @@ function KarelIde(codeArea, canvas) {
 		var code = getCode();
 		animating = true;
 		loadWorld(worldName);
-		compileEngine.compile(code);
+		karelEngine.compile(code);
 	}
 
    /**
@@ -106,7 +106,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel take a single step forward.
     */
-	that.stepMove = function() {
+	that.stepMoveKarel = function() {
 		step(karel.move);
 	}
 
@@ -115,7 +115,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel turn left once.
     */
-	that.stepTurnLeft = function() {
+	that.stepTurnLeftKarel = function() {
 		step(karel.turnLeft);
 	}
 
@@ -124,7 +124,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel turn right once.
     */
-	that.stepTurnRight = function() {
+	that.stepTurnRightKarel = function() {
 		step(karel.turnRight);
 	}
 
@@ -133,7 +133,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel place a single beeper.
     */
-	that.stepPut = function() {
+	that.stepPutBeeper = function() {
 		step(karel.putBeeper);
 	}
 
@@ -142,7 +142,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel pick up a single beeper.
     */
-	that.stepPick = function() {
+	that.stepPickBeeper = function() {
 		step(karel.pickBeeper);
 	}
 
@@ -158,7 +158,7 @@ function KarelIde(codeArea, canvas) {
     */
 	function step(stepFunction) {
 	   stepFunction();
-	   draw();
+	   animating = true;
 	}
 
    /**
@@ -181,7 +181,7 @@ function KarelIde(codeArea, canvas) {
     * Usage: loadDoc(worldUrl, worldFileLoaded);
     */
 	function worldFileLoaded(text) {	
-		karel.loadWorld(text, canvasModel);
+		karel.loadWorld(text);
 		draw();
 	}
 
@@ -206,7 +206,7 @@ function KarelIde(codeArea, canvas) {
 	 * milliseconds. Only updates and draws if the animating flag is true
 	 */
 	function heartbeat() {
-		if (animating) {;
+		if (animating) {	
 			update();
 			draw();
 		}
@@ -220,7 +220,7 @@ function KarelIde(codeArea, canvas) {
 	function update() {
 		actionCountdown = actionCountdown - 1;
 		if (actionCountdown == 0 ) {
-			animating = compileEngine.executeStep();
+			animating = karel.executeNextAction();
 			actionCountdown = ACTION_HEARTBEATS;
 		}
 	}
@@ -233,7 +233,9 @@ function KarelIde(codeArea, canvas) {
     */
 	function draw() {
 		clear();
-		karel.draw(context);
+		karel.drawBackground(context);
+		karel.drawKarel(context);
+		karel.drawWalls(context);
 	}
 
    /**
@@ -243,7 +245,7 @@ function KarelIde(codeArea, canvas) {
     */
 	function clear() {
 		context.fillStyle = BACKGROUND_COLOR;
-		context.fillRect(0, 0, canvasModel.getWidth(), canvasModel.getHeight());
+		context.fillRect(0, 0, canvasWidth, canvasHeight);
 	}
 
    /**
