@@ -127,18 +127,25 @@ function KarelImporter() {
    karelDiv.appendChild(buttonBar);
 
    // Create the code area   
-   var code = document.createElement('textarea');
+   var code = document.createElement('div');
    code.innerHTML = INITIAL_CODE;
    code.className = 'code';
-   karelDiv.appendChild(code);
-
+   code.id        = 'code';
+   karelDiv.appendChild(code);  
+   
+   //Transform into Ace text editor
+   var editor = ace.edit('code');
+   editor.setTheme('ace/theme/idle_fingers');
+   var JavaScriptMode = require("ace/mode/javascript").Mode;
+   editor.getSession().setMode(new JavaScriptMode());
+   
    // Create the canvas area
    var canvas = document.createElement('canvas');
    canvas.className = 'canvas';
    karelDiv.appendChild(canvas);
 
    // Create the Karel IDE object
-   karelIde = KarelIde(code, canvas);
+   karelIde = KarelIde(editor, canvas);
 
    // Wire up the buttons
    $('#playButton').click(karelIde.playButton);

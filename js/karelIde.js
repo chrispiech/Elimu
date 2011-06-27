@@ -17,7 +17,7 @@ var karelImages = new KarelImages();
  * that Karel doesn't try to render before images have been
  * loaded.
  */
-function KarelIde(codeArea, canvas) {
+function KarelIde(editor, canvas) {
 
    // I am using the class style described in JavaScript the good parts
    var that = {};
@@ -25,12 +25,12 @@ function KarelIde(codeArea, canvas) {
 	// constants
 	var ACTION_HEARTBEATS = 1;
 	var HEART_BEAT = 8;	
-	var REFRESH_HEARTBEATS = 100;
-   var BACKGROUND_COLOR = "#fff";
-   var DEFAULT_WORLD = '15x15.w';
-   var DEFAULT_CANVAS_WIDTH = 557;
-   var DEFAULT_CANVAS_HEIGHT = 475;
-   var COOKIE_NAME = 'karelCode';
+    var REFRESH_HEARTBEATS = 100;
+    var BACKGROUND_COLOR = "#fff";
+    var DEFAULT_WORLD = '15x15.w';
+    var DEFAULT_CANVAS_WIDTH = 557;
+    var DEFAULT_CANVAS_HEIGHT = 475;
+    var COOKIE_NAME = 'karelCode';
 
 	// instance variables
 	var context = canvas.getContext('2d');
@@ -53,10 +53,10 @@ function KarelIde(codeArea, canvas) {
     * and load images.
     */ 
 	function init() {
-		canvas.width = canvasModel.getWidth();
-	   canvas.height = canvasModel.getHeight();
-	   karelImages.loadImages(imagesLoaded);
-	   setInterval(heartbeat, HEART_BEAT);	
+	    canvas.width = canvasModel.getWidth();
+	    canvas.height = canvasModel.getHeight();
+	    karelImages.loadImages(imagesLoaded);
+	    setInterval(heartbeat, HEART_BEAT);	
 	}
 
 	//----------------------------- PUBLIC METHODS ---------------------------------//
@@ -259,8 +259,8 @@ function KarelIde(codeArea, canvas) {
     * Returns the code in the Karel IDE as a String.
     */
 	function getCode() {
-		if (codeArea == null) return null;
-		return codeArea.value;
+		if (editor == null) return null;
+		return editor.getSession().getValue();
 	}
 
    // Initialize and return the instance (based on JavaScript the
