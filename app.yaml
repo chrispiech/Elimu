@@ -22,6 +22,9 @@ handlers:
 - url: /worlds
   static_dir: worlds
 
+- url: /
+  static_dir: /
+
 - url: .*
   script: main.py
 
