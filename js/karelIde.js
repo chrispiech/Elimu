@@ -84,7 +84,7 @@ function KarelIde(codeArea, canvas) {
 	that.playButton = function () {
 		var code = getCode();
 		animating = true;
-		loadWorld(worldName);
+		//loadWorld(worldName);
 		compileEngine.compile(code);
 	}
 
@@ -157,7 +157,11 @@ function KarelIde(codeArea, canvas) {
     * animate the action.
     */
 	function step(stepFunction) {
-	   stepFunction();
+	   try {
+	      stepFunction();
+	   } catch (msg) {
+	      alert(msg);
+      }
 	   draw();
 	}
 

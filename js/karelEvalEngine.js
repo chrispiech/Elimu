@@ -24,10 +24,6 @@ function KarelEvalEngine(karel) {
 		} catch(e) {
 			alert(e);
 		}
-		try {
-		   run();
-		} catch(e) {
-		}
    }
 
    that.executeStep = function() {
