@@ -32,7 +32,7 @@ function KarelImporter() {
       'maze.w',
    ];   
    var INITIAL_WORLD = '15x15.w';
-   var INITIAL_CODE = 'function run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}';
+   var INITIAL_CODE = 'function run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}\n\nrun();';
 
    /**
     * Create Image Button

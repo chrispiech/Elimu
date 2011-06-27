@@ -1,2 +1,2 @@
-dimension:7:7
+Dimension: (7,7)
 

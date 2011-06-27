@@ -1,37 +1,21 @@
-function KarelCompiledEngine() {
+function KarelCompiledEngine(karel) {
 
    var that = {};
 
-   that.draw = function() {
-      console.log('not defined');
-   }
-
-   that.stepMove = function() {
-      console.log('not defined');
-   }
-
-   that.stepTurnLeft = function() {
-      console.log('not defined');
-   }
-
-   that.stepPutBeeper = function() {
-      console.log('not defined');
-   }
-
-   that.stepPickBeeper = function() {
-      console.log('not defined');
-   }
-
    that.compile = function(code) {
-      console.log('not defined');
+      // Fill this in. This function is called once
+      // when the user hits the run button. It shouldn't
+      // make calls to karel. 
    }
 
    that.executeStep = function() {
-      console.log('not defined');
-   }
-
-   that.loadWorld = function(worldText) {
-      console.log('not defined');
+      // Execute the next action of the karel program.
+      // (note that boolean checks are not actions).
+      // Return true if the end of the program has been
+      // reached.
+      // Execute the action by making a call to the karel
+      // object.
+      return true;
    }
 
    return that;

@@ -8,7 +8,6 @@ function KarelEvalEngine(karel) {
 	var PUT_BEEPER = 3;
 	var PICK_BEEPER = 4;
 	var PAINT_CORNER = 5;
-
 	var MAX_ACTIONS = 1000000;
 
 	var actionBuffer, actionIndex;
@@ -29,7 +28,7 @@ function KarelEvalEngine(karel) {
    that.executeStep = function() {
    
       if (actionIndex >= actionBuffer.length || actionIndex == -1) {
-			return false;
+			return true;
 		}
 		if (actionIndex == MAX_ACTIONS) {
 			alert("karel has executed "+MAX_ACTIONS+" "+
@@ -55,7 +54,7 @@ function KarelEvalEngine(karel) {
          alert(msg);
 	   }
 
-		return true;
+		return false;
    }
 
    function addToActionBuffer(action) {

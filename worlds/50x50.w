@@ -1,2 +1,2 @@
-dimension:50:50
+Dimension: (50,50)
 

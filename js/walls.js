@@ -39,6 +39,10 @@ function Walls(rows, cols) {
 	that.isMoveValid = function(startR, startC, endR, endC) {
 	   if(endC < 0 || endC >= cols) return false;
 		if(endR < 0 || endR >= rows) return false;
+
+		var dRow = Math.abs(endR - startR);
+		var dCol = Math.abs(endC - startC);
+		if (dRow + dCol != 1) return false; 
 		
 		if(startC + 1 == endC && that.rightWalls[startR][startC]) return false;
 		if(startC - 1 == endC && that.rightWalls[endR][endC]) return false;

@@ -1,2 +1,2 @@
-dimension:15:15
+Dimension: (15,15)
 

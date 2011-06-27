@@ -1,2 +1,2 @@
-dimension:7:12
+Dimension: (7,12)
 

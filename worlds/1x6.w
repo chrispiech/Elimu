@@ -1,2 +1,2 @@
-dimension:1:6
+Dimension: (1,6)
 

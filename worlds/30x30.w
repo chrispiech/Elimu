@@ -1,2 +1,2 @@
-dimension:30:30
+Dimension: (30,30)
 

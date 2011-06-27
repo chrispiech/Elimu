@@ -1,2 +1,1 @@
-dimension:12:12
-
+Dimension: (12,12)

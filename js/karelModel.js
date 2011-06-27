@@ -122,6 +122,14 @@ function KarelModel() {
       return that.beepers.getNumBeepers(r, c);
    }
 
+   that.hasTopWall = function(r, c) {
+      return that.walls.topWall(r, c);
+   }
+
+   that.hasRightWall = function(r, c) {
+      return that.walls.rightWall(r, c);
+   }
+
 	that.beeperPresent = function() {
 		return karelWorld.virtualBeeperPresent(virtualY, virtualX);
 	}
@@ -137,7 +145,6 @@ function KarelModel() {
 			default: alert("invalid that.dir: " + that.dir); break;		
 		}
 		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
-		
 	}
 
 	that.rightIsClear = function() {
@@ -186,11 +193,7 @@ function KarelModel() {
       var lines = worldText.split("\n");
 
 		// get world dimension
-		var dimensionTxt = lines[0];
-		var dimensionStrings = lines[0].split(":");
-
-		that.rows = parseInt(dimensionStrings[1]);
-		that.cols = parseInt(dimensionStrings[2]);
+		loadDimensionLine(lines[0]);
 		
 		that.beepers = Beepers(that.rows, that.cols);
 		that.walls = Walls(that.rows, that.cols);
@@ -201,10 +204,32 @@ function KarelModel() {
 
 		// load world details
 		for (var i = 1; i < lines.length; i++) {
-			loadLine(lines[i]);
+		   if (lines[i] != '') {
+			   loadLine(lines[i]);
+		   }
 		}
 
 		canvasModel.setKarelDimensions(that.rows, that.cols);
+   }
+
+   function extractCoord(coordString) {
+      var rParenIndex = coordString.indexOf('(');
+      var lParenIndex = coordString.indexOf(')');
+      coordString = coordString.substring(rParenIndex + 1, lParenIndex);
+      coordStrings = coordString.split(',');
+      var row = parseInt(coordStrings[0]);
+      var col = parseInt(coordStrings[1]);
+      return [row, col];
+   }
+
+   function loadDimensionLine(line) {
+		var dimensionStrings = line.split(":");
+
+      assert(dimensionStrings[0] == 'Dimension', 'World file malformed');
+      var coord = extractCoord(dimensionStrings[1]);
+
+		that.rows = coord[0];
+		that.cols = coord[1];
    }
 
    function error(msg) {
@@ -215,25 +240,46 @@ function KarelModel() {
       that.karelRow = row;
       that.karelCol = col;
    }
+   
+   function loadWallLine(line) {
+      var coord = extractCoord(line);
+      if (line.indexOf('west') != -1) {
+         var row = that.rows - coord[1];
+         var col = coord[0] - 2;
+         that.walls.addRightWall(row, col);
+      } else {
+         var row = that.rows - coord[1] + 1;
+         var col = coord[0] - 1;
+         that.walls.addTopWall(row, col);
+      }
+   }
+
+   function loadBeeperLine(line) {
+      var coord = extractCoord(line);
+      var row = that.rows - coord[0];
+      var col = coord[1] - 1;
+      that.beepers.putBeeper(row, col)
+   }
+
+   function loadKarelLine(line) {
+      var coord = extractCoord(line);
+      var row = that.rows - coord[0];
+      var col = coord[1] - 1;
+      placeKarel(row, col);
+   }
 
    function loadLine(line) {
 		var elements = line.split(":");
-		if (elements.length != 3) {
-			return;
-		}
+		assert(elements.length == 2, line + 'World file missing :');
 		var key = elements[0];
-		var v1 = parseInt(elements[1]);
-		var v2 = parseInt(elements[2]);
 
-		if (key == "karel")  {
-			placeKarel(v1, v2);
-		} else if (key == "top")  {
-			that.walls.addTopWall(v1, v2);
-		} else if (key == "right") {
-			that.walls.addRightWall(v1, v2);
-		} else if (key == "beeper") {
-			that.beepers.putBeeper(v1, v2);
-		}
+		if (key == "Karel")  {
+			loadKarelLine(elements[1]);
+		} else if (key == "Wall")  {
+			loadWallLine(elements[1]);
+		} else if (key == "Beeper") {
+			loadBeeperLine(elements[1]);
+		} 
 	}
 
    return that;

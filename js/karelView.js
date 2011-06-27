@@ -165,8 +165,33 @@ KarelView.drawBackground = function(canvasModel, karelModel, c) {
 
 }
 
+
+KarelView.drawWalls = function(canvasModel, karelModel, c) {
+   var cornerSize = canvasModel.getCornerSize();
+   var wallThickness = cornerSize * Const.WALL_THICKNESS_FRACTION;
+	if (wallThickness < 2) wallThickness = 2;
+	c.fillStyle = "#000";
+
+	for (var rIndex = 0; rIndex < karelModel.getNumRows(); rIndex++) {
+		for (var cIndex = 0; cIndex < karelModel.getNumCols(); cIndex++) {
+
+			if (karelModel.hasTopWall(rIndex, cIndex)) {
+				var x = KarelView.getCornerX(canvasModel, cIndex) - wallThickness/2;
+				var y = KarelView.getCornerY(canvasModel, rIndex) - wallThickness/2;
+				c.fillRect(x, y, cornerSize + wallThickness, wallThickness);
+			} 
+
+			if (karelModel.hasRightWall(rIndex, cIndex)) {
+				var x = KarelView.getCornerX(canvasModel, cIndex + 1) - wallThickness/2;
+				var y = KarelView.getCornerY(canvasModel, rIndex) - wallThickness/2;
+				c.fillRect(x, y, wallThickness, cornerSize + wallThickness);
+			} 
+		}
+	}
+}
+
 KarelView.draw = function(canvasModel, karelModel, c) {
    KarelView.drawBackground(canvasModel, karelModel, c);
    KarelView.drawKarel(canvasModel, karelModel, c);
-   //KarelView.drawWalls(canvasModel, karelModel, c);
+   KarelView.drawWalls(canvasModel, karelModel, c);
 }

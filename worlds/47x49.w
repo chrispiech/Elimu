@@ -1,2 +1,2 @@
-dimension:47:49
+Dimension: (47,49)
 

@@ -1,2 +1,1 @@
-dimension:60:60
-
+Dimension: (60,60)

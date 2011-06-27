@@ -1,2 +1,1 @@
-dimension:8:8
-
+Dimension: (8,8)

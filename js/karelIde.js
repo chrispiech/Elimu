@@ -84,7 +84,6 @@ function KarelIde(codeArea, canvas) {
 	that.playButton = function () {
 		var code = getCode();
 		animating = true;
-		//loadWorld(worldName);
 		compileEngine.compile(code);
 	}
 
@@ -200,7 +199,7 @@ function KarelIde(codeArea, canvas) {
 	      alert('load world called before images ready');
 	   }
 	   if (worldName == '15x15.w') {
-	      worldFileLoaded('dimension:15:15');
+	      worldFileLoaded('Dimension: (15,15)');
 	   } else {
 		   var url = "worlds/" + worldName;
 		   loadDoc(url, worldFileLoaded);
@@ -228,7 +227,7 @@ function KarelIde(codeArea, canvas) {
 	function update() {
 		actionCountdown = actionCountdown - 1;
 		if (actionCountdown == 0 ) {
-			animating = compileEngine.executeStep();
+			animating = !compileEngine.executeStep();
 			actionCountdown = ACTION_HEARTBEATS;
 		}
 	}
