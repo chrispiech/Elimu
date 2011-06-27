@@ -151,10 +151,10 @@ function KarelModel() {
 		var newRow = that.karelRow;
 		var newCol = that.karelCol;
 		switch(that.dir) {
-			case KAREL_EAST: newRow = newRow + 1; break;
-			case KAREL_WEST: newCol = newRow - 1; break;
-			case KAREL_NORTH: newRow = newCol + 1; break;
-			case KAREL_SOUTH: newRow = newCol - 1; break;
+			case Const.KAREL_EAST: newRow = newRow + 1; break;
+			case Const.KAREL_WEST: newRow = newRow - 1; break;
+			case Const.KAREL_NORTH: newCol = newCol + 1; break;
+			case Const.KAREL_SOUTH: newCol = newCol - 1; break;
 			default: alert("invalid that.dir: " + that.dir); break;		
 		}
 		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
@@ -164,10 +164,10 @@ function KarelModel() {
 		var newRow = that.karelRow;
 		var newCol = that.karelCol;
 		switch(that.dir) {
-			case KAREL_EAST: newRow = newRow - 1; break;
-			case KAREL_WEST: newCol = newRow + 1; break;
-			case KAREL_NORTH: newRow = newCol - 1; break;
-			case KAREL_SOUTH: newRow = newCol + 1; break;
+			case Const.KAREL_EAST: newRow = newRow - 1; break;
+			case Const.KAREL_WEST: newRow = newRow + 1; break;
+			case Const.KAREL_NORTH: newCol = newCol - 1; break;
+			case Const.KAREL_SOUTH: newCol = newCol + 1; break;
 			default: alert("invalid that.dir: " + that.dir); break;		
 		}
 		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
