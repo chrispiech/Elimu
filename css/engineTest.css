@@ -9,6 +9,10 @@
 	font-size:large;
 }
 
+#code {
+    position: relative;
+}
+
 .canvas {
 	padding-left:30px;
 	float:left;
