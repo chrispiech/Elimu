@@ -150,15 +150,15 @@ function KarelImporter() {
 		}
    );
    
-   // Add move buttons
+   // Add debug buttons
    moveButton = createTextButton(karelDiv, 'move', 'moveButton');
    turnLeftButton = createTextButton(karelDiv, 'turnLeft', 'turnButton');
    putBeeperButton = createTextButton(karelDiv, 'pickBeeper', 'pickButton');
    pickBeeperButton = createTextButton(karelDiv, 'putBeeper', 'putButton');
    $('#moveButton').click(karelIde.stepMove);
    $('#turnButton').click(karelIde.stepTurnLeft);
-   $('#pickBeeper').click(karelIde.stepPickBeeper);
-   $('#putBeeper').click(karelIde.stepPutBeeper);
+   $('#pickButton').click(karelIde.stepPickBeeper);
+   $('#putButton').click(karelIde.stepPutBeeper);
 }
 
 KarelImporter();

@@ -19,9 +19,6 @@ function Beepers(rows, cols, left, top) {
 	}
 
 	this.draw = function(c, cornerSize) {
-		if (typeof karelImages.beeper == "undefined" || karelImages.beeper == null) {
-			alert('image loading fail!');
-		}
 
 		var beeperSize = getBeeperSize(cornerSize);
 	

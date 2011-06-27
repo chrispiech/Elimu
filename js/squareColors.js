@@ -16,6 +16,12 @@ function SquareColors(rows, cols) {
 	   return colors[r][c];
    }
 
+   that.deepCopy = function() {
+      var newModel = SquareColors(rows, cols);
+      newModel.colors = deepCopyUtil(that.colors);
+      return newModel;
+   }
+
 	return that;
 
 }

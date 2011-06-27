@@ -2,92 +2,177 @@ function KarelModel() {
 
    var that = {};
 
-   var direction = Const.KAREL_EAST;
-   var karelRow = 0;
-   var karelCol = 0;
-   var beepers = null;
-   var walls = null;
-   var squareColors = null;
-   var rows = 0;
-   var cols = 0;
+   that.dir = Const.KAREL_EAST;
+   that.karelRow = 0;
+   that.karelCol = 0;
+   that.beepers = null;
+   that.walls = null;
+   that.squareColors = null;
+   that.rows = 0;
+   that.cols = 0;
+
+   that.deepCopy = function() {
+      var newModel = KarelModel();
+      newModel.dir = that.dir;
+      newModel.karelRow = that.karelRow;
+      newModel.karelCol = that.karelCol;
+      newModel.beepers = that.beepers.deepCopy();
+      newModel.walls = that.walls.deepCopy();
+      newModel.squareColors = that.squareColors.deepCopy();
+      newModel.rows = that.rows;
+      newModel.cols = that.cols;
+      return newModel;
+   }
 
    that.move = function() {
-      var newRow = karelRow;
-		var newCol = karelCol;
-		switch(direction) {
+      var newRow = that.karelRow;
+		var newCol = that.karelCol;
+		switch(that.dir) {
 			case Const.KAREL_EAST: newCol = newCol + 1; break;
 			case Const.KAREL_WEST: newCol = newCol - 1; break;
 			case Const.KAREL_NORTH: newRow = newRow - 1; break;
 			case Const.KAREL_SOUTH: newRow = newRow + 1; break;
-			default: alert("invalid direction: " + direction); break;		
+			default: alert("invalid that.dir: " + that.dir); break;		
 		}
-		if(walls.isMoveValid(karelRow, newCol, newRow, newCol)) {
-			karelRow = newRow;
-			karelCol = newCol;
+		if(that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol)) {
+			that.karelRow = newRow;
+			that.karelCol = newCol;
 		} else {
-		   alert('Front Is Blocked');
+		   error('Front Is Blocked');
 		}
    }
 
    that.turnLeft = function() {
-      var newD = direction;
-		switch(direction) {
+      var newD = that.dir;
+		switch(that.dir) {
 			case Const.KAREL_EAST:  newD = Const.KAREL_NORTH; break;
 			case Const.KAREL_WEST:  newD = Const.KAREL_SOUTH; break;
 			case Const.KAREL_NORTH: newD = Const.KAREL_WEST; break;
 			case Const.KAREL_SOUTH: newD = Const.KAREL_EAST; break;	
-			default: alert("invalid direction: " + direction); break;	
+			default: alert("invalid that.dir: " + that.dir); break;	
 		}
-		direction = newD;
+		that.dir = newD;
    }
 
    that.turnRight = function() {
-      var newD = direction;
-		switch(direction) {
+      var newD = that.dir;
+		switch(that.dir) {
 			case Const.KAREL_EAST:  newD = Const.KAREL_SOUTH; break;
 			case Const.KAREL_WEST:  newD = Const.KAREL_NORTH; break;
 			case Const.KAREL_NORTH: newD = Const.KAREL_EAST; break;
 			case Const.KAREL_SOUTH: newD = Const.KAREL_WEST; break;	
-			default: alert("invalid direction: " + direction); break;	
+			default: alert("invalid that.dir: " + that.dir); break;	
 		}
-		direction = newD;
+		that.dir = newD;
    }
 
    that.pickBeeper = function() {
+      if (that.beepers.beeperPresent(that.karelRow, that.karelCol)) {
+         that.beepers.pickBeeper(that.karelRow, that.karelCol);
+      } else {
+         error('No Beepers Present');
+      }
    }
 
    that.putBeeper = function() {
+      that.beepers.putBeeper(that.karelRow, that.karelCol);
    }
 
    that.turnAround = function() {
+      console.log('turn around undefined!');
    }
 
    that.paintCorner = function() {
+      console.log('paint corner undefined!');
    }
 
    that.getDirection = function() {
-      return direction;
+      return that.dir;
    }
 
    that.getNumRows = function() {
-      return rows;
+      return that.rows;
    }
 
    that.getNumCols = function() {
-      return cols;
+      return that.cols;
    }
 
    that.getKarelRow = function() {
-      return karelRow;
+      return that.karelRow;
    }
 
    that.getKarelCol = function() {
-      return karelCol;
+      return that.karelCol;
    }
 
    that.getSquareColor = function(r, c) {
-      squareColors.getColor(r, c);
+      that.squareColors.getColor(r, c);
    }
+
+   that.getNumBeepers = function(r, c) {
+      return that.beepers.getNumBeepers(r, c);
+   }
+
+	that.beeperPresent = function() {
+		return karelWorld.virtualBeeperPresent(virtualY, virtualX);
+	}
+
+   that.frontIsClear = function() {
+      var newRow = that.karelRow;
+		var newCol = that.karelCol;
+		switch(that.dir) {
+			case Const.KAREL_EAST: newCol = newCol + 1; break;
+			case Const.KAREL_WEST: newCol = newCol - 1; break;
+			case Const.KAREL_NORTH: newRow = newRow - 1; break;
+			case Const.KAREL_SOUTH: newRow = newRow + 1; break;
+			default: alert("invalid that.dir: " + that.dir); break;		
+		}
+		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
+		
+	}
+
+	that.rightIsClear = function() {
+		var newRow = that.karelRow;
+		var newCol = that.karelCol;
+		switch(that.dir) {
+			case KAREL_EAST: newRow = newRow + 1; break;
+			case KAREL_WEST: newCol = newRow - 1; break;
+			case KAREL_NORTH: newRow = newCol + 1; break;
+			case KAREL_SOUTH: newRow = newCol - 1; break;
+			default: alert("invalid that.dir: " + that.dir); break;		
+		}
+		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
+	}
+
+	that.leftIsClear = function() {
+		var newRow = that.karelRow;
+		var newCol = that.karelCol;
+		switch(that.dir) {
+			case KAREL_EAST: newRow = newRow - 1; break;
+			case KAREL_WEST: newCol = newRow + 1; break;
+			case KAREL_NORTH: newRow = newCol - 1; break;
+			case KAREL_SOUTH: newRow = newCol + 1; break;
+			default: alert("invalid that.dir: " + that.dir); break;		
+		}
+		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
+	}
+
+	that.facingNorth = function() {
+		return virtualDirection == KAREL_NORTH;	
+	}
+
+	that.facingSouth = function() {
+		return virtualDirection == KAREL_SOUTH;	
+	}
+
+	that.facingEast = function() {
+		return virtualDirection == KAREL_EAST;	
+	}
+
+	that.facingWest = function() {
+		return virtualDirection == KAREL_WEST;	
+	}
 
    that.loadWorld = function(worldText, canvasModel) {
       var lines = worldText.split("\n");
@@ -96,26 +181,31 @@ function KarelModel() {
 		var dimensionTxt = lines[0];
 		var dimensionStrings = lines[0].split(":");
 
-		rows = parseInt(dimensionStrings[1]);
-		cols = parseInt(dimensionStrings[2]);
+		that.rows = parseInt(dimensionStrings[1]);
+		that.cols = parseInt(dimensionStrings[2]);
 		
-		beepers = Beepers(rows, cols);
-		walls = Walls(rows, cols);
-      squareColors = SquareColors(rows, cols);
+		that.beepers = Beepers(that.rows, that.cols);
+		that.walls = Walls(that.rows, that.cols);
+      that.squareColors = SquareColors(that.rows, that.cols);
 
-      placeKarel(rows - 1, 0);
+      that.dir = Const.KAREL_EAST;
+      placeKarel(that.rows - 1, 0);
 
 		// load world details
 		for (var i = 1; i < lines.length; i++) {
 			loadLine(lines[i]);
 		}
 
-		canvasModel.setKarelDimensions(rows, cols);
+		canvasModel.setKarelDimensions(that.rows, that.cols);
+   }
+
+   function error(msg) {
+      throw msg;
    }
 
    function placeKarel(row, col) {
-      karelRow = row;
-      karelCol = col;
+      that.karelRow = row;
+      that.karelCol = col;
    }
 
    function loadLine(line) {
@@ -130,11 +220,11 @@ function KarelModel() {
 		if (key == "karel")  {
 			placeKarel(v1, v2);
 		} else if (key == "top")  {
-			walls.addTopWall(v1, v2);
+			that.walls.addTopWall(v1, v2);
 		} else if (key == "right") {
-			walls.addRightWall(v1, v2);
+			that.walls.addRightWall(v1, v2);
 		} else if (key == "beeper") {
-			beepers.putBeeper(v1, v2);
+			that.beepers.putBeeper(v1, v2);
 		}
 	}
 

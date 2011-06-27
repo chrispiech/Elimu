@@ -43,8 +43,8 @@ function Karel(canvasModel) {
       karelModel.loadWorld(text, canvasModel);
    }
 
-   that.getModelDeepCopy = function() {
-      return deepCopy(karelModel);
+   that.getModel = function() {
+      return karelModel;
    }
 
 	return that;

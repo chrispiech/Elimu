@@ -83,6 +83,42 @@ KarelView.drawBorder = function(canvasModel, c) {
 	   canvasModel.getWorldWidth(), canvasModel.getWorldHeight());
 }
 
+KarelView.getBeeperSize = function(canvasModel) {
+   var cornerSize = canvasModel.getCornerSize();
+   return cornerSize * Const.BEEPER_SIZE_FRACTION;
+}
+
+KarelView.drawBeepers = function(canvasModel, karelModel, c) {
+   var beeperSize = KarelView.getBeeperSize(canvasModel);
+   var cornerSize = canvasModel.getCornerSize();
+	
+	c.fillStyle = "#000";
+	c.font = "bold 14px courier";
+	c.textAlign = "center";
+	c.textBaseline = "middle";
+
+	for (var rIndex = 0; rIndex < karelModel.getNumRows(); rIndex++) {
+		for (var cIndex = 0; cIndex < karelModel.getNumCols(); cIndex++) {
+
+			var numBeepers = karelModel.getNumBeepers(rIndex, cIndex);
+
+			if (numBeepers > 0) {
+				var x = KarelView.getCornerX(canvasModel, cIndex) + (cornerSize - beeperSize)/2;
+				var y = KarelView.getCornerY(canvasModel, rIndex) + (cornerSize - beeperSize)/2;
+				c.drawImage(karelImages.beeper, x, y, beeperSize, beeperSize);
+			} 
+
+			if (numBeepers > 1 && beeperSize > Const.MIN_BEEPER_LABEL_SIZE) {
+				var strWidth = c.measureText(""+numBeepers);
+				var strHeight = 12;
+				var x = KarelView.getCornerX(canvasModel, cIndex) + (cornerSize)/2;
+				var y = KarelView.getCornerY(canvasModel, rIndex) + (cornerSize)/2;
+				c.fillText(""+numBeepers, x, y);
+			}
+		}
+	}
+}
+
 KarelView.drawCorners = function(canvasModel, karelModel, c) {
    var crossSize = canvasModel.getCornerSize() * Const.CROSS_FRACTION;
    var cornerSize = canvasModel.getCornerSize();
@@ -115,7 +151,6 @@ KarelView.drawCorners = function(canvasModel, karelModel, c) {
 					c.fill();
 				}
 			}
-			// Draw Beepers
 		}
 	}
 }
@@ -126,6 +161,7 @@ KarelView.drawBackground = function(canvasModel, karelModel, c) {
 	}
 	KarelView.drawBorder(canvasModel, c);
    KarelView.drawCorners(canvasModel, karelModel, c);
+   KarelView.drawBeepers(canvasModel, karelModel, c);
 
 }
 

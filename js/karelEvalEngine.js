@@ -2,20 +2,79 @@ function KarelEvalEngine(karel) {
 
    var that = {};
 
+   var MOVE = 0;
+	var TURN_LEFT = 1;
+	var TURN_RIGHT = 2;
+	var PUT_BEEPER = 3;
+	var PICK_BEEPER = 4;
+	var PAINT_CORNER = 5;
+
+	var MAX_ACTIONS = 1000000;
+
+	var actionBuffer, actionIndex;
+
    var virtualKarelModel = null;
 
    that.compile = function(code) {
-      virtualKarelModel = karel.getModelDeepCopy();
+      virtualKarelModel = karel.getModel().deepCopy();
+      actionBuffer = new Array();
+		actionIndex = 0;
+      try {
+			eval(code);
+		} catch(e) {
+			alert(e);
+		}
+		try {
+		   run();
+		} catch(e) {
+		}
    }
 
    that.executeStep = function() {
-      console.log('executeStep not defined');
+   
+      if (actionIndex >= actionBuffer.length || actionIndex == -1) {
+			return false;
+		}
+		if (actionIndex == MAX_ACTIONS) {
+			alert("karel has executed "+MAX_ACTIONS+" "+
+			 	"commands and appears to be in an " +
+				"infinite loop.");
+		} 
+
+		var action = actionBuffer[actionIndex];
+		var actionId = action.getId();
+		actionIndex = actionIndex + 1;		
+
+      try {
+		   switch(actionId) {
+			   case MOVE: karel.move(); break;
+			   case TURN_LEFT: karel.turnLeft(); break;
+			   case TURN_RIGHT: karel.turnRight(); break;
+			   case PUT_BEEPER: karel.putBeeper(); break;
+			   case PICK_BEEPER: karel.pickBeeper(); break;
+			   case PAINT_CORNER: karel.paintCorner(action.getParam()); break;
+			   default: alert("invalid action"); break;
+		   }
+	   } catch (msg) {
+         alert(msg);
+	   }
+
+		return true;
    }
 
+   function addToActionBuffer(action) {
+		if (actionBuffer.length > MAX_ACTIONS) {
+			throw("infinite loop");
+		}
+		actionBuffer.push(action);
+	}
+
+
+	//--------------- Karel Commands ----------------------//
+
    function turnRight() {
-		turnLeft();
-		turnLeft();
-		turnLeft();
+		virtualKarelModel.turnRight();
+		addToActionBuffer(new Action(TURN_RIGHT, null));
 	}
 
 	function turnAround() {
@@ -32,87 +91,92 @@ function KarelEvalEngine(karel) {
 	}
 
 	function paintCorner(color) {
-		karel.paintCorner(color);
+		addToActionBuffer(new Action(PAINT_CORNER, color));
+		virtualKarelModel.paintCorner(color);
 	}
 
 	function move() {
-		karel.move();
+		addToActionBuffer(new Action(MOVE, null));
+		virtualKarelModel.move();
 	}
 
 	function turnLeft() {
-		karel.turnLeft();
+		addToActionBuffer(new Action(TURN_LEFT, null));
+		virtualKarelModel.turnLeft();
 	}
 
 	function frontIsClear() {
-		return karel.frontIsClear();
+		return virtualKarelModel.frontIsClear();
 	}
 
 	function frontIsBlocked() {
-		return !karel.frontIsClear();
+		return !virtualKarelModel.frontIsClear();
 	}
 
 	function putBeeper() {
-		karel.putBeeper();
+		addToActionBuffer(new Action(PUT_BEEPER, null));
+		virtualKarelModel.putBeeper();
 	}
 
 	function pickBeeper() {
-		karel.pickBeeper();
+		addToActionBuffer(new Action(PICK_BEEPER, null));
+		virtualKarelModel.pickBeeper();
 	}
 
 	function beepersPresent() {
-		return karel.beeperPresent();
+		return virtualKarelModel.beeperPresent();
 	}
 
 	function noBeepersPresent() {
-		return !karel.beeperPresent();
+		return !virtualKarelModel.beeperPresent();
 	}
 
 	function leftIsClear() {
-		return karel.leftIsClear();	
+		return virtualKarelModel.leftIsClear();	
 	}
 
 	function leftIsBlocked() {
-		return !karel.leftIsClear();	
+		return !virtualKarelModel.leftIsClear();	
 	}
 
 	function rightIsClear() {
-		return karel.rightIsClear();	
+		return virtualKarelModel.rightIsClear();	
 	}
 
 	function rightIsBlocked() {
-		return !karel.rightIsClear();	
+		return !virtualKarelModel.rightIsClear();	
 	}
 
 	function facingEast() {
-		return karel.facingEast();
+		return virtualKarelModel.facingEast();
 	}
 
 	function notFacingEast() {
-		return !karel.facingEast();
+		return !virtualKarelModel.facingEast();
 	}
 
 	function facingWest() {
-		return karel.facingWest();
+		return virtualKarelModel.facingWest();
 	}
 
 	function notFacingWest() {
-		return !karel.facingWest();
+		return !virtualKarelModel.facingWest();
 	}
 
 	function facingNorth() {
-		return karel.facingNorth();
+		return virtualKarelModel.facingNorth();
 	}
 
 	function notFacingNorth() {
-		return !karel.facingNorth();
+		return !virtualKarelModel.facingNorth();
 	}
 
 	function facingSouth() {
-		return karel.facingSouth();
+		return virtualKarelModel.facingSouth();
 	}
 
 	function notFacingSouth() {
-		return !karel.facingSouth();
+		return !virtualKarelModel.facingSouth();
 	}
 
    return that;

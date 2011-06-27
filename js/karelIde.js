@@ -133,7 +133,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel place a single beeper.
     */
-	that.stepPut = function() {
+	that.stepPutBeeper = function() {
 		step(karel.putBeeper);
 	}
 
@@ -142,7 +142,7 @@ function KarelIde(codeArea, canvas) {
     * ---------------
     * Make Karel pick up a single beeper.
     */
-	that.stepPick = function() {
+	that.stepPickBeeper = function() {
 		step(karel.pickBeeper);
 	}
 
@@ -195,8 +195,12 @@ function KarelIde(codeArea, canvas) {
 	   if (!imagesReady) {
 	      alert('load world called before images ready');
 	   }
-		var url = "worlds/" + worldName;
-		loadDoc(url, worldFileLoaded);
+	   if (worldName == '15x15.w') {
+	      worldFileLoaded('dimension:15:15');
+	   } else {
+		   var url = "worlds/" + worldName;
+		   loadDoc(url, worldFileLoaded);
+	   }
 	}
 
 	/**
