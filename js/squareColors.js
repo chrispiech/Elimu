@@ -4,16 +4,20 @@ function SquareColors(rows, cols) {
 
    var that = {};
 
-	var colors = new Array();
+	that.colors = new Array();
 	for (var i = 0; i < rows; i++) {
-		colors[i] = new Array();
+		that.colors[i] = new Array();
 		for (var j = 0; j < cols; j++) {
-			colors[i][j] = null;
+			that.colors[i][j] = null;
 		}
 	}
 
+	that.paintCorner = function(r, c, color) {
+      that.colors[r][c] = color;
+	}
+
 	that.getColor = function(r, c) {
-	   return colors[r][c];
+	   return that.colors[r][c];
    }
 
    that.deepCopy = function() {

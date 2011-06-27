@@ -79,11 +79,19 @@ function KarelModel() {
    }
 
    that.turnAround = function() {
-      console.log('turn around undefined!');
+      var newD = that.dir;
+		switch(that.dir) {
+			case Const.KAREL_EAST:  newD = Const.KAREL_WEST; break;
+			case Const.KAREL_WEST:  newD = Const.KAREL_EAST; break;
+			case Const.KAREL_NORTH: newD = Const.KAREL_SOUTH; break;
+			case Const.KAREL_SOUTH: newD = Const.KAREL_NORTH; break;	
+			default: alert("invalid that.dir: " + that.dir); break;	
+		}
+		that.dir = newD;
    }
 
-   that.paintCorner = function() {
-      console.log('paint corner undefined!');
+   that.paintCorner = function(color) {
+      that.squareColors.paintCorner(that.karelRow, that.karelCol, color);
    }
 
    that.getDirection = function() {
@@ -107,7 +115,7 @@ function KarelModel() {
    }
 
    that.getSquareColor = function(r, c) {
-      that.squareColors.getColor(r, c);
+      return that.squareColors.getColor(r, c);
    }
 
    that.getNumBeepers = function(r, c) {
