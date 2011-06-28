@@ -13,6 +13,10 @@
     position: relative;
 }
 
+.karelIde {
+   width:1000px;
+}
+
 .canvas {
 	padding-left:30px;
 	float:left;

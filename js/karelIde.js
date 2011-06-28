@@ -16,7 +16,7 @@ var karelImages = new KarelImages();
  * that Karel doesn't try to render before images have been
  * loaded.
  */
-function KarelIde(editor, canvas) {
+function KarelIde(editor, canvas, initialWorld) {
 
    // I am using the class style described in JavaScript the good parts
    var that = {};
@@ -26,7 +26,6 @@ function KarelIde(editor, canvas) {
    var HEART_BEAT = 8;	
    var REFRESH_HEARTBEATS = 100;
    var BACKGROUND_COLOR = "#fff";
-   var DEFAULT_WORLD = '15x15.w';
    var DEFAULT_CANVAS_WIDTH = 557;
    var DEFAULT_CANVAS_HEIGHT = 475;
    var COOKIE_NAME = 'karelCode';
@@ -35,7 +34,7 @@ function KarelIde(editor, canvas) {
    var context = canvas.getContext('2d');
    var actionCountdown = ACTION_HEARTBEATS;
    var refreshCountdown = REFRESH_HEARTBEATS;
-   var worldName = DEFAULT_WORLD;
+   var worldName = initialWorld;
    var canvasModel = CanvasModel(DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT);
 
    var karel = Karel(canvasModel);

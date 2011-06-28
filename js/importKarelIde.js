@@ -14,23 +14,6 @@
  */
 function ImportKarelIde(settings) {
 
-   function populateSetting(settingName, defaultValue) {
-      if (typeof settings[settingName] == 'undefined') {
-         settings[settingName] = defaultValue;
-      }
-   }
-
-   function populateSettings() {
-      if (typeof settings  == "undefined"){
-         settings = {};
-      }
-      populateSetting('debugButtons', false);
-      populateSetting('editor', true);
-   }
-
-   populateSettings();
-   
-
    // User Interface Constants
    var KAREL_IDE_ID = 'karelIde';
    var WORLDS = [
@@ -52,6 +35,22 @@ function ImportKarelIde(settings) {
    var INITIAL_CODE = "//This is a comment \n\nfunction run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}\n\nrun();";
 
    importIde();
+
+   function populateSetting(settingName, defaultValue) {
+      if (typeof settings[settingName] == 'undefined') {
+         settings[settingName] = defaultValue;
+      }
+   }
+
+   function populateSettings() {
+      if (typeof settings  == "undefined"){
+         settings = {};
+      }
+      populateSetting('debugButtons', false);
+      populateSetting('editor', true);
+      populateSetting('initialWorld', INITIAL_WORLD);
+   }
+   
 
    /**
     * Function: Create Image Button
@@ -122,7 +121,7 @@ function ImportKarelIde(settings) {
          var optionElem = document.createElement('option');
          optionElem.setAttribute('value', i);
          optionElem.innerHTML = worldName;
-         if (worldName == INITIAL_WORLD) {
+         if (worldName == settings.initialWorld) {
             optionElem.setAttribute('selected', 'yes');
          }
          worldSelector.appendChild(optionElem);
@@ -180,7 +179,9 @@ function ImportKarelIde(settings) {
          var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton');
          addSpace(buttonBar);
       }
-      var worldSelector = addWorldDropDown(buttonBar);
+      if (settings.worldSelector) {
+         var worldSelector = addWorldDropDown(buttonBar);
+      }
    }
 
    function wireUpButtonBar(karelIde) {
@@ -189,14 +190,13 @@ function ImportKarelIde(settings) {
       $('#worldSelector').change(
          function() {
             var worldName = $("#worldSelector option:selected").text();
-            //var worldSelector = $('#worldSelector');
-            //var worldName = worldSelector.options[worldSelector.selectedIndex].text;
 		      karelIde.changeWorld(worldName);
 		   }
       );
    }
 
    function importIde() {
+      populateSettings();
       var karelDiv = createKarelDiv();
       createButtonBar(karelDiv); 
       var editor = null;
@@ -204,7 +204,8 @@ function ImportKarelIde(settings) {
          editor = createCodeEditor(karelDiv);
       } 
       var canvas = createKarelCanvas(karelDiv);
-      karelIde = KarelIde(editor, canvas);
+      var initialWorld = settings.initialWorld;
+      karelIde = KarelIde(editor, canvas, initialWorld);
       wireUpButtonBar(karelIde);
       if (settings.debugButtons) {
          addDebugButtons(karelDiv, karelIde);
