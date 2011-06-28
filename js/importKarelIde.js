@@ -32,7 +32,7 @@ function KarelImporter() {
       'maze.w',
    ];   
    var INITIAL_WORLD = '15x15.w';
-   var INITIAL_CODE = "//This is a comment \n\nfunction run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}\n\nrun();\n\nvar four;\nvar four = 2 + 2;\n\nvar eight;\n\nvar eight = Math.pow(2,3);\n\nvar shortString = 'a';\n\nvar longString = 'This is a very very very very very very very long string';\n\nconsole.log(eight);\nconsole.log(four);\n\n\n\n/*\n /This is a longer comment\n /a much much\n /longer\n /comment\n */\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar anotherCommand = 'one more time';";
+   var INITIAL_CODE = "//This is a comment \n\nfunction run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}\n\nrun();";
 
    /**
     * Function: Create Image Button
