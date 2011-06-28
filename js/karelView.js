@@ -1,6 +1,14 @@
+/**
+ * StaticClass: KarelView
+ * Usage: KarelView.draw(canvasModel, karelModel, context);
+ * --------------------------------------------------------
+ * KarelView supports a public static method draw which can
+ * render a karelModel onto a canvas using a given drawing
+ * context.
+ */
+
 KarelView = {};
 
-//---------------------------------- HELPER METHODS -------------------------//
 KarelView.getCornerX = function(canvasModel, col) {
    return canvasModel.getWorldLeft() + col * canvasModel.getCornerSize();
 }
@@ -9,7 +17,7 @@ KarelView.getCornerY = function(canvasModel, row) {
    return canvasModel.getWorldTop() + row * canvasModel.getCornerSize();
 }
 
-//---------------------------------- DRAW KAREL -----------------------------//
+//-------------------- DRAW KAREL ------------------//
 KarelView.getImage = function(karelModel) {
 	switch(karelModel.getDirection()){
 		case Const.KAREL_NORTH: return karelImages.karelNorth; 	
@@ -66,7 +74,7 @@ KarelView.drawKarel = function(canvasModel, karelModel, c) {
 	c.drawImage(image,karelX+1, karelY+1, cornerSize-2, cornerSize-2);
 }
 
-//---------------------------------- DRAW WORLD -----------------------------//
+//----------------- DRAW WORLD -----------------//
 
 
 KarelView.drawBorder = function(canvasModel, c) {
@@ -162,7 +170,6 @@ KarelView.drawBackground = function(canvasModel, karelModel, c) {
 	KarelView.drawBorder(canvasModel, c);
    KarelView.drawCorners(canvasModel, karelModel, c);
    KarelView.drawBeepers(canvasModel, karelModel, c);
-
 }
 
 

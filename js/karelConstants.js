@@ -1,3 +1,9 @@
+/**
+ * Public Static Class: Const
+ * --------------------------
+ * Constants shared throughout the Karel program.
+ * Currently Const is defined in the global scope.
+ */
 var Const = {};
 Const.DEFAULT_CORNER_SIZE = 40;
 Const.KAREL_NORTH = 0;

@@ -1,3 +1,10 @@
+/**
+ * Class: KarelModel
+ * -----------------
+ * The KarelModel class is in charge of storing and updating
+ * the underlying representation of Karel and her world. 
+ * Supports deep copy.
+ */
 function KarelModel() {
 
    var that = {};

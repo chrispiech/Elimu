@@ -1,5 +1,5 @@
 /**
- * Karel Importer
+ * Class: Karel Importer
  * --------------
  * Creates the elements that compose a Karel IDE including
  * A run button, a stop button, a world choser a text editor
@@ -35,7 +35,7 @@ function KarelImporter() {
    var INITIAL_CODE = "//This is a comment \n\nfunction run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}\n\nrun();\n\nvar four;\nvar four = 2 + 2;\n\nvar eight;\n\nvar eight = Math.pow(2,3);\n\nvar shortString = 'a';\n\nvar longString = 'This is a very very very very very very very long string';\n\nconsole.log(eight);\nconsole.log(four);\n\n\n\n/*\n /This is a longer comment\n /a much much\n /longer\n /comment\n */\n \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nvar anotherCommand = 'one more time';";
 
    /**
-    * Create Image Button
+    * Function: Create Image Button
     * -------------
     * Makes a button with an image that lives in src. 
     * Returns the button

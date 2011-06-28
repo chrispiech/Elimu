@@ -1,6 +1,11 @@
-
-
-// Karel class	
+/** 
+ * Class: Karel
+ * ------------
+ * The Karel class is the controller (as in MVC) of Karel and
+ * Karel's world. Karel is implemented using an underlying
+ * KarelModel which is rendered using a static KarelView
+ * draw method.
+ */
 function Karel(canvasModel) {
 
    var that = {};
@@ -38,8 +43,7 @@ function Karel(canvasModel) {
 	that.pickBeeper = function() {
       karelModel.pickBeeper();
 	}
-
-
+	
    that.turnAround = function() {
       karelModel.turnAround();
    }
