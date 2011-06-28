@@ -12,7 +12,24 @@
  * Usage: In the body of an HTML page you can include the line
  * <script src="js/importKarelIde.js"></script>
  */
-function KarelImporter() {
+function ImportKarelIde(settings) {
+
+   function populateSetting(settingName, defaultValue) {
+      if (typeof settings[settingName] == 'undefined') {
+         settings[settingName] = defaultValue;
+      }
+   }
+
+   function populateSettings() {
+      if (typeof settings  == "undefined"){
+         settings = {};
+      }
+      populateSetting('debugButtons', false);
+      populateSetting('editor', true);
+   }
+
+   populateSettings();
+   
 
    // User Interface Constants
    var KAREL_IDE_ID = 'karelIde';
@@ -33,6 +50,8 @@ function KarelImporter() {
    ];   
    var INITIAL_WORLD = '15x15.w';
    var INITIAL_CODE = "//This is a comment \n\nfunction run() {\n   while(frontIsClear()){\n      putBeeper();\n      move();\n   }\n}\n\nrun();";
+
+   importIde();
 
    /**
     * Function: Create Image Button
@@ -91,7 +110,7 @@ function KarelImporter() {
     * Assumes that the INITIAL_WORLD is in the list of worlds.
     */
    function addWorldDropDown(parent) {
-      addText(buttonBar, 'World:'); 
+      addText(parent, 'World:'); 
       var worldSelector = document.createElement('select');
       worldSelector.id = 'worldSelector';
       worldSelector.setAttribute('name', 'world');
@@ -111,67 +130,84 @@ function KarelImporter() {
       return worldSelector;
    }
 
-   // Create the karel IDE div
-   var karelDiv = document.createElement('div');
-   karelDiv.className = 'karelIde';
-   document.body.appendChild(karelDiv);
+   function addDebugButtons(karelDiv, karelIde) {
+      moveButton = createTextButton(karelDiv, 'move', 'moveButton');
+      turnLeftButton = createTextButton(karelDiv, 'turnLeft', 'turnButton');
+      putBeeperButton = createTextButton(karelDiv, 'pickBeeper', 'pickButton');
+      pickBeeperButton = createTextButton(karelDiv, 'putBeeper', 'putButton');
+      $('#moveButton').click(karelIde.stepMove);
+      $('#turnButton').click(karelIde.stepTurnLeft);
+      $('#pickButton').click(karelIde.stepPickBeeper);
+      $('#putButton').click(karelIde.stepPutBeeper);
+   }
 
-   // Create the button bar
-   var buttonBar = document.createElement('div');
-   buttonBar.className = 'buttonBar';
-   var playButton = createImageButton(buttonBar, 'images/playButton.png', 'playButton');
-   addSpace(buttonBar);
-   var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton');
-   addSpace(buttonBar);
-   var worldSelector = addWorldDropDown(buttonBar);
-   karelDiv.appendChild(buttonBar);
+   function createKarelDiv() {
+      var karelDiv = document.createElement('div');
+      karelDiv.className = 'karelIde';
+      document.body.appendChild(karelDiv);
+      return karelDiv;
+   }
 
-   // Create the code area   
-   var code = document.createElement('div');
-   code.innerHTML = INITIAL_CODE;
-   code.className = 'code';
-   code.id        = 'code';
-   karelDiv.appendChild(code);  
-   
-   //Transform into Ace text editor
-   var editor = ace.edit('code');
-   editor.setTheme('ace/theme/jeremys');
-   var JavaScriptMode = require("ace/mode/javascript").Mode;
-   editor.getSession().setMode(new JavaScriptMode());
-   code.style.fontSize='16px';
-   
-   
-   //for debugging make editor availble globally 
-   window._editor = editor;
-   
-   
-   // Create the canvas area
-   var canvas = document.createElement('canvas');
-   canvas.className = 'canvas';
-   karelDiv.appendChild(canvas);
-   
-   // Create the Karel IDE object
-   karelIde = KarelIde(editor, canvas);
+   function createCodeEditor(karelDiv) {
+      var code = document.createElement('div');
+      code.innerHTML = INITIAL_CODE;
+      code.className = 'code';
+      code.id        = 'code';
+      karelDiv.appendChild(code); 
+      var editor = ace.edit('code');
+      editor.setTheme('ace/theme/jeremys');
+      var JavaScriptMode = require("ace/mode/javascript").Mode;
+      editor.getSession().setMode(new JavaScriptMode());
+      code.style.fontSize='16px';
+      window._editor = editor;
+      return editor; 
+   }
 
-   // Wire up the buttons
-   $('#playButton').click(karelIde.playButton);
-   $('#stopButton').click(karelIde.stopButton);
-   $('#worldSelector').change(
-      function() {
-         worldName = worldSelector.options[worldSelector.selectedIndex].text;
-		   karelIde.changeWorld(worldName);
-		}
-   );
-   
-   // Add debug buttons
-   moveButton = createTextButton(karelDiv, 'move', 'moveButton');
-   turnLeftButton = createTextButton(karelDiv, 'turnLeft', 'turnButton');
-   putBeeperButton = createTextButton(karelDiv, 'pickBeeper', 'pickButton');
-   pickBeeperButton = createTextButton(karelDiv, 'putBeeper', 'putButton');
-   $('#moveButton').click(karelIde.stepMove);
-   $('#turnButton').click(karelIde.stepTurnLeft);
-   $('#pickButton').click(karelIde.stepPickBeeper);
-   $('#putButton').click(karelIde.stepPutBeeper);
+   function createKarelCanvas(karelDiv) {
+      var canvas = document.createElement('canvas');
+      canvas.className = 'canvas';
+      karelDiv.appendChild(canvas);
+      return canvas;
+   }
+
+   function createButtonBar(karelDiv) {
+      var buttonBar = document.createElement('div');
+      karelDiv.appendChild(buttonBar);
+      if (settings.editor) { 
+         buttonBar.className = 'buttonBar';
+         var playButton = createImageButton(buttonBar, 'images/playButton.png', 'playButton');
+         addSpace(buttonBar);
+         var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton');
+         addSpace(buttonBar);
+      }
+      var worldSelector = addWorldDropDown(buttonBar);
+   }
+
+   function wireUpButtonBar(karelIde) {
+      $('#playButton').click(karelIde.playButton);
+      $('#stopButton').click(karelIde.stopButton);
+      $('#worldSelector').change(
+         function() {
+            var worldName = $("#worldSelector option:selected").text();
+            //var worldSelector = $('#worldSelector');
+            //var worldName = worldSelector.options[worldSelector.selectedIndex].text;
+		      karelIde.changeWorld(worldName);
+		   }
+      );
+   }
+
+   function importIde() {
+      var karelDiv = createKarelDiv();
+      createButtonBar(karelDiv); 
+      var editor = null;
+      if (settings.editor) { 
+         editor = createCodeEditor(karelDiv);
+      } 
+      var canvas = createKarelCanvas(karelDiv);
+      karelIde = KarelIde(editor, canvas);
+      wireUpButtonBar(karelIde);
+      if (settings.debugButtons) {
+         addDebugButtons(karelDiv, karelIde);
+      }
+   }
 }
-
-KarelImporter();
