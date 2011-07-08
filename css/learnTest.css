@@ -1,0 +1,15 @@
+html, body {
+   padding:0px;
+	margin:0px;
+	height:100%;
+	width:100%;
+	padding:0px;
+	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
+	font-size: medium;
+}
+
+#progressBarDiv {
+   position:absolute;
+   width:100%;
+   background-color:#000;
+}
