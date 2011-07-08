@@ -13,3 +13,24 @@ html, body {
    width:100%;
    background-color:#000;
 }
+
+.progressBoxNotStarted {
+   position:absolute;
+   width:30px;
+   height:30px;
+   background:white;
+}
+
+.progressBoxFinished {
+   position:absolute;
+   width:30px;
+   height:30px;
+   background:green;
+}
+
+.progressStarted {
+   position:absolute;
+   width:30px;
+   height:30px;
+   background:orange;
+}
