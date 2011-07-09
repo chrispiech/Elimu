@@ -9,9 +9,11 @@ function KarelLearnEngine() {
    var content = Content();
    
    var progressModel = ProgressModel();
-   var progressBar = ProgressBar(that);
+   var lessonsModel = LessonsModel();
    var headder = Header();
-   var centerArea = CenterArea();
+
+   that.centerArea = CenterArea();
+   that.progressBar = ProgressBar(that);
 
    that.onWindowResize = function() {
       resize();
@@ -19,13 +21,26 @@ function KarelLearnEngine() {
 
    that.changeLesson = function(lesson) {
       progressModel.changeLesson(lesson);
-      progressBar.updateLessons(progressModel);
-      centerArea.renderLesson(progressModel);
+      that.progressBar.updateLessonIcons(progressModel);
+      that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
    }
 
    function init() {
-      progressBar.renderLessons(progressModel);
-      centerArea.renderLesson(progressModel);
+      that.progressBar.createLessonIcons(progressModel);
+      that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
+   }
+
+   function lessonFinished() {
+      progressModel.finishedLesson();
+      // you should do some sort of animation!
+      setTimeout(finishedChangeAnimation,500);
+   }
+
+   function finishedChangeAnimation() {
+   
+      that.progressBar.updateLessonIcons(progressModel);
+      that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
+      
    }
 
    function resize() {
@@ -33,16 +48,16 @@ function KarelLearnEngine() {
       windowHeight = $(window).height();
 
       content.resize();
-      progressBar.resize();
+      that.progressBar.resize();
       headder.resize();
 
       var bodyHeight = content.getHeight();
-      bodyHeight -= progressBar.getHeight();
+      bodyHeight -= that.progressBar.getHeight();
       bodyHeight -= headder.getHeight();
 
-      centerArea.setTop (headder.getHeight());
-      centerArea.setHeight(bodyHeight);
-      centerArea.resize();
+      that.centerArea.setTop (headder.getHeight());
+      that.centerArea.setHeight(bodyHeight);
+      that.centerArea.resize();
  
    }
 

@@ -155,6 +155,15 @@ function KarelIde(editor, canvas, initialWorld) {
       step(karel.pickBeeper);
    }
 
+   /**
+    * Function: Get Model
+    * -------------------
+    * Returns the model of karel used by this ide
+    */
+    that.getModel = function() {
+      return karel.getModel();
+    }
+
 
    //----------------------------- PRIVATE METHODS --------------------------//
 

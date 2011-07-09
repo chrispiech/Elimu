@@ -13,6 +13,12 @@ function ProgressModel() {
       setHash();
    }
 
+   that.finishedLesson = function() {
+      var unit = getcurrUnitIndex();
+      unit.lessonFinished(currLessonIndex - 1);
+      currLessonIndex += 1;
+   }
+
    that.getNumLessons = function() {
       var unit = getcurrUnitIndex();
       return unit.getNumLessons();
@@ -33,12 +39,23 @@ function ProgressModel() {
 
    function setHash() {
       hashString = '';
-      hashString += 'unit=' + currUnitIndex;
-      hashString += '&lesson=' + currLessonIndex;
+      hashString += '\"unit\":' + currUnitIndex;
+      hashString += ',\"lesson\":' + currLessonIndex;
       window.location.hash = hashString;
    }
 
+   function loadHash() {
+      var hashText = window.location.hash;
+      if (hashText != '') {
+         hashText = hashText.substring(1);
+         eval( 'var lessonMap = {' +hashText + '}');
+         currUnitIndex = lessonMap.unit;
+         currLessonIndex = lessonMap.lesson;
+      }
+   }
+
    function init() {
+      loadHash();
       setHash();
 
       // This is temporary code to load up units

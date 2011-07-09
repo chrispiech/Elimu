@@ -1,6 +1,6 @@
 function ProgressBox(engine, index, status) {
 
-   var HEIGHT_FRACTION = 0.7;
+   var HEIGHT_FRACTION = 0.55;
    var SPACING_FRACTION = HEIGHT_FRACTION / 3;
 
    var that = {};
@@ -55,7 +55,7 @@ function ProgressBox(engine, index, status) {
       } else if (status == 'finished') {
          div.style.background = 'green';
       } else if (status == 'started') {
-         div.style.background = 'OldLace';
+         div.style.background = 'lightblue';
       } else {
          throw 'status incorectly formated';
       }
@@ -72,7 +72,7 @@ function ProgressBox(engine, index, status) {
       var boxesLeft = (progressWidght - boxesWidth)/2;
       var offset = drawIndex * (width + spacing);
       var left = boxesLeft + offset;
-      var top = (progressHeight - height) / 2;
+      var top = 0.35* progressHeight;
       
       div.style.left = left + 'px';
       div.style.top = top + 'px';

@@ -13,6 +13,17 @@ function Beepers(rows, cols) {
 		}
 	}	
 
+	that.equals = function(other) {
+      for (var i = 0; i < rows; i++) {
+		   for (var j = 0; j < cols; j++) {
+			   if(that.beepers[i][j] != other.beepers[i][j]) {
+			      return false;
+		      }	
+		   }
+	   }	
+      return true;
+	}
+
 	that.beeperPresent = function(r, c) {
 		return that.beepers[r][c] > 0;
 	}

@@ -177,6 +177,7 @@ KarelView.drawWalls = function(canvasModel, karelModel, c) {
    var cornerSize = canvasModel.getCornerSize();
    var wallThickness = cornerSize * Const.WALL_THICKNESS_FRACTION;
 	if (wallThickness < 2) wallThickness = 2;
+	if (wallThickness > 3) wallThickness = 3;
 	c.fillStyle = "#000";
 
 	for (var rIndex = 0; rIndex < karelModel.getNumRows(); rIndex++) {

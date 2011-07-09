@@ -31,6 +31,15 @@ function KarelModel() {
       return newModel;
    }
 
+   that.equals = function(otherModel) {
+      if (that.dir != otherModel.dir) return false;
+      if (that.karelRow != otherModel.karelRow) return false;
+      if (that.karelCol != otherModel.karelCol) return false;
+      if (!that.beepers.equals(otherModel.beepers)) return false;
+      if (!that.squareColors.equals(otherModel.squareColors)) return false;
+      return true;
+   }
+
    that.move = function() {
       var newRow = that.karelRow;
 		var newCol = that.karelCol;
@@ -273,6 +282,15 @@ function KarelModel() {
       var row = that.rows - coord[0];
       var col = coord[1] - 1;
       placeKarel(row, col);
+      if (line.indexOf('west') != -1) {
+         that.dir = Const.KAREL_WEST;
+      }
+      if (line.indexOf('south') != -1) {
+         that.dir = Const.KAREL_SOUTH;
+      }
+      if (line.indexOf('north') != -1) {
+         that.dir = Const.KAREL_NORTH;
+      }
    }
 
    function loadLine(line) {

@@ -7,6 +7,10 @@ function UnitProgress() {
       lessonProgressList.push(status);
    }
 
+   that.lessonFinished = function(index) {
+      lessonProgressList[index] = 'finished';
+   }
+
    that.getLessonStatus = function(index) {
       return lessonProgressList[index];
    }

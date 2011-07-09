@@ -20,6 +20,17 @@ function SquareColors(rows, cols) {
 	   return that.colors[r][c];
    }
 
+   that.equals = function(other) {
+      for (var i = 0; i < rows; i++) {
+		   for (var j = 0; j < cols; j++) {
+			   if(that.colors[i][j] != other.colors[i][j]) {
+			      return false;
+		      }	
+		   }
+	   }	
+      return true;
+	}
+
    that.deepCopy = function() {
       var newModel = SquareColors(rows, cols);
       newModel.colors = deepCopyUtil(that.colors);

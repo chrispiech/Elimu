@@ -23,9 +23,6 @@ function MakeAbsoluteDiv(that, parentId, dim) {
       var left = that.leftFraction * centerWidth;
       var top = that.topFraction * centerHeight;
 
-      console.log('center width: ' + centerWidth);
-      console.log('left: ' + left);
-
       that.div.style.left = left + 'px';
       that.div.style.top = top + 'px';
       that.div.style.width = width + 'px';

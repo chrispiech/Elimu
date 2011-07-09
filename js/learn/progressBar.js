@@ -1,5 +1,5 @@
 function ProgressBar(engine) {
-   var HEIGHT_FRACTION = 0.05;
+   var HEIGHT_FRACTION = 0.06;
 
    var that = {};
    var progressBoxes = [];
@@ -13,7 +13,7 @@ function ProgressBar(engine) {
       return $('#progressBarDiv').height();
    }
 
-   that.renderLessons = function(progressModel) {
+   that.createLessonIcons = function(progressModel) {
       // Remove all the old lessons
       for (var i = 0; i < progressBoxes.length; i++) {
          progressBoxes[i].deleteDiv();
@@ -27,7 +27,7 @@ function ProgressBar(engine) {
       }
    }
 
-   that.updateLessons = function(progressModel) {
+   that.updateLessonIcons = function(progressModel) {
       var numLessons = progressModel.getNumLessons();
       for (var i = 0; i < numLessons; i++) {
          var status = progressModel.getLessonStatus(i + 1);

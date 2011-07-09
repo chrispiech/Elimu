@@ -33,6 +33,7 @@ function Walls(rows, cols) {
 	}
 
 	that.topWall = function(r, c) {
+	   
 		return that.topWalls[r][c] != 0;
 	}
 

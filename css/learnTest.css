@@ -6,18 +6,27 @@ html, body {
 	padding:0px;
 	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
 	font-size: medium;
-	background:DimGray ;
+	background:white ;
 	overflow:hidden;
 }
 
 #content {
    position:absolute;
+   background-image:url('../images/background.jpg');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
 }
 
 #progressBarDiv {
    position:absolute;
    width:100%;
-   background-color:	#502916   ; /* dark sienna */
+   background-image:url('../images/bottomBar.png');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
 }
 
 #headerDiv {
@@ -29,7 +38,8 @@ html, body {
 #centerAreaDiv {
    position:absolute;
    width:100%;
-   background-color:#A8AEB2 ;
+   
+
 }
 
 .progressBox{
@@ -42,9 +52,30 @@ html, body {
 
 .rounded {
    position:absolute;
-   background:white;
    -moz-border-radius: 7px;
-   border-radius: 15px;
+   border-radius: 7px;
+   background:white;
+}
+
+.roundedButton {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:white;
+}
+
+.roundedButton:hover {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:lightgreen;
+}
+
+.roundedButton:active {
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+   background:blue;
 }
 
 .centeredText {
