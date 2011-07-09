@@ -6,6 +6,12 @@ html, body {
 	padding:0px;
 	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
 	font-size: medium;
+	background:dimgray;
+	overflow:hidden;
+}
+
+#content {
+   position:absolute;
 }
 
 #progressBarDiv {
@@ -14,23 +20,22 @@ html, body {
    background-color:#000;
 }
 
-.progressBoxNotStarted {
+#headerDiv {
    position:absolute;
-   width:30px;
-   height:30px;
-   background:white;
+   width:100%;
+   background-color:#000;
 }
 
-.progressBoxFinished {
+#centerAreaDiv {
    position:absolute;
-   width:30px;
-   height:30px;
-   background:green;
+   width:100%;
+   background-color:gray;
 }
 
-.progressStarted {
+.progressBox{
    position:absolute;
-   width:30px;
-   height:30px;
-   background:orange;
+}
+
+.imageButton {
+   position:absolute;
 }

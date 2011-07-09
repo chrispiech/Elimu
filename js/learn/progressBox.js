@@ -1,28 +1,83 @@
-function ProgressBox(parent, status) {
+function ProgressBox(engine, index, status) {
 
-   var HEIGHT = 30;
-   var WIDTH = 30;
-   var SPACING = 10;
+   var HEIGHT_FRACTION = 0.5;
+   var SPACING_FRACTION = HEIGHT_FRACTION / 3;
 
    var that = {};
 
    var div = document.createElement('div');
    
    function init () {
-      div.className = 'progressBox' + status;
-
-      var progressBarHeight = $('#progressBarDiv').height();
-      var y = (progressBarHeight - HEIGHT)/2;
-      div.style.top = y + 'px';
-      parent.appendChild(div);
+      div.className = 'progressBox';
+      div.onclick = onClick;
+      div.onmouseover = onMouseOver;
+      div.onmouseout = onMouseOut;
+      div.onmousedown = onMouseDown;
+      div.onmouseup = onMouseUp;
+      setDefault();
+      document.getElementById('progressBarDiv').appendChild(div);
    }
 
-   that.setPos = function(index, elements) {
-      var boxesWidth = elements * WIDTH + (elements - 1) * SPACING;
-      var boxesLeft = ($(window).width() - boxesWidth)/2;
-      var offset = index * (WIDTH + SPACING);
+   that.deleteDiv = function() {
+      alert('deleteDiv UNIMPLEMENTED');
+   }
+
+   that.setStatus = function(newStatus) {
+      if (newStatus != status) {
+         status = newStatus;
+         setDefault();
+      }
+   }
+
+   function onClick() {
+      engine.changeLesson(index);
+   }
+
+   function onMouseUp() {
+      div.style.background = 'blue';
+   }
+
+   function onMouseDown() {
+      div.style.background = 'orange';
+   }
+
+   function onMouseOver() {
+      div.style.background = 'blue';
+   }
+
+   function onMouseOut() {
+      setDefault();
+   }
+
+   function setDefault() {
+      if (status == 'notStarted') {
+         div.style.background = 'white';
+      } else if (status == 'finished') {
+         div.style.background = 'green';
+      } else if (status == 'started') {
+         div.style.background = 'khaki';
+      } else {
+         throw 'status incorectly formated';
+      }
+   }
+
+   that.setPos = function(drawIndex, elements) {
+      var progressHeight = $('#progressBarDiv').height();
+      var progressWidght = $('#progressBarDiv').width();
+      var height = HEIGHT_FRACTION * progressHeight;
+      var spacing = SPACING_FRACTION * progressHeight;
+      var width = height;
+   
+      var boxesWidth = elements * width + (elements - 1) * spacing;
+      var boxesLeft = (progressWidght - boxesWidth)/2;
+      var offset = drawIndex * (width + spacing);
       var left = boxesLeft + offset;
+      var top = (progressHeight - height) / 2;
+      
       div.style.left = left + 'px';
+      div.style.top = top + 'px';
+      div.style.width = width + 'px';
+      div.style.height = height + 'px';
    }
    
    init();
