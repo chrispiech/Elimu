@@ -1,5 +1,5 @@
 function Header() {
-   var HEIGHT_FRACTION = 0.07;
+   var HEIGHT_FRACTION = 0.04;
 
    var that = {};
 

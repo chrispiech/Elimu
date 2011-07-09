@@ -1,7 +1,7 @@
 
 
 function KarelImages() {
-    var that = {};
+   var that = {};
 
 	var images = new Array();
 	var imageNames = new Array();
@@ -23,8 +23,9 @@ function KarelImages() {
 
 	var callback = null;
 	var imagesLoaded = 0;
+	var allLoaded = false;
 	var calledLoadImages = false;
-	
+	var listeners = [];
 
 	that.checkLoaded = function() {
 		for ( var i = 0; i < images.length; i++ ) {
@@ -34,8 +35,20 @@ function KarelImages() {
 		}
 		interval=self.clearInterval(interval);
 		karelImages.createVariables();
-		callback();
+		allAreLoaded();
 	}
+
+	that.haveCalledLoadImages = function() {
+	   return calledLoadImages;
+   }
+
+   that.haveLoadedAllImages = function() {
+      return allLoaded;
+   }
+
+   that.addListener = function(listener) {
+      listeners.push(listener);
+   }
 
 	that.loadImages = function(callbackFn) {
 		if (calledLoadImages) alert("called loadImages twice");
@@ -51,15 +64,13 @@ function KarelImages() {
 		}
 		interval = setInterval("karelImages.checkLoaded()",500);
 	}
-
 	
-
 	that.imageProcessed = function() {
 		imagesLoaded += 1;
  
 		if (imagesLoaded == imageNames.length) {
 			karelImages.createVariables();
-			callback();
+			allAreLoaded();
 		}
 	}
 
@@ -78,6 +89,16 @@ function KarelImages() {
 		that.karelSouthTiny = images[11];
 		that.karelEastTiny = images[12];
 		that.karelWestTiny = images[13];
+	}
+
+	function allAreLoaded() {
+	   allLoaded = true;
+	   if(callback) {
+	      callback();
+      }
+	   for (var i = 0; i < listeners.length; i++) {
+	      listeners[i]();
+      }
 	}
 	
 	return that;

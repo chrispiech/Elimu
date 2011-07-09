@@ -1,6 +1,6 @@
 function ProgressBox(engine, index, status) {
 
-   var HEIGHT_FRACTION = 0.5;
+   var HEIGHT_FRACTION = 0.7;
    var SPACING_FRACTION = HEIGHT_FRACTION / 3;
 
    var that = {};
@@ -19,7 +19,7 @@ function ProgressBox(engine, index, status) {
    }
 
    that.deleteDiv = function() {
-      alert('deleteDiv UNIMPLEMENTED');
+      document.getElementById('progressBarDiv').removeChild(div);
    }
 
    that.setStatus = function(newStatus) {
@@ -55,7 +55,7 @@ function ProgressBox(engine, index, status) {
       } else if (status == 'finished') {
          div.style.background = 'green';
       } else if (status == 'started') {
-         div.style.background = 'khaki';
+         div.style.background = 'OldLace';
       } else {
          throw 'status incorectly formated';
       }

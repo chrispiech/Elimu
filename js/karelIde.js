@@ -1,11 +1,4 @@
-/**
- * Singleton: KarelImages
- * -----------
- * This variable is in the global scope so that all classes can 
- * use the preloaded images. As soon as the class is constructed
- * it starts fetching the necessary images.
- */
-var karelImages = new KarelImages();
+
 
 /**
  * Class: Karel IDE
@@ -25,9 +18,8 @@ function KarelIde(editor, canvas, initialWorld) {
    var ACTION_HEARTBEATS = 1;
    var HEART_BEAT = 8;	
    var REFRESH_HEARTBEATS = 100;
-   var BACKGROUND_COLOR = "#fff";
-   var DEFAULT_CANVAS_WIDTH = 557;
-   var DEFAULT_CANVAS_HEIGHT = 475;
+   var DEFAULT_CANVAS_WIDTH = 370;
+   var DEFAULT_CANVAS_HEIGHT = 370;
    var COOKIE_NAME = 'karelCode';
 
    // instance variables
@@ -36,6 +28,7 @@ function KarelIde(editor, canvas, initialWorld) {
    var refreshCountdown = REFRESH_HEARTBEATS;
    var worldName = initialWorld;
    var canvasModel = CanvasModel(DEFAULT_CANVAS_WIDTH, DEFAULT_CANVAS_HEIGHT);
+   var worldLoaded = false;
 
    var karel = Karel(canvasModel);
    var compileEngine = KarelEvalEngine(karel);
@@ -53,7 +46,13 @@ function KarelIde(editor, canvas, initialWorld) {
    function init() {
       canvas.width = canvasModel.getWidth();
       canvas.height = canvasModel.getHeight();
-      karelImages.loadImages(imagesLoaded);
+      if (!karelImages.haveCalledLoadImages()) {
+         karelImages.loadImages(imagesLoaded);
+      } else if (!karelImages.haveLoadedAllImages()) {
+         karelImages.addListener(imagesLoaded);
+      } else {
+         imagesLoaded();
+      }
       setInterval(heartbeat, HEART_BEAT);	
    }
 
@@ -68,6 +67,15 @@ function KarelIde(editor, canvas, initialWorld) {
    that.stopButton = function() {
       animating = false;
       loadWorld(worldName);
+   }
+
+   that.resizeCanvas = function(width, height) {
+      canvas.width = canvasModel.getWidth();
+      canvas.height = canvasModel.getHeight();
+      canvasModel.resizeCanvas(width, height, worldLoaded);
+      if (worldLoaded) {
+         draw();
+      }
    }
 
    /**
@@ -188,6 +196,7 @@ function KarelIde(editor, canvas, initialWorld) {
    function worldFileLoaded(text) {	
       karel.loadWorld(text, canvasModel);
       draw();
+      worldLoaded = true;
    }
 
    /**
@@ -256,7 +265,7 @@ function KarelIde(editor, canvas, initialWorld) {
     * Clears the canvas by filling it with a rectangle colored BACKGROUND_COLOR
     */
    function clear() {
-      context.fillStyle = BACKGROUND_COLOR;
+      context.fillStyle = Const.BACKGROUND_COLOR;
       context.fillRect(0, 0, canvasModel.getWidth(), canvasModel.getHeight());
    }
 

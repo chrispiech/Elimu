@@ -1,5 +1,5 @@
 function ProgressBar(engine) {
-   var HEIGHT_FRACTION = 0.07;
+   var HEIGHT_FRACTION = 0.05;
 
    var that = {};
    var progressBoxes = [];

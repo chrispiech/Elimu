@@ -1,32 +1,40 @@
 function ProgressModel() {
 
    var that = {}; 
-   var currentUnit = 1;
-   var currentLesson = 1;
+   var currUnitIndex = 1;
+   var currLessonIndex = 1;
 
    var unitProgressList = [];
 
    that.changeLesson = function(lesson) {
-      currentLesson = lesson;
-      var unit = getCurrentUnit();
+      currLessonIndex = lesson;
+      var unit = getcurrUnitIndex();
       unit.lessonStarted(lesson - 1);  
       setHash();
    }
 
    that.getNumLessons = function() {
-      var unit = getCurrentUnit();
+      var unit = getcurrUnitIndex();
       return unit.getNumLessons();
    }
 
    that.getLessonStatus = function(lesson) {
-      var unit = getCurrentUnit();
+      var unit = getcurrUnitIndex();
       return unit.getLessonStatus(lesson - 1);
+   }
+
+   that.getUnitIndex = function() {
+      return currUnitIndex;
+   }
+
+   that.getLessonIndex = function() {
+      return currLessonIndex;
    }
 
    function setHash() {
       hashString = '';
-      hashString += 'unit=' + currentUnit;
-      hashString += '&lesson=' + currentLesson;
+      hashString += 'unit=' + currUnitIndex;
+      hashString += '&lesson=' + currLessonIndex;
       window.location.hash = hashString;
    }
 
@@ -46,12 +54,12 @@ function ProgressModel() {
       unitProgressList.push(unit2);
 
       // Set the current lesson to start
-      var unit = getCurrentUnit();
-      unit.lessonStarted(currentLesson - 1);
+      var unit = getcurrUnitIndex();
+      unit.lessonStarted(currLessonIndex - 1);
    }
 
-   function getCurrentUnit() {
-      return unitProgressList[currentUnit - 1];
+   function getcurrUnitIndex() {
+      return unitProgressList[currUnitIndex - 1];
    }
 
    init(); 

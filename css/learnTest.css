@@ -6,7 +6,7 @@ html, body {
 	padding:0px;
 	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
 	font-size: medium;
-	background:dimgray;
+	background:DimGray ;
 	overflow:hidden;
 }
 
@@ -17,25 +17,42 @@ html, body {
 #progressBarDiv {
    position:absolute;
    width:100%;
-   background-color:#000;
+   background-color:	#502916   ; /* dark sienna */
 }
 
 #headerDiv {
    position:absolute;
    width:100%;
-   background-color:#000;
+   background-color:black ;
 }
 
 #centerAreaDiv {
    position:absolute;
    width:100%;
-   background-color:gray;
+   background-color:#A8AEB2 ;
 }
 
 .progressBox{
    position:absolute;
 }
 
-.imageButton {
+.absoluteDiv {
    position:absolute;
+}
+
+.rounded {
+   position:absolute;
+   background:white;
+   -moz-border-radius: 7px;
+   border-radius: 15px;
+}
+
+.centeredText {
+    width: auto;
+    text-align:center;
+}
+
+p {
+   margin:0px;
+   font-size:40px;
 }

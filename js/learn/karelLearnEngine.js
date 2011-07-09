@@ -20,10 +20,12 @@ function KarelLearnEngine() {
    that.changeLesson = function(lesson) {
       progressModel.changeLesson(lesson);
       progressBar.updateLessons(progressModel);
+      centerArea.renderLesson(progressModel);
    }
 
    function init() {
       progressBar.renderLessons(progressModel);
+      centerArea.renderLesson(progressModel);
    }
 
    function resize() {

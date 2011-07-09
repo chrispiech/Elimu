@@ -8,6 +8,9 @@ function CanvasModel(canvasWidth, canvasHeight) {
    var worldWidth;
    var worldHeight;
 
+   var worldRows;
+   var worldCols;
+
    that.getWidth = function() {
       return canvasWidth;
    }
@@ -16,8 +19,19 @@ function CanvasModel(canvasWidth, canvasHeight) {
       return canvasHeight;
    }
 
+   that.resizeCanvas = function(width, height, worldLoaded) {
+      canvasWidth = width;
+      canvasHeight = height;
+      if (worldLoaded) {
+         that.setKarelDimensions(worldRows, worldCols);
+      }
+   }
+
    that.setKarelDimensions = function(rows, cols) {
-      cornerSize = Const.DEFAULT_CORNER_SIZE;
+      
+      worldRows = rows;
+      worldCols = cols;
+      cornerSize = Const.MAX_CORNER_SIZE;
 		worldWidth = cols * cornerSize;
 		worldHeight = rows * cornerSize;
 
