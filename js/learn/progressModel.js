@@ -8,25 +8,39 @@ function ProgressModel() {
 
    that.changeLesson = function(lesson) {
       currLessonIndex = lesson;
-      var unit = getcurrUnitIndex();
+      var unit = getCurrUnitIndex();
       unit.lessonStarted(lesson - 1);  
       setHash();
    }
 
+   that.isStartingNewUnit = function() {
+      return currLessonIndex == 1;
+   }
+
    that.finishedLesson = function() {
-      var unit = getcurrUnitIndex();
+      var unit = getCurrUnitIndex();
       unit.lessonFinished(currLessonIndex - 1);
-      currLessonIndex += 1;
+
+      // update the lesson / unit values
+      if (unit.isLastLesson(currLessonIndex - 1)) {
+         currUnitIndex += 1;
+         currLessonIndex = 1;
+         unit = getCurrUnitIndex();
+      } else {
+         currLessonIndex += 1;
+      }
+
       unit.lessonStarted(currLessonIndex - 1); 
+      setHash();
    }
 
    that.getNumLessons = function() {
-      var unit = getcurrUnitIndex();
+      var unit = getCurrUnitIndex();
       return unit.getNumLessons();
    }
 
    that.getLessonStatus = function(lesson) {
-      var unit = getcurrUnitIndex();
+      var unit = getCurrUnitIndex();
       return unit.getLessonStatus(lesson - 1);
    }
 
@@ -72,11 +86,11 @@ function ProgressModel() {
       unitProgressList.push(unit2);
 
       // Set the current lesson to start
-      var unit = getcurrUnitIndex();
+      var unit = getCurrUnitIndex();
       unit.lessonStarted(currLessonIndex - 1);
    }
 
-   function getcurrUnitIndex() {
+   function getCurrUnitIndex() {
       return unitProgressList[currUnitIndex - 1];
    }
 

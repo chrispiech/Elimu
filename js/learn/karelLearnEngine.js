@@ -37,8 +37,11 @@ function KarelLearnEngine() {
    }
 
    function finishedChangeAnimation() {
-   
-      that.progressBar.updateLessonIcons(progressModel);
+      if(progressModel.isStartingNewUnit()) {
+         that.progressBar.createLessonIcons(progressModel);
+      } else {
+         that.progressBar.updateLessonIcons(progressModel);
+      }
       that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
       
    }
@@ -63,6 +66,5 @@ function KarelLearnEngine() {
 
    
    init();
-   resize();
    return that;
 }

@@ -9,6 +9,11 @@ function AddEqualCheck(ide1, ide2, action, callback) {
    }
 }
 
+function Unit2Lesson1(finishedCallback) {
+   var that = {};
+   that.elements = [];
+   return that;
+}
 
 function Unit1Lesson5(finishedCallback) {
    var that = {};
