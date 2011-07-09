@@ -17,6 +17,7 @@ function ProgressModel() {
       var unit = getcurrUnitIndex();
       unit.lessonFinished(currLessonIndex - 1);
       currLessonIndex += 1;
+      unit.lessonStarted(currLessonIndex - 1); 
    }
 
    that.getNumLessons = function() {

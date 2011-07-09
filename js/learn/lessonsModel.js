@@ -12,8 +12,8 @@ function AddEqualCheck(ide1, ide2, action, callback) {
 
 function Unit1Lesson5(finishedCallback) {
    var that = {};
-   var dynamicDim = {'left':0.185, 'top':0.2, 'width':0.3, 'height':0.3};
-   var staticDim = {'left':0.515, 'top':0.2, 'width':0.3, 'height':0.3};
+   var dynamicDim = {'left':0.201, 'top':0.2, 'width':0.2666, 'height':0.3};
+   var staticDim = {'left':0.532, 'top':0.2, 'width':0.2666, 'height':0.3};
    var staticKarel = KarelCanvasElement(staticDim,'ledgeSoln.w');
    var dynamicKarel = KarelCanvasElement(dynamicDim,'ledge.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
@@ -133,10 +133,10 @@ function Unit1Lesson1(finishedCallback) {
    var textDim = {'left':0.342, 'top':0.014, 'width':0.316, 'height':0.074};
 
    that.elements = [];
-   that.elements.push(ImageButton(imageDim1));
-   that.elements.push(ImageButton(imageDim2));
-   that.elements.push(ImageButton(imageDim3));
-   that.elements.push(ImageButton(imageDim4));
+   that.elements.push(ImageButton(imageDim1, './images/worldButtonFrame.png'));
+   that.elements.push(ImageButton(imageDim2, './images/beeperButtonFrame.png'));
+   that.elements.push(ImageButton(imageDim3, './images/karelButtonFrame.png'));
+   that.elements.push(ImageButton(imageDim4, './images/wallButtonFrame.png'));
    that.elements.push(TextElement(textDim, 'Karel'));
    return that;
 }

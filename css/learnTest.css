@@ -6,13 +6,13 @@ html, body {
 	padding:0px;
 	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
 	font-size: medium;
-	background:white ;
+	background:#C8ECFE ;
 	overflow:hidden;
 }
 
 #content {
    position:absolute;
-   background-image:url('../images/background.jpg');
+   background-image:url('../images/bg-body.jpg');
    -webkit-background-size: cover;
    -moz-background-size: cover;
    -o-background-size: cover;
