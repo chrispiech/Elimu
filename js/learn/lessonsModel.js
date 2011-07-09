@@ -126,17 +126,39 @@ function Unit1Lesson2(finishedCallback) {
 
 function Unit1Lesson1(finishedCallback) {
    var that = {};
-   var imageDim1 = {'left':0.169, 'top':0.1, 'width':0.316, 'height':0.42};
-   var imageDim2 = {'left':0.515, 'top':0.1, 'width':0.316, 'height':0.42};
-   var imageDim3 = {'left':0.169, 'top':0.55, 'width':0.316, 'height':0.42};
-   var imageDim4 = {'left':0.515, 'top':0.55, 'width':0.316, 'height':0.42};
    var textDim = {'left':0.342, 'top':0.014, 'width':0.316, 'height':0.074};
 
+   var positions = [
+      {'left':0.169, 'top':0.1, 'width':0.316, 'height':0.42},
+      {'left':0.515, 'top':0.1, 'width':0.316, 'height':0.42},
+      {'left':0.169, 'top':0.55, 'width':0.316, 'height':0.42},
+      {'left':0.515, 'top':0.55, 'width':0.316, 'height':0.42}
+   ];
+
+   var buttonSrcs = [
+      './images/worldButtonFrame.png',
+      './images/beeperButtonFrame.png',
+      './images/karelButtonFrame.png',
+      './images/wallButtonFrame.png'
+   ];
+   var indicies = [];
+   for (var i = 0; i < buttonSrcs.length; i++){
+      indicies.push(i);
+   }
+   var orderMap = [];
+   for (var i = 0; i < buttonSrcs.length; i++) {
+      var maxIndex = indicies.length;
+      var randomIndex = Math.floor(Math.random()*maxIndex);
+      orderMap.push(indicies[randomIndex]);
+      indicies.splice(randomIndex, 1);
+   }
+
    that.elements = [];
-   that.elements.push(ImageButton(imageDim1, './images/worldButtonFrame.png'));
-   that.elements.push(ImageButton(imageDim2, './images/beeperButtonFrame.png'));
-   that.elements.push(ImageButton(imageDim3, './images/karelButtonFrame.png'));
-   that.elements.push(ImageButton(imageDim4, './images/wallButtonFrame.png'));
+   for (var i = 0; i < buttonSrcs.length; i++) {
+      var buttonIndex = orderMap[i];
+      var button = ImageButton(positions[i], buttonSrcs[buttonIndex]);
+      that.elements.push(button);
+   }
    that.elements.push(TextElement(textDim, 'Karel'));
    return that;
 }
