@@ -70,9 +70,9 @@ function KarelIde(editor, canvas, initialWorld) {
    }
 
    that.resizeCanvas = function(width, height) {
+      canvasModel.resizeCanvas(width, height, worldLoaded);
       canvas.width = canvasModel.getWidth();
       canvas.height = canvasModel.getHeight();
-      canvasModel.resizeCanvas(width, height, worldLoaded);
       if (worldLoaded) {
          draw();
       }

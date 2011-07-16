@@ -1,25 +1,31 @@
-function TextElement(dim, text) {
+function TitleElement(xPos, text) {
    var that = {};
+   
+   var HEIGHT_FRACTION = 0.8;
+
+   var dim = {};
+   dim['left'] = xPos;
+   dim['top'] = (1 - HEIGHT_FRACTION) / 2;
+   dim['height'] = HEIGHT_FRACTION;
+
+   
    that.div = document.createElement('div');
-   that = MakeAbsoluteDiv(that, 'centerAreaDiv', dim);
+   that = MakeAbsoluteDiv(that, 'headerDiv', dim);
    var textSpan = document.createElement('p');
    textSpan.innerHTML = text;
-   textSpan.className = 'centeredText';
+   textSpan.className = 'titleText';
    that.div.appendChild(textSpan);
-   that.div.style.background = 'lavender';
-   that.div.className = 'rounded';
 
    disableSelection(textSpan);
 
    var resizeFn = that.resize;
    that.resize = function() {
       resizeFn();
-      var centerHeight = $('#centerAreaDiv').height();
+      var centerHeight = $('#headerDiv').height();
       var height = that.heightFraction * centerHeight;
       textSpan.style.fontSize = height + 'px';
       textSpan.style.lineHeight = height + 'px';
    }
-
    that.setText = function(text) {
       textSpan.innerHTML = text;
    }

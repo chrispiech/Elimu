@@ -28,13 +28,11 @@ function CanvasModel(canvasWidth, canvasHeight) {
    }
 
    that.setKarelDimensions = function(rows, cols) {
-      
       worldRows = rows;
       worldCols = cols;
       cornerSize = Const.MAX_CORNER_SIZE;
 		worldWidth = cols * cornerSize;
 		worldHeight = rows * cornerSize;
-
 		var maxWorldWidth = canvasWidth - Const.BORDER_SIZE * 2;
 		var maxWorldHeight = canvasHeight - Const.BORDER_SIZE * 2;
 		if(worldWidth > maxWorldWidth || worldHeight > maxWorldHeight) {

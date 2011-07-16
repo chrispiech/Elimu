@@ -22,16 +22,20 @@ function ProgressBar(engine) {
       
       var numLessons = progressModel.getNumLessons();
       for (var i = 0; i < numLessons; i++) {
-         var status = progressModel.getLessonStatus(i + 1);
-         progressBoxes.push(ProgressBox(engine, i + 1, status));
+         progressBoxes.push(ProgressBox(engine, i + 1, 'none'));
       }
+
+      that.updateLessonIcons(progressModel);
       that.resize();
    }
 
    that.updateLessonIcons = function(progressModel) {
       var numLessons = progressModel.getNumLessons();
       for (var i = 0; i < numLessons; i++) {
-         var status = progressModel.getLessonStatus(i + 1);
+         var lessonIndex = (i + 1);
+         var status = progressModel.getLessonStatus(lessonIndex);
+         var current = progressModel.getLessonIndex() == lessonIndex;
+         progressBoxes[i].setCurrent(current);
          progressBoxes[i].setStatus(status);
       }
    }

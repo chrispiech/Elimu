@@ -10,8 +10,8 @@ function KarelLearnEngine() {
    
    var progressModel = ProgressModel();
    var lessonsModel = LessonsModel();
-   var headder = Header();
 
+   that.header = Header();
    that.centerArea = CenterArea();
    that.progressBar = ProgressBar(that);
 
@@ -32,16 +32,21 @@ function KarelLearnEngine() {
    }
 
    function render(newUnit) {
+      console.log('render');
       if (newUnit) {
          that.progressBar.createLessonIcons(progressModel);
       } else {
          that.progressBar.updateLessonIcons(progressModel);
       }
+     
       that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
+      that.header.updateHeader(progressModel);
+      progressModel.setHash();
    }
 
    function init() {
       render(true);
+      resize();
    }
 
    function lessonFinished() {
@@ -51,7 +56,7 @@ function KarelLearnEngine() {
    }
 
    function finishedChangeAnimation() {
-      render(progressModel.isStartingNewUnit());      
+      render(progressModel.isStartingNewUnit());  
    }
 
    function resize() {
@@ -60,13 +65,13 @@ function KarelLearnEngine() {
 
       content.resize();
       that.progressBar.resize();
-      headder.resize();
+      that.header.resize();
 
       var bodyHeight = content.getHeight();
       bodyHeight -= that.progressBar.getHeight();
-      bodyHeight -= headder.getHeight();
+      bodyHeight -= that.header.getHeight();
 
-      that.centerArea.setTop (headder.getHeight());
+      that.centerArea.setTop (that.header.getHeight());
       that.centerArea.setHeight(bodyHeight);
       that.centerArea.resize();
    }

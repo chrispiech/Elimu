@@ -6,6 +6,7 @@ function ProgressBox(engine, index, status) {
    var that = {};
 
    var div = document.createElement('div');
+   var current  = false;
    
    function init () {
       div.className = 'progressBox';
@@ -25,6 +26,13 @@ function ProgressBox(engine, index, status) {
    that.setStatus = function(newStatus) {
       if (newStatus != status) {
          status = newStatus;
+         setDefault();
+      }
+   }
+
+   that.setCurrent = function(newCurrnet) {
+      if (newCurrnet != current) {
+         current = newCurrnet;
          setDefault();
       }
    }
@@ -50,15 +58,15 @@ function ProgressBox(engine, index, status) {
    }
 
    function setDefault() {
-      if (status == 'notStarted') {
+      if (current) {
          div.style.background = 'white';
+      } else if (status == 'notStarted' || status == 'none') {
+         div.style.background = 'grey';
       } else if (status == 'finished') {
          div.style.background = 'green';
       } else if (status == 'started') {
          div.style.background = 'lightblue';
-      } else if (status == 'current') {
-         div.style.background = 'white';
-      }else {
+      } else {
          throw 'status incorectly formated';
       }
    }

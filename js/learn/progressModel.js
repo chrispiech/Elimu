@@ -10,7 +10,7 @@ function ProgressModel() {
       currLessonIndex = lesson;
       var unit = getCurrUnitIndex();
       unit.lessonStarted(lesson - 1);  
-      setHash();
+      that.setHash();
    }
 
    that.isStartingNewUnit = function() {
@@ -31,7 +31,6 @@ function ProgressModel() {
       }
 
       unit.lessonStarted(currLessonIndex - 1); 
-      setHash();
    }
 
    that.getNumLessons = function() {
@@ -52,7 +51,7 @@ function ProgressModel() {
       return currLessonIndex;
    }
 
-   function setHash() {
+   that.setHash = function() {
       hashString = '';
       hashString += '/unit' + currUnitIndex;
       hashString += '/lesson' + currLessonIndex;
@@ -86,7 +85,7 @@ function ProgressModel() {
 
    function init() {
       that.loadHash();
-      setHash();
+      that.setHash();
 
       // This is temporary code to load up units
       var unit1 = UnitProgress();

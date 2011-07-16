@@ -42,6 +42,10 @@ html, body {
 
 }
 
+.titleText {
+   color:white;
+}
+
 .progressBox{
    position:absolute;
 }
