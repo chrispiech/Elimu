@@ -6,7 +6,7 @@ html, body {
 	padding:0px;
 	font-family: Calibri, Lucida, Verdana, Geneva, Arial, sans-serif;
 	font-size: medium;
-	background:#C8ECFE ;
+	background:dimgray ;
 	overflow:hidden;
 }
 
@@ -55,6 +55,9 @@ html, body {
    -moz-border-radius: 7px;
    border-radius: 7px;
    background:white;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
 }
 
 .roundedButton {
@@ -62,6 +65,9 @@ html, body {
    -moz-border-radius: 7px;
    border-radius: 7px;
    background:white;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
 }
 
 .roundedButton:hover {
@@ -69,6 +75,9 @@ html, body {
    -moz-border-radius: 7px;
    border-radius: 7px;
    background:lightgreen;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
 }
 
 .roundedButton:active {
@@ -76,6 +85,9 @@ html, body {
    -moz-border-radius: 7px;
    border-radius: 7px;
    background:blue;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
 }
 
 .centeredText {

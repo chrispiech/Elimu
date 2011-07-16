@@ -25,6 +25,7 @@ function ProgressBar(engine) {
          var status = progressModel.getLessonStatus(i + 1);
          progressBoxes.push(ProgressBox(engine, i + 1, status));
       }
+      that.resize();
    }
 
    that.updateLessonIcons = function(progressModel) {

@@ -3,8 +3,8 @@ function ProgressModel() {
    var that = {}; 
    var currUnitIndex = 1;
    var currLessonIndex = 1;
-
    var unitProgressList = [];
+   var corrupted = false;
 
    that.changeLesson = function(lesson) {
       currLessonIndex = lesson;
@@ -54,23 +54,31 @@ function ProgressModel() {
 
    function setHash() {
       hashString = '';
-      hashString += '\"unit\":' + currUnitIndex;
-      hashString += ',\"lesson\":' + currLessonIndex;
+      hashString += '/unit' + currUnitIndex;
+      hashString += '/lesson' + currLessonIndex;
       window.location.hash = hashString;
    }
 
-   function loadHash() {
+   that.loadHash = function() {
       var hashText = window.location.hash;
-      if (hashText != '') {
-         hashText = hashText.substring(1);
-         eval( 'var lessonMap = {' +hashText + '}');
-         currUnitIndex = lessonMap.unit;
-         currLessonIndex = lessonMap.lesson;
+      var path = hashText.split('/');
+      var unitString = path[1];
+      var lessonString = path[2];
+
+      if (!unitString.match(/^unit\d*$/)) {
+         corrupted = true;
+         return;
+      } else if (!lessonString.match(/^lesson\d*$/)) {
+         corrupted = true;
+         return;
       }
+
+      currUnitIndex = parseInt(unitString.replace('unit', ''));
+      currLessonIndex = parseInt(lessonString.replace('lesson', ''));
    }
 
    function init() {
-      loadHash();
+      that.loadHash();
       setHash();
 
       // This is temporary code to load up units

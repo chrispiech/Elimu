@@ -19,15 +19,29 @@ function KarelLearnEngine() {
       resize();
    }
 
+   that.onHashChange = function () {
+      var previousUnit = progressModel.getUnitIndex();
+      progressModel.loadHash();
+      var newUnit = progressModel.getUnitIndex() != previousUnit;
+      render(newUnit);
+   }
+
    that.changeLesson = function(lesson) {
       progressModel.changeLesson(lesson);
-      that.progressBar.updateLessonIcons(progressModel);
+      render(false);
+   }
+
+   function render(newUnit) {
+      if (newUnit) {
+         that.progressBar.createLessonIcons(progressModel);
+      } else {
+         that.progressBar.updateLessonIcons(progressModel);
+      }
       that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
    }
 
    function init() {
-      that.progressBar.createLessonIcons(progressModel);
-      that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
+      render(true);
    }
 
    function lessonFinished() {
@@ -37,13 +51,7 @@ function KarelLearnEngine() {
    }
 
    function finishedChangeAnimation() {
-      if(progressModel.isStartingNewUnit()) {
-         that.progressBar.createLessonIcons(progressModel);
-      } else {
-         that.progressBar.updateLessonIcons(progressModel);
-      }
-      that.centerArea.createLesson(progressModel, lessonsModel, lessonFinished);
-      
+      render(progressModel.isStartingNewUnit());      
    }
 
    function resize() {
@@ -61,7 +69,6 @@ function KarelLearnEngine() {
       that.centerArea.setTop (headder.getHeight());
       that.centerArea.setHeight(bodyHeight);
       that.centerArea.resize();
- 
    }
 
    
