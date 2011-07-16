@@ -1,14 +1,37 @@
 function ProgressBox(engine, index, status) {
 
    var HEIGHT_FRACTION = 0.55;
+   var TEXT_FRACTION = 0.6;
    var SPACING_FRACTION = HEIGHT_FRACTION / 3;
 
    var that = {};
 
-   var div = document.createElement('div');
+   var div = null;
    var current  = false;
+   var label = null;
+
+   function createDiv() {
+      var divId = 'progressBox' + index;
+      var div = document.createElement('div');
+      document.getElementById('progressBarDiv').appendChild(div);
+      div.id = divId;
+      var dim = {};
+      dim['left']  = (1 - TEXT_FRACTION) / 2;
+      dim['top']  = (1 - TEXT_FRACTION) / 2;
+      dim['width'] = TEXT_FRACTION;
+      dim['height'] = TEXT_FRACTION;
+      var labelText = String(index)
+      label = TextElement(dim, labelText, divId);
+      label.setTextColor('black');
+      return div;
+   }
+
+   that.deleteDiv = function() {
+      document.getElementById('progressBarDiv').removeChild(div);
+   }
    
    function init () {
+      div = createDiv(); 
       div.className = 'progressBox';
       div.onclick = onClick;
       div.onmouseover = onMouseOver;
@@ -16,11 +39,6 @@ function ProgressBox(engine, index, status) {
       div.onmousedown = onMouseDown;
       div.onmouseup = onMouseUp;
       setDefault();
-      document.getElementById('progressBarDiv').appendChild(div);
-   }
-
-   that.deleteDiv = function() {
-      document.getElementById('progressBarDiv').removeChild(div);
    }
 
    that.setStatus = function(newStatus) {
@@ -88,6 +106,8 @@ function ProgressBox(engine, index, status) {
       div.style.top = top + 'px';
       div.style.width = width + 'px';
       div.style.height = height + 'px';
+
+      label.resize();
    }
    
    init();

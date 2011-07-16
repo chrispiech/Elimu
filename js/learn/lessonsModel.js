@@ -32,8 +32,8 @@ function Unit1Lesson5(finishedCallback) {
    that.elements = [];
    that.elements.push(staticKarel);
    that.elements.push(dynamicKarel);
-   that.elements.push(TextElement(textDim1, 'World'));
-   that.elements.push(TextElement(textDim2, 'Goal'));
+   that.elements.push(TextBox(textDim1, 'World'));
+   that.elements.push(TextBox(textDim2, 'Goal'));
 
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
@@ -65,8 +65,8 @@ function Unit1Lesson4(finishedCallback) {
    that.elements = [];
    that.elements.push(staticKarel);
    that.elements.push(dynamicKarel);
-   that.elements.push(TextElement(textDim1, 'World'));
-   that.elements.push(TextElement(textDim2, 'Goal'));
+   that.elements.push(TextBox(textDim1, 'World'));
+   that.elements.push(TextBox(textDim2, 'Goal'));
 
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
@@ -95,8 +95,8 @@ function Unit1Lesson3(finishedCallback) {
    that.elements = [];
    that.elements.push(staticKarel);
    that.elements.push(dynamicKarel);
-   that.elements.push(TextElement(textDim1, 'World'));
-   that.elements.push(TextElement(textDim2, 'Goal'));
+   that.elements.push(TextBox(textDim1, 'World'));
+   that.elements.push(TextBox(textDim2, 'Goal'));
 
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
@@ -120,8 +120,8 @@ function Unit1Lesson2(finishedCallback) {
    that.elements = [];
    that.elements.push(staticKarel);
    that.elements.push(dynamicKarel);
-   that.elements.push(TextElement(textDim1, 'World'));
-   that.elements.push(TextElement(textDim2, 'Goal'));
+   that.elements.push(TextBox(textDim1, 'World'));
+   that.elements.push(TextBox(textDim2, 'Goal'));
 
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);    
    
@@ -164,7 +164,7 @@ function Unit1Lesson1(finishedCallback) {
       var button = ImageButton(positions[i], buttonSrcs[buttonIndex]);
       that.elements.push(button);
    }
-   that.elements.push(TextElement(textDim, 'Karel'));
+   that.elements.push(TextBox(textDim, 'Karel'));
    return that;
 }
 
