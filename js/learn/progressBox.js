@@ -56,7 +56,9 @@ function ProgressBox(engine, index, status) {
          div.style.background = 'green';
       } else if (status == 'started') {
          div.style.background = 'lightblue';
-      } else {
+      } else if (status == 'current') {
+         div.style.background = 'white';
+      }else {
          throw 'status incorectly formated';
       }
    }

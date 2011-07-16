@@ -61,6 +61,13 @@ function ProgressModel() {
 
    that.loadHash = function() {
       var hashText = window.location.hash;
+
+      if (!hashText) {
+         currUnitIndex = 1;
+         currLessonIndex = 1;
+         return;
+      }
+      
       var path = hashText.split('/');
       var unitString = path[1];
       var lessonString = path[2];
