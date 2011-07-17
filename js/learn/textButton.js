@@ -1,9 +1,7 @@
-function TextButton(dim, text, clickCallback) {
+function TextButton(dim, text, parentId, clickCallback) {
 
-   var SIZE_REDUCTION = 0.45;
 
-   var that = TextElement(dim, text, 'centerAreaDiv');
-   that.textSpan.style.fontFamily = 'monospace';
+   var that = TextElement(dim, text, parentId);
    that.div.className = 'roundedButton';
 
    that.textSpan.onclick = function() {
@@ -13,10 +11,9 @@ function TextButton(dim, text, clickCallback) {
    var resizeFn = that.resize;
    that.resize = function() {
       resizeFn();
-      var centerHeight = $('#centerAreaDiv').height();
-      var height = that.heightFraction * centerHeight;
-      that.textSpan.style.fontSize = height*SIZE_REDUCTION + 'px';
-      that.textSpan.style.lineHeight = height + 'px';
+      
+      that.textSpan.style.fontSize = that.height + 'px';
+      that.textSpan.style.lineHeight = that.height + 'px';
    }
    
    return that;

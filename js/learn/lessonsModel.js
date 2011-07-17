@@ -48,7 +48,7 @@ function Unit2Lesson1(finishedCallback) {
    var that = {};
    that.elements = [];
    
-   that.elements.push(KarelIdeElement());
+   that.elements.push(KarelIdeElement('borderRunSoln.js'));
    return that;
 }
 
@@ -83,10 +83,10 @@ function Unit1Lesson5(finishedCallback) {
    var putEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPutBeeper, finishedCallback);
    var pickEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPickBeeper, finishedCallback);
    
-   that.elements.push(TextButton(buttonDim1, '<b>move();</b>', moveEvent));
-   that.elements.push(TextButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
-   that.elements.push(TextButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
-   that.elements.push(TextButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
+   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.elements.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+   that.elements.push(KarelCommandButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
+   that.elements.push(KarelCommandButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
 
    return that;
 }
@@ -116,10 +116,10 @@ function Unit1Lesson4(finishedCallback) {
    var putEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPutBeeper, finishedCallback);
    var pickEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPickBeeper, finishedCallback);
    
-   that.elements.push(TextButton(buttonDim1, '<b>move();</b>', moveEvent));
-   that.elements.push(TextButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
-   that.elements.push(TextButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
-   that.elements.push(TextButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
+   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.elements.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+   that.elements.push(KarelCommandButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
+   that.elements.push(KarelCommandButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
    return that;
 }
 
@@ -144,8 +144,8 @@ function Unit1Lesson3(finishedCallback) {
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
    
-   that.elements.push(TextButton(buttonDim1, '<b>move();</b>', moveEvent));
-   that.elements.push(TextButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.elements.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
    return that;
 }
 
@@ -168,7 +168,7 @@ function Unit1Lesson2(finishedCallback) {
 
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);    
    
-   that.elements.push(TextButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
    return that;
 }
 

@@ -9,17 +9,20 @@ function KarelEditorElement(dim, parentId) {
    that = MakeAbsoluteDiv(that, parentId, dim);
    //document.getElementById(parentId).appendChild(that.div);
 
-   that.div.innerHTML = '//hello world';
    that.div.className = 'code';
    that.div.id        = 'code';
-   var editor = ace.edit('code');
-   editor.setTheme('ace/theme/jeremys');
+   that.editor = ace.edit('code');
+   that.editor.setTheme('ace/theme/jeremys');
    var JavaScriptMode = require("ace/mode/javascript").Mode;
-   editor.getSession().setMode(new JavaScriptMode());
+   that.editor.getSession().setMode(new JavaScriptMode());
    that.div.style.fontSize='16px';
 
    that.getEditor = function() {
-      return editor;
+      return that.editor;
+   }
+
+   that.setCode = function(code) {
+      that.editor.getSession().setValue(code);
    }
 
    var resize = that.resize;
@@ -30,6 +33,7 @@ function KarelEditorElement(dim, parentId) {
       //that.div.style.lineHeight = fontSize + 'px';
       var gutter = document.getElementById('ace_gutter');
       gutter.style.width = that.width * GUTTER_FRACTION + 'px';
+      that.editor.renderer.onResize();
    }
 
    return that;

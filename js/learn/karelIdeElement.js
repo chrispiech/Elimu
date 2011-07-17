@@ -1,4 +1,4 @@
-function KarelIdeElement() {
+function KarelIdeElement(starterCodeFile) {
    var that = {};
 
    var IDE_INSET = 0.06;
@@ -15,12 +15,16 @@ function KarelIdeElement() {
    var buttonBarDim = {left:0, top:0, width:1, height:BUTTON_HEIGHT};
 
    var karelDiv = that.div; 
-   var buttonBar = KarelIdeButtons(buttonBarDim, 'ide');
+   
    var editor = KarelEditorElement(editorDim, 'ide');
    var canvas = KarelCanvasElement(canvasDim, 'ide');
    
    var karelIde = KarelIde(editor.getEditor(), canvas.getCanvas(), '4x4.w');
+
+   var buttonBar = KarelIdeButtons(buttonBarDim, 'ide', karelIde);
    
+   var starterCodePath = './karelCode/' + starterCodeFile;
+   loadDoc(starterCodePath, starterCodeLoaded);
 
    var resize = that.resize;
    that.resize = function() {
@@ -36,6 +40,10 @@ function KarelIdeElement() {
    }
    
    that.resize();
+
+   function starterCodeLoaded(code) {
+      editor.setCode(code);
+   }
 
    return that;
 }

@@ -16,10 +16,7 @@ html, body {
 	float:left;
 	width:390px;
 	height:650px;
-	border-top-width:0px;
-	border-top-style:solid;
-	border-color:silver;
-	background:#fff;
+   background:#fff;
 	font-size:large;
 	-moz-border-radius-bottomleft: 7px;
    border-bottom-left-radius: 7px;
@@ -115,7 +112,7 @@ html, body {
    position:absolute;
    -moz-border-radius: 7px;
    border-radius: 7px;
-   background:white;
+   background:LightCyan ;
    -moz-box-shadow: 3px 3px 3px dimgray;
   -webkit-box-shadow: 3px 3px 3px dimgray;
   box-shadow: 3px 3px 3px dimgray;

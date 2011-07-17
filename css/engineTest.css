@@ -1,17 +1,11 @@
 .code {
-   position: absolute;
-	float:left;
+   
 	width:390px;
 	height:650px;
-	border-width:2px;
-	border-style:solid;
-	border-color:silver;
-	background:#fff;
-	font-size:large;
 }
 
 #code {
-    position: absolute;
+    position: relative;
 }
 
 .karelIde {
