@@ -1,26 +1,14 @@
-function KarelCanvasElement(dim, worldName) {
+function KarelCanvasElement(dim, parentId) {
    var that = {};
    that.div = document.createElement('canvas');
-   that = MakeAbsoluteDiv(that, 'centerAreaDiv', dim);
-   that.div.setAttribute('src', './images/imageButtonFrame.png');
+   that = MakeAbsoluteDiv(that, parentId, dim);
 
-   var karelIde = KarelIde(null, that.div, worldName);
-
-   var resize = that.resize;
-   that.resize = function() {
-      resize();
-      var centerHeight = $('#' + 'centerAreaDiv').height();
-      var centerWidth = $('#' + 'centerAreaDiv').width();
-      var width = that.widthFraction * centerWidth;
-      var height = that.heightFraction * centerHeight;
-      karelIde.resizeCanvas(width, height);
-   }
-
-   that.getIde = function() {
-      return karelIde;
-   }
    
-   that.resize();
+   that.getCanvas = function() {
+      return that.div;
+   }
 
+
+   that.resize();
    return that;
 }

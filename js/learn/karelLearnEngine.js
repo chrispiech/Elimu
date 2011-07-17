@@ -7,9 +7,10 @@ function KarelLearnEngine() {
    var topicIndex = 0;
    var slideIndex = 0;
    var content = Content();
+
    
-   var progressModel = ProgressModel();
    var lessonsModel = LessonsModel();
+   var progressModel = ProgressModel(lessonsModel);
 
    that.header = Header();
    that.centerArea = CenterArea();

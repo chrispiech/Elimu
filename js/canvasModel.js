@@ -39,6 +39,8 @@ function CanvasModel(canvasWidth, canvasHeight) {
 			var xScale = maxWorldWidth / worldWidth;
 			var yScale = maxWorldHeight / worldHeight;
 			var maxScale = Math.min(xScale, yScale);
+			console.log(maxScale);
+			var maxScale = Math.min(maxScale, 0.4);
 			worldWidth = worldWidth * maxScale;
 			worldHeight = worldHeight * maxScale;
 			cornerSize = cornerSize * maxScale;

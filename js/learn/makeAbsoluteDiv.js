@@ -18,15 +18,15 @@ function MakeAbsoluteDiv(that, parentId, dim) {
       var centerHeight = $('#' + parentId).height();
       var centerWidth = $('#' + parentId).width();
 
-      var width = that.widthFraction * centerWidth;
-      var height = that.heightFraction * centerHeight;
-      var left = that.leftFraction * centerWidth;
-      var top = that.topFraction * centerHeight;
+      that.width = that.widthFraction * centerWidth;
+      that.height = that.heightFraction * centerHeight;
+      that.left = that.leftFraction * centerWidth;
+      that.top = that.topFraction * centerHeight;
 
-      that.div.style.left = left + 'px';
-      that.div.style.top = top + 'px';
-      that.div.style.width = width + 'px';
-      that.div.style.height = height + 'px';
+      that.div.style.left = that.left + 'px';
+      that.div.style.top = that.top + 'px';
+      that.div.style.width = that.width + 'px';
+      that.div.style.height = that.height + 'px';
    }
 
    that.init();

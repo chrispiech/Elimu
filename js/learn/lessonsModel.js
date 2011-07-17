@@ -1,3 +1,38 @@
+function LessonsModel() {
+   var that = {};
+   var currentLesson;
+
+   that.getNumUnits = function() {
+      return 2;
+   }
+
+   that.getNumLessons = function(unit) {
+      var lesson = 0;
+      while (true) {
+         var lessonName = 'Unit' + unit + 'Lesson' + (lesson + 1);
+         var fn = window[lessonName];
+         if(typeof fn != 'function') {
+            break;
+         }
+         lesson += 1;
+      }
+      return lesson;
+   }
+
+   that.createLesson = function(progressModel, finishedCallback) {
+
+      var unitIndex = progressModel.getUnitIndex();
+      var lessonIndex = progressModel.getLessonIndex();
+
+      var lessonName = 'Unit' + unitIndex + 'Lesson' + lessonIndex;
+
+      currentLesson = window[lessonName](finishedCallback);
+      return currentLesson.elements;
+   }
+
+   return that;
+}
+
 function AddEqualCheck(ide1, ide2, action, callback) {
    return function() {
       action();
@@ -12,6 +47,14 @@ function AddEqualCheck(ide1, ide2, action, callback) {
 function Unit2Lesson1(finishedCallback) {
    var that = {};
    that.elements = [];
+
+   that.elements.push(KarelIdeElement());
+   return that;
+}
+
+function Unit2Lesson2(finishedCallback) {
+   var that = {};
+   that.elements = [];
    return that;
 }
 
@@ -19,8 +62,8 @@ function Unit1Lesson5(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.201, 'top':0.2, 'width':0.2666, 'height':0.3};
    var staticDim = {'left':0.532, 'top':0.2, 'width':0.2666, 'height':0.3};
-   var staticKarel = KarelCanvasElement(staticDim,'ledgeSoln.w');
-   var dynamicKarel = KarelCanvasElement(dynamicDim,'ledge.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'ledgeSoln.w');
+   var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'ledge.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
    var buttonDim1 = {'left':0.185, 'top':0.65, 'width':0.3, 'height':0.12};
@@ -52,8 +95,8 @@ function Unit1Lesson4(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.185, 'top':0.2, 'width':0.3, 'height':0.3};
    var staticDim = {'left':0.515, 'top':0.2, 'width':0.3, 'height':0.3};
-   var staticKarel = KarelCanvasElement(staticDim,'putBeeperSoln.w');
-   var dynamicKarel = KarelCanvasElement(dynamicDim,'putBeeper.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'putBeeperSoln.w');
+   var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'putBeeper.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
    var buttonDim1 = {'left':0.185, 'top':0.65, 'width':0.3, 'height':0.12};
@@ -84,8 +127,8 @@ function Unit1Lesson3(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.235, 'top':0.2, 'width':0.2, 'height':0.3};
    var staticDim = {'left':0.565, 'top':0.2, 'width':0.2, 'height':0.3};
-   var staticKarel = KarelCanvasElement(staticDim,'turnLeftSoln.w');
-   var dynamicKarel = KarelCanvasElement(dynamicDim,'turnLeft.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'turnLeftSoln.w');
+   var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'turnLeft.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
    var buttonDim1 = {'left':0.185, 'top':0.7, 'width':0.3, 'height':0.12};
@@ -110,8 +153,8 @@ function Unit1Lesson2(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.185, 'top':0.2, 'width':0.3, 'height':0.3};
    var staticDim = {'left':0.515, 'top':0.2, 'width':0.3, 'height':0.3};
-   var staticKarel = KarelCanvasElement(staticDim,'moveSoln.w');
-   var dynamicKarel = KarelCanvasElement(dynamicDim,'move.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'moveSoln.w');
+   var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'move.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
    var buttonDim1 = {'left':0.35, 'top':0.7, 'width':0.3, 'height':0.12};
@@ -168,21 +211,5 @@ function Unit1Lesson1(finishedCallback) {
    return that;
 }
 
-function LessonsModel() {
-   var that = {};
-   var currentLesson;
 
-   that.createLesson = function(progressModel, finishedCallback) {
-
-      var unitIndex = progressModel.getUnitIndex();
-      var lessonIndex = progressModel.getLessonIndex();
-
-      var lessonName = 'Unit' + unitIndex + 'Lesson' + lessonIndex;
-
-      currentLesson = window[lessonName](finishedCallback);
-      return currentLesson.elements;
-   }
-
-   return that;
-}
 

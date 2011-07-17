@@ -1,4 +1,5 @@
 .code {
+   position: absolute;
 	float:left;
 	width:390px;
 	height:650px;
@@ -10,7 +11,7 @@
 }
 
 #code {
-    position: relative;
+    position: absolute;
 }
 
 .karelIde {

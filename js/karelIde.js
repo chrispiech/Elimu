@@ -274,8 +274,9 @@ function KarelIde(editor, canvas, initialWorld) {
     * Clears the canvas by filling it with a rectangle colored BACKGROUND_COLOR
     */
    function clear() {
-      context.fillStyle = Const.BACKGROUND_COLOR;
-      context.fillRect(0, 0, canvasModel.getWidth(), canvasModel.getHeight());
+      context.clearRect (0, 0, canvasModel.getWidth(), canvasModel.getHeight());
+      //context.fillStyle = Const.BACKGROUND_COLOR;
+     // context.fillRect(0, 0, canvasModel.getWidth(), canvasModel.getHeight());
    }
 
    /**
