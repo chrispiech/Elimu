@@ -2,9 +2,9 @@ define("ace/theme/jeremys",["require","exports","module"],function(a,b,c){
     var colorForNumbers         = '#00FF00'; //aqua! 
     var colorForOperators       = 'red';
     var colorForComments        = '#0066FF';
-    var colorForKeyword         = '#CC3399';//pink! 
+    var colorForKeyword         = '#7F0055'; 
     var colorForString          = 'brown';
-    var colorForFunction        = '#FF6600';
+    var colorForFunction        = '#7F0055';
     var colorForIterators       = '#680082';
     var colorForConditionals    = '#B88A00';
     var colorForAssignment      = '#0099FF'; //aqua! 
@@ -14,15 +14,18 @@ define("ace/theme/jeremys",["require","exports","module"],function(a,b,c){
 \
 .ace-tm .ace_line .ace_if, .ace-tm .ace_line .ace_else{\
 color: " + colorForConditionals + ";\
+font-weight:bold;\
 }\
 .ace-tm .ace_scroller .ace_line .ace_assignment{\
 color: " + colorForAssignment + ";\
 }\
 .ace-tm .ace_line .ace_while, .ace-tm .ace_line .ace_for{\
 color: " + colorForIterators + ";\
+font-weight:bold;\
 }\
 .ace-tm .ace_line .ace_function{\
 color: " + colorForFunction + ";\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_editor {\
@@ -74,6 +77,7 @@ color: blue;\
 \
 .ace-tm .ace_line .ace_keyword {\
 color: " + colorForKeyword + ";\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_line .ace_constant.ace_buildin {\
@@ -82,6 +86,7 @@ color: pink;\
 \
 .ace-tm .ace_line .ace_constant.ace_language {\
 color: pink;\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_line .ace_constant.ace_library {\

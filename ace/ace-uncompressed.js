@@ -7945,7 +7945,7 @@ var EditSession = function(text, mode) {
         return this.$useSoftTabs;
     };
 
-    this.$tabSize = 4;
+    this.$tabSize = 3;
     this.setTabSize = function(tabSize) {
         if (isNaN(tabSize) || this.$tabSize === tabSize) return;
 
@@ -9460,6 +9460,7 @@ var Selection = function(session) {
     this.getCursor = function() {
         return this.selectionLead.getPosition();
     };
+
 
     this.setSelectionAnchor = function(row, column) {
         this.selectionAnchor.setPosition(row, column);
@@ -12833,6 +12834,7 @@ var VirtualRenderer = function(container, theme) {
 
     this.$gutter = dom.createElement("div");
     this.$gutter.className = "ace_gutter";
+    this.$gutter.id = "ace_gutter";
     this.container.appendChild(this.$gutter);
 
     this.scroller = dom.createElement("div");

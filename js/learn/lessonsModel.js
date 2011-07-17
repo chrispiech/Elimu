@@ -47,7 +47,7 @@ function AddEqualCheck(ide1, ide2, action, callback) {
 function Unit2Lesson1(finishedCallback) {
    var that = {};
    that.elements = [];
-
+   
    that.elements.push(KarelIdeElement());
    return that;
 }

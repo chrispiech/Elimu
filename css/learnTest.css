@@ -16,11 +16,45 @@ html, body {
 	float:left;
 	width:390px;
 	height:650px;
-	border-width:0px;
-	border-style:solid;
+	border-top-width:0px;
+	border-top-style:solid;
 	border-color:silver;
 	background:#fff;
 	font-size:large;
+	-moz-border-radius-bottomleft: 7px;
+   border-bottom-left-radius: 7px;
+}
+#ideButtonBarBorder {
+   background-color:dimgray;
+}
+#ideButtonBar {
+   background-color:steelblue  ;
+   -moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;
+   -moz-border-radius-topright: 7px;
+   border-top-right-radius: 7px;
+}
+
+#ace_gutter {
+   /*-moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;*/
+   -moz-border-radius-bottomleft: 7px;
+   border-bottom-left-radius: 7px;
+}
+
+#ide {
+   position:absolute;
+   /*background-image:url('../images/bg-body.jpg');
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;*/
+	background:LightSteelBlue;
+	-moz-border-radius: 7px;
+   border-radius: 7px;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
 }
 
 #content {
