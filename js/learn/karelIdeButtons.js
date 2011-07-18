@@ -5,6 +5,7 @@ function KarelIdeButtons(dim, parentId, karelIde) {
    that.div = document.createElement('div');
    that = MakeAbsoluteDiv(that, parentId, dim);
    that.div.id = 'ideButtonBar';
+   that.inheritVisibility();
 
    var border = {};
    var borderDim = {left:0, top:1-BORDER_HEIGHT, width:1, height:BORDER_HEIGHT};
@@ -31,7 +32,8 @@ function KarelIdeButtons(dim, parentId, karelIde) {
    };
    that.runButton = TextButton(runDim, 'Run', 'ideButtonBar', karelIde.playButton);
    that.resetButton = TextButton(resetDim, 'Reset', 'ideButtonBar', karelIde.stopButton);
-   
+   that.runButton.inheritVisibility();
+   that.resetButton.inheritVisibility();
    var resize = that.resize;
    that.resize = function() {
       resize();

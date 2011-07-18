@@ -5,12 +5,12 @@ function ProgressModel(lessonsModel) {
    var currLessonIndex = 1;
    var unitProgressList = [];
    var corrupted = false;
+   var language = 'english';
 
    that.changeLesson = function(lesson) {
       currLessonIndex = lesson;
       var unit = getCurrUnitIndex();
       unit.lessonStarted(lesson - 1);  
-      that.setHash();
    }
 
    that.isStartingNewUnit = function() {
@@ -53,6 +53,7 @@ function ProgressModel(lessonsModel) {
 
    that.setHash = function() {
       hashString = '';
+      hashString += '/' + language;
       hashString += '/unit' + currUnitIndex;
       hashString += '/lesson' + currLessonIndex;
       window.location.hash = hashString;
@@ -66,26 +67,32 @@ function ProgressModel(lessonsModel) {
          currLessonIndex = 1;
          return;
       }
-      
-      var path = hashText.split('/');
-      var unitString = path[1];
-      var lessonString = path[2];
 
-      if (!unitString.match(/^unit\d*$/)) {
+      var path = hashText.split('/');
+
+      language = path[1];    
+      var unitString = path[2];
+      var lessonString = path[3];
+
+      if (!isSupportedLanguage(language)) {
          corrupted = true;
+         alert('corrupted hash string');
+         return;
+      } else if (!unitString.match(/^unit\d*$/)) {
+         corrupted = true;
+         alert('corrupted hash string');
          return;
       } else if (!lessonString.match(/^lesson\d*$/)) {
          corrupted = true;
+         alert('corrupted hash string');
          return;
       }
-
       currUnitIndex = parseInt(unitString.replace('unit', ''));
       currLessonIndex = parseInt(lessonString.replace('lesson', ''));
    }
 
    function init() {
       that.loadHash();
-      that.setHash();
 
       for (var i = 0; i < lessonsModel.getNumUnits(); i++) {
          var unitIndex = (i + 1);
@@ -103,6 +110,12 @@ function ProgressModel(lessonsModel) {
 
    function getCurrUnitIndex() {
       return unitProgressList[currUnitIndex - 1];
+   }
+
+   function isSupportedLanguage(language) {
+      if (language == 'english') return true;
+      if (language == 'swahili') return true;
+      if (language == 'spanish') return true;
    }
 
    init(); 

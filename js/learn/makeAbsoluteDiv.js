@@ -14,6 +14,10 @@ function MakeAbsoluteDiv(that, parentId, dim) {
       document.getElementById(parentId).removeChild(that.div);
    }
 
+   that.inheritVisibility = function() {
+      that.div.style.display = 'inherit';
+   }
+
    that.resize = function() {
       var centerHeight = $('#' + parentId).height();
       var centerWidth = $('#' + parentId).width();

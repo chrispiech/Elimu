@@ -27,7 +27,7 @@ function LessonsModel() {
       var lessonName = 'Unit' + unitIndex + 'Lesson' + lessonIndex;
 
       currentLesson = window[lessonName](finishedCallback);
-      return currentLesson.elements;
+      return currentLesson;
    }
 
    return that;
@@ -177,37 +177,94 @@ function Unit1Lesson1(finishedCallback) {
    var textDim = {'left':0.342, 'top':0.014, 'width':0.316, 'height':0.074};
 
    var positions = [
-      {'left':0.169, 'top':0.1, 'width':0.316, 'height':0.42},
-      {'left':0.515, 'top':0.1, 'width':0.316, 'height':0.42},
-      {'left':0.169, 'top':0.55, 'width':0.316, 'height':0.42},
-      {'left':0.515, 'top':0.55, 'width':0.316, 'height':0.42}
+      {'left':0.169, 'top':0.11, 'width':0.316, 'height':0.42},
+      {'left':0.515, 'top':0.11, 'width':0.316, 'height':0.42},
+      {'left':0.169, 'top':0.56, 'width':0.316, 'height':0.42},
+      {'left':0.515, 'top':0.56, 'width':0.316, 'height':0.42}
    ];
 
    var buttonSrcs = [
-      './images/worldButtonFrame.png',
-      './images/beeperButtonFrame.png',
       './images/karelButtonFrame.png',
-      './images/wallButtonFrame.png'
+      './images/beeperButtonFrame.png',
+      './images/worldButtonFrame.png',
+      './images/wallButtonFrame.png',
    ];
-   var indicies = [];
-   for (var i = 0; i < buttonSrcs.length; i++){
-      indicies.push(i);
-   }
-   var orderMap = [];
-   for (var i = 0; i < buttonSrcs.length; i++) {
-      var maxIndex = indicies.length;
-      var randomIndex = Math.floor(Math.random()*maxIndex);
-      orderMap.push(indicies[randomIndex]);
-      indicies.splice(randomIndex, 1);
+
+   var labels = [
+      'Karel',
+      'Beeper',
+      'World',
+      'Wall'
+   ];
+   
+   that.generatePuzzle = function() {
+      var orderMap = [];
+      var indicies = [];
+      for (var i = 0; i < buttonSrcs.length; i++){
+         indicies.push(i);
+      }
+      for (var i = 0; i < buttonSrcs.length; i++) {
+         var maxIndex = indicies.length;
+         var randomIndex = Math.floor(Math.random()*maxIndex);
+         orderMap.push(indicies[randomIndex]);
+         indicies.splice(randomIndex, 1);
+      }
+      
+      that.elements = [];
+      for (var i = 0; i < buttonSrcs.length; i++) {
+         var buttonIndex = orderMap.indexOf(i);
+         var callback;
+         switch(i) {
+            case 0: callback = function(){that.buttonClicked(0)}; break;
+            case 1: callback = function(){that.buttonClicked(1)}; break;
+            case 2: callback = function(){that.buttonClicked(2)}; break;
+            case 3: callback = function(){that.buttonClicked(3)}; break;
+         }
+         var button = ImageButton(positions[i], buttonSrcs[buttonIndex], callback);
+         that.elements.push(button);
+      }
+
+      that.answerIndex = orderMap[that.questionIndex];
+      var questionLabel = labels[that.questionIndex];
+      that.questionBox = TextBox(textDim, questionLabel);
+      that.elements.push(that.questionBox);
    }
 
-   that.elements = [];
-   for (var i = 0; i < buttonSrcs.length; i++) {
-      var buttonIndex = orderMap[i];
-      var button = ImageButton(positions[i], buttonSrcs[buttonIndex]);
-      that.elements.push(button);
+   that.buttonClicked = function(index) {
+      if (index == that.answerIndex) {
+         var button = that.elements[index];
+         button.animateCorrect(that.questionBox, that.nextPuzzle);
+      } else {
+         that.elements[index].animateIncorrect();
+      }
    }
-   that.elements.push(TextBox(textDim, 'Karel'));
+
+   that.nextPuzzle = function() {
+      function finishedFadeOut() {
+         for (var i = 0; i < that.elements.length; i++) {
+            that.elements[i].deleteDiv();
+         }
+         that.generatePuzzle();
+         for (var i =0; i < that.elements.length; i++) {
+            that.elements[i].resize();
+            $(that.elements[i].div).fadeIn(600);
+         }
+      }
+   
+      that.questionIndex += 1;
+      if (that.questionIndex >= buttonSrcs.length) {
+         finishedCallback();
+      } else {
+         for (var i = 0; i < that.elements.length; i++) {
+            $(that.elements[i].div).fadeOut(600);
+         }
+         setTimeout(finishedFadeOut, 600);
+      }
+   }
+   
+   that.questionIndex = 0;
+   that.generatePuzzle();
+   
    return that;
 }
 

@@ -11,6 +11,7 @@ function TitleElement(xPos, text) {
    
    that.div = document.createElement('div');
    that = MakeAbsoluteDiv(that, 'headerDiv', dim);
+   that.div.className = 'nonFadeInDiv';
    var textSpan = document.createElement('p');
    textSpan.innerHTML = text;
    textSpan.className = 'titleText';

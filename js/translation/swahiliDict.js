@@ -9,3 +9,9 @@ SwahiliDict['left'] = 'kushoto';
 SwahiliDict['right']  = 'haki';
 SwahiliDict['turnAround'] = 'geuka';
 
+function SwahiliTranslator() {
+
+   var that = Translator(SwahiliDict);
+   return that;
+}
+

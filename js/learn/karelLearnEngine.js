@@ -22,14 +22,18 @@ function KarelLearnEngine() {
 
    that.onHashChange = function () {
       var previousUnit = progressModel.getUnitIndex();
+      var previousLesson = progressModel.getLessonIndex();
       progressModel.loadHash();
-      var newUnit = progressModel.getUnitIndex() != previousUnit;
-      render(newUnit);
+      var newUnit = progressModel.getUnitIndex();
+      var newLesson = progressModel.getLessonIndex();
+      if (newUnit != previousUnit || newLesson != previousLesson) {
+         render(newUnit != previousUnit);
+      }
    }
 
    that.changeLesson = function(lesson) {
       progressModel.changeLesson(lesson);
-      render(false);
+      that.centerArea.fadeOutElements(finishedChangeAnimation);
    }
 
    function render(newUnit) {
@@ -52,8 +56,7 @@ function KarelLearnEngine() {
 
    function lessonFinished() {
       progressModel.finishedLesson();
-      // you should do some sort of animation!
-      setTimeout(finishedChangeAnimation,500);
+      that.centerArea.fadeOutElements(finishedChangeAnimation);
    }
 
    function finishedChangeAnimation() {
