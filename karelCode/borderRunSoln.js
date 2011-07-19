@@ -1,4 +1,3 @@
-// Border Circle:
 putBeeper();
 move();
 move();

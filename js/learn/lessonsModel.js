@@ -47,8 +47,20 @@ function AddEqualCheck(ide1, ide2, action, callback) {
 function Unit2Lesson1(finishedCallback) {
    var that = {};
    that.elements = [];
+
+   that.ide = KarelIdeElement();
+   that.elements.push(that.ide);
+
+   function animateCode() {
+      that.ide.animateCode('borderRunSoln.js', finished);
+   }
    
-   that.elements.push(KarelIdeElement('borderRunSoln.js'));
+   function animateGoal() {
+      
+   }
+
+   setTimeout(animateCode, 100);
+   
    return that;
 }
 

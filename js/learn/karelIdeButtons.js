@@ -14,8 +14,8 @@ function KarelIdeButtons(dim, parentId, karelIde) {
    border.div.id = 'ideButtonBarBorder';
 
 
-   var BUTTON_HEIGHT = 0.5;
-   var BUTTON_WIDTH = 0.1;
+   var BUTTON_HEIGHT = 0.6;
+   var BUTTON_WIDTH = 0.15;
    var BUTTON_LEFT_SPACING = 0.01;
    var BUTTON_SPACING = 0.02;
    var runDim = {
@@ -31,7 +31,7 @@ function KarelIdeButtons(dim, parentId, karelIde) {
       height:BUTTON_HEIGHT
    };
    that.runButton = TextButton(runDim, 'Run', 'ideButtonBar', karelIde.playButton);
-   that.resetButton = TextButton(resetDim, 'Reset', 'ideButtonBar', karelIde.stopButton);
+   that.resetButton = TextButton(resetDim, 'Goal', 'ideButtonBar', karelIde.stopButton);
    that.runButton.inheritVisibility();
    that.resetButton.inheritVisibility();
    var resize = that.resize;

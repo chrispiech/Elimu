@@ -25,6 +25,24 @@ function KarelEditorElement(dim, parentId) {
       that.editor.getSession().setValue(code);
    }
 
+   function animateCharType() {
+      while(true) {
+         if (that.animateIndex >= that.code.length ) return;
+         var nextChar = that.code.charAt(that.animateIndex);
+         that.animateIndex += 1;
+         if (nextChar != '\r') break;
+      }
+      that.editor.insert(nextChar);
+      setTimeout(animateCharType, 60);
+      
+   }
+
+   that.animateCode = function(code) {
+      that.code = code;
+      that.animateIndex = 0;
+      animateCharType();      
+   }
+
    var resize = that.resize;
    that.resize = function() {
       resize();
