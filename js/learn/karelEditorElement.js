@@ -14,7 +14,7 @@ function KarelEditorElement(dim, parentId) {
    that.editor = ace.edit('code');
    that.editor.setTheme('ace/theme/jeremys');
    var JavaScriptMode = require("ace/mode/javascript").Mode;
-   that.editor.getSession().setMode(new JavaScriptMode());
+   //that.editor.getSession().setMode(new JavaScriptMode());
    that.div.style.fontSize='16px';
 
    that.getEditor = function() {

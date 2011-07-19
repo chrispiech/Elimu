@@ -175,6 +175,8 @@ background: #CC3399;\
 border: 1px solid rgb(250, 100, 100);\
 }\
 \
+.ace_error {\
+}\
 .ace-tm .ace_string.ace_regex {\
 color: rgb(255, 0, 0)\
 }";d.importCssString(e),b.cssClass="ace-tm"})

@@ -62,7 +62,7 @@ function Unit1Lesson5(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.201, 'top':0.2, 'width':0.2666, 'height':0.3};
    var staticDim = {'left':0.532, 'top':0.2, 'width':0.2666, 'height':0.3};
-   var staticKarel = KarelStaticCanvasElement(staticDim,'ledgeSoln.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'ledge.w');
    var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'ledge.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
@@ -82,11 +82,30 @@ function Unit1Lesson5(finishedCallback) {
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
    var putEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPutBeeper, finishedCallback);
    var pickEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPickBeeper, finishedCallback);
-   
-   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
-   that.elements.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
-   that.elements.push(KarelCommandButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
-   that.elements.push(KarelCommandButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
+
+   that.buttons = [];
+   that.buttons.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.buttons.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+   that.buttons.push(KarelCommandButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
+   that.buttons.push(KarelCommandButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
+   for (var i = 0; i < that.buttons.length; i++ ) {
+      that.elements.push(that.buttons[i]);
+   }
+
+   function animationFinished() {
+      for(var i = 0; i < that.buttons.length; i++) {
+         that.buttons[i].setEnabled();
+      }
+   }
+
+   function startAnimation() {
+      for(var i = 0; i < that.buttons.length; i++) {
+         that.buttons[i].setDisabled();
+      }
+      staticKarel.animate('karelCode/unit1Lesson5Soln.js', animationFinished);
+   } 
+
+   setTimeout(startAnimation, 800);
 
    return that;
 }
@@ -95,7 +114,7 @@ function Unit1Lesson4(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.185, 'top':0.2, 'width':0.3, 'height':0.3};
    var staticDim = {'left':0.515, 'top':0.2, 'width':0.3, 'height':0.3};
-   var staticKarel = KarelStaticCanvasElement(staticDim,'putBeeperSoln.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'putBeeper.w');
    var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'putBeeper.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
@@ -115,11 +134,31 @@ function Unit1Lesson4(finishedCallback) {
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
    var putEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPutBeeper, finishedCallback);
    var pickEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepPickBeeper, finishedCallback);
-   
-   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
-   that.elements.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
-   that.elements.push(KarelCommandButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
-   that.elements.push(KarelCommandButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
+
+   that.buttons = [];
+   that.buttons.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.buttons.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+   that.buttons.push(KarelCommandButton(buttonDim3, '<b>putBeeper();</b>', putEvent));
+   that.buttons.push(KarelCommandButton(buttonDim4, '<b>pickBeeper();</b>', pickEvent));
+
+   for (var i = 0; i < that.buttons.length; i++ ) {
+      that.elements.push(that.buttons[i]);
+   }
+
+   function animationFinished() {
+      for(var i = 0; i < that.buttons.length; i++) {
+         that.buttons[i].setEnabled();
+      }
+   }
+
+   function startAnimation() {
+      for(var i = 0; i < that.buttons.length; i++) {
+         that.buttons[i].setDisabled();
+      }
+      staticKarel.animate('karelCode/unit1Lesson4Soln.js', animationFinished);
+   } 
+
+   setTimeout(startAnimation, 800);
    return that;
 }
 
@@ -127,7 +166,7 @@ function Unit1Lesson3(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.235, 'top':0.2, 'width':0.2, 'height':0.3};
    var staticDim = {'left':0.565, 'top':0.2, 'width':0.2, 'height':0.3};
-   var staticKarel = KarelStaticCanvasElement(staticDim,'turnLeftSoln.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'turnLeft.w');
    var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'turnLeft.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
@@ -143,9 +182,28 @@ function Unit1Lesson3(finishedCallback) {
 
    var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);
    var leftEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepTurnLeft, finishedCallback);
-   
-   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
-   that.elements.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+
+   that.buttons = [];
+   that.buttons.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
+   that.buttons.push(KarelCommandButton(buttonDim2, '<b>turnLeft();</b>', leftEvent));
+   for (var i = 0; i < that.buttons.length; i++ ) {
+      that.elements.push(that.buttons[i]);
+   }
+
+   function animationFinished() {
+      for(var i = 0; i < that.buttons.length; i++) {
+         that.buttons[i].setEnabled();
+      }
+   }
+
+   function startAnimation() {
+      for(var i = 0; i < that.buttons.length; i++) {
+         that.buttons[i].setDisabled();
+      }
+      staticKarel.animate('karelCode/unit1Lesson3Soln.js', animationFinished);
+   } 
+
+   setTimeout(startAnimation, 800);
    return that;
 }
 
@@ -153,7 +211,7 @@ function Unit1Lesson2(finishedCallback) {
    var that = {};
    var dynamicDim = {'left':0.185, 'top':0.2, 'width':0.3, 'height':0.3};
    var staticDim = {'left':0.515, 'top':0.2, 'width':0.3, 'height':0.3};
-   var staticKarel = KarelStaticCanvasElement(staticDim,'moveSoln.w');
+   var staticKarel = KarelStaticCanvasElement(staticDim,'move.w');
    var dynamicKarel = KarelStaticCanvasElement(dynamicDim,'move.w');
    var textDim1 = {'left':0.185, 'top':0.1, 'width':0.3, 'height':0.074};
    var textDim2 = {'left':0.515, 'top':0.1, 'width':0.3, 'height':0.074};
@@ -166,9 +224,22 @@ function Unit1Lesson2(finishedCallback) {
    that.elements.push(TextBox(textDim1, 'World'));
    that.elements.push(TextBox(textDim2, 'Goal'));
 
-   var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);    
+   var moveEvent = AddEqualCheck(ide, staticKarel.getIde(), ide.stepMove, finishedCallback);   
+
+   that.button = KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent);
+   that.elements.push(that.button);
+
+   function animationFinished() {
+      that.button.setEnabled();
+   }
+
+   function startAnimation() {
+      that.button.setDisabled();
+      staticKarel.animate('karelCode/unit1Lesson2Soln.js', animationFinished);
+   } 
+
+   setTimeout(startAnimation, 800);
    
-   that.elements.push(KarelCommandButton(buttonDim1, '<b>move();</b>', moveEvent));
    return that;
 }
 
