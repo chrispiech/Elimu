@@ -111,11 +111,11 @@ function KarelEvalEngine(karel) {
       turnLeft();
    }
 
-   function randomChance() {
+   function random() {
       return randomChance(0.5);
    }
 
-   function randomChance(chance) {
+   function random(chance) {
       return Math.random() < chance;
    }
 

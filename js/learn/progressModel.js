@@ -6,6 +6,8 @@ function ProgressModel(lessonsModel) {
    var unitProgressList = [];
    var corrupted = false;
    var language = 'english';
+   var atHomescreen = true;
+   var hasStarted = false;
 
    that.changeLesson = function(lesson) {
       currLessonIndex = lesson;
@@ -17,8 +19,17 @@ function ProgressModel(lessonsModel) {
       return currLessonIndex == 1;
    }
 
+   that.isAtHomescreen = function() {
+      return atHomescreen;
+   }
+
+   that.hasStarted = function() {
+      return hasStarted;
+   }
+
    that.finishedLesson = function() {
       var unit = getCurrUnitIndex();
+      hasStarted = true;
       unit.lessonFinished(currLessonIndex - 1);
 
       // update the lesson / unit values
@@ -51,23 +62,37 @@ function ProgressModel(lessonsModel) {
       return currLessonIndex;
    }
 
+   that.getUnitProgressList = function() {
+      return unitProgressList;
+   }
+
    that.setHash = function() {
-      hashString = '';
+      
+      if (!atHomescreen) {
+         var hashString = that.getHashForLesson(currUnitIndex, currLessonIndex, language);
+         window.location.hash = hashString;
+      }
+   }
+
+   that.getHashForLesson = function(unit, lesson) {
+      var hashString = '';
       hashString += '/' + language;
-      hashString += '/unit' + currUnitIndex;
-      hashString += '/lesson' + currLessonIndex;
-      window.location.hash = hashString;
+      hashString += '/unit' + unit;
+      hashString += '/lesson' + lesson;
+      return hashString;
    }
 
    that.loadHash = function() {
       var hashText = window.location.hash;
-
+      
       if (!hashText) {
          currUnitIndex = 1;
          currLessonIndex = 1;
+         atHomescreen = true;
          return;
       }
-
+      atHomescreen = false;
+      hasStarted = true;
       var path = hashText.split('/');
 
       language = path[1];    

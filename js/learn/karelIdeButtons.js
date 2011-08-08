@@ -31,15 +31,15 @@ function KarelIdeButtons(dim, parentId, karelIde) {
       height:BUTTON_HEIGHT
    };
    that.runButton = TextButton(runDim, 'Run', 'ideButtonBar', karelIde.playButton);
-   that.resetButton = TextButton(resetDim, 'Goal', 'ideButtonBar', karelIde.stopButton);
+   //that.resetButton = TextButton(resetDim, 'Goal', 'ideButtonBar', karelIde.stopButton);
    that.runButton.inheritVisibility();
-   that.resetButton.inheritVisibility();
+   //that.resetButton.inheritVisibility();
    var resize = that.resize;
    that.resize = function() {
       resize();
       border.resize();
       that.runButton.resize();
-      that.resetButton.resize();
+      //that.resetButton.resize();
    }
    that.resize();
    return that;

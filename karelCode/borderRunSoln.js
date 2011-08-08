@@ -1,5 +1,5 @@
+move();
 putBeeper();
 move();
+putBeeper();
 move();
-move();
-turnLeft();

@@ -147,7 +147,7 @@ function KarelModel() {
    }
 
 	that.beeperPresent = function() {
-		return karelWorld.virtualBeeperPresent(virtualY, virtualX);
+		return that.beepers.beeperPresent(that.karelRow, that.karelCol);
 	}
 
    that.frontIsClear = function() {

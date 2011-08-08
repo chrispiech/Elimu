@@ -1,12 +1,12 @@
 define("ace/theme/jeremys",["require","exports","module"],function(a,b,c){
-    var colorForNumbers         = '#00FF00'; //aqua! 
-    var colorForOperators       = 'red';
-    var colorForComments        = '#0066FF';
+    var colorForNumbers         = 'blue'; //aqua! 
+    var colorForOperators       = 'black';
+    var colorForComments        = 'darkgreen';
     var colorForKeyword         = '#7F0055'; 
-    var colorForString          = 'brown';
+    var colorForString          = 'blue';
     var colorForFunction        = '#7F0055';
-    var colorForIterators       = '#680082';
-    var colorForConditionals    = '#B88A00';
+    var colorForIterators       = colorForKeyword;
+    var colorForConditionals    = colorForKeyword;
     var colorForAssignment      = '#0099FF'; //aqua! 
     
     
@@ -129,7 +129,7 @@ color: " + colorForComments + ";\
 }\
 \
 .ace-tm .ace_line .ace_comment.ace_doc {\
-color: red;\
+color: blue;\
 }\
 \
 .ace-tm .ace_line .ace_comment.ace_doc.ace_tag {\

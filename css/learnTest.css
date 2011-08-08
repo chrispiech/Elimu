@@ -10,14 +10,29 @@ html, body {
 	overflow:hidden;
 }
 
+#main {
+   height:900px;
+}
 
 .code {
    position: absolute;
 	float:left;
    background:#fff;
 	font-size:large;
+	-moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;
 	-moz-border-radius-bottomleft: 7px;
    border-bottom-left-radius: 7px;
+}
+
+.canvasTile {
+   background-color:LightSteelBlue;
+   position:absolute;
+	-moz-border-radius: 7px;
+   border-radius: 7px;
+   -moz-box-shadow: 3px 3px 3px dimgray;
+  -webkit-box-shadow: 3px 3px 3px dimgray;
+  box-shadow: 3px 3px 3px dimgray;
 }
 #ideButtonBarBorder {
    background-color:dimgray;
@@ -31,8 +46,8 @@ html, body {
 }
 
 #ace_gutter {
-   /*-moz-border-radius-topleft: 7px;
-   border-top-left-radius: 7px;*/
+   -moz-border-radius-topleft: 7px;
+   border-top-left-radius: 7px;
    -moz-border-radius-bottomleft: 7px;
    border-bottom-left-radius: 7px;
 }

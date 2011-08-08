@@ -1,19 +1,18 @@
-function KarelIdeElement() {
+function KarelIdeElement(dim,parent, settings) {
    var that = {};
 
-   var IDE_INSET = 0.06;
-
-   var dim = {left:IDE_INSET, top:IDE_INSET, width:(1-IDE_INSET*2), height:(1-IDE_INSET*2)};
+   
    that.div = document.createElement('div');
    that.div.id = 'ide';
-   that = MakeAbsoluteDiv(that, 'centerAreaDiv', dim);
+   that = MakeAbsoluteDiv(that, parent, dim);
 
    var BUTTON_HEIGHT = 0.1;
-   var EDITOR_WIDTH = 0.42;
+   if (!settings.buttonBar) BUTTON_HEIGHT = 0;
+   var EDITOR_WIDTH = 0.5;
    var MESSAGE_HEIGHT = 0.06;
    var MESSAGE_WIDTH = 0.4;
    var editorDim = {left:0, top:BUTTON_HEIGHT, width:EDITOR_WIDTH, height:1-BUTTON_HEIGHT};
-   var canvasDim = {left:EDITOR_WIDTH+0.01, top:BUTTON_HEIGHT, width:1-EDITOR_WIDTH-0.02, height:1-BUTTON_HEIGHT};
+   var canvasDim = {left:EDITOR_WIDTH+0.01, top:BUTTON_HEIGHT, width:1-EDITOR_WIDTH-0.01, height:1-BUTTON_HEIGHT};
    var buttonBarDim = {left:0, top:0, width:1, height:BUTTON_HEIGHT};
    var messageDim = {left:(1-MESSAGE_WIDTH)/2, top:0, width:MESSAGE_WIDTH, height:MESSAGE_HEIGHT};
 
@@ -23,12 +22,15 @@ function KarelIdeElement() {
    var canvas = KarelCanvasElement(canvasDim, 'ide');
    var messageElement = KarelIdeMessage(messageDim, 'ide');
    
-   var karelIde = KarelIde(editor.getEditor(), canvas.getCanvas(), '4x4.w');
+   var karelIde = KarelIde(editor.getEditor(), canvas.getCanvas(), settings.world);
 
-   var buttonBar = KarelIdeButtons(buttonBarDim, 'ide', karelIde);
+   if (settings.buttonBar) {
+      var buttonBar = KarelIdeButtons(buttonBarDim, 'ide', karelIde);
+   }
 
-   that.animateCode = function(starterCodeFile) {
+   that.animateCode = function(starterCodeFile, callback) {
       var starterCodePath = './karelCode/' + starterCodeFile;
+      that.animateCallback = callback;
       loadDoc(starterCodePath, starterCodeLoaded);
    }
    
@@ -38,18 +40,28 @@ function KarelIdeElement() {
       editor.resize();
       canvas.resize();
       karelIde.resizeCanvas(canvas.width, canvas.height);
-      buttonBar.resize();
+      if(buttonBar) {
+         buttonBar.resize();
+      }
       messageElement.resize();
    }
 
    that.getIde = function() {
       return karelIde;
    }
+
+   that.getEditor = function() {
+      return editor.getEditor();
+   }
+
+   that.runUnitTest = function(inputWorld, outputWorld, callback) {
+      karelIde.runUnitTest(inputWorld, outputWorld, callback);
+   }
    
    that.resize();
 
    function starterCodeLoaded(code) {
-      editor.animateCode(code);
+      editor.animateCode(code, that.animateCallback);
    }
 
    return that;

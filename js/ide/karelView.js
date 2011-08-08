@@ -107,25 +107,45 @@ KarelView.drawBeepers = function(canvasModel, karelModel, c) {
 
 	for (var rIndex = 0; rIndex < karelModel.getNumRows(); rIndex++) {
 		for (var cIndex = 0; cIndex < karelModel.getNumCols(); cIndex++) {
-
+         var x = KarelView.getCornerX(canvasModel, cIndex) + (cornerSize)/2;
+			var y = KarelView.getCornerY(canvasModel, rIndex) + (cornerSize)/2;
 			var numBeepers = karelModel.getNumBeepers(rIndex, cIndex);
-
 			if (numBeepers > 0) {
-				var x = KarelView.getCornerX(canvasModel, cIndex) + (cornerSize - beeperSize)/2;
-				var y = KarelView.getCornerY(canvasModel, rIndex) + (cornerSize - beeperSize)/2;
-				c.drawImage(karelImages.beeper, x, y, beeperSize, beeperSize);
-			} 
-
-			if (numBeepers > 1 && beeperSize > Const.MIN_BEEPER_LABEL_SIZE) {
-				var strWidth = c.measureText(""+numBeepers);
-				var strHeight = 12;
-				var x = KarelView.getCornerX(canvasModel, cIndex) + (cornerSize)/2;
-				var y = KarelView.getCornerY(canvasModel, rIndex) + (cornerSize)/2;
-				c.fillText(""+numBeepers, x, y);
-			}
+			   var label = '';
+			   if (numBeepers > 1) label = numBeepers;
+            KarelView.drawBeeper(c, x, y, beeperSize, label);
+         }
 		}
 	}
 }
+
+KarelView.drawBeeper = function(ctx, x, y, sqSize, label) {
+   var beeperSize = sqSize * Const.BEEPER_SIZE_FRACTION;
+   var ps = Math.round(sqSize * Const.BEEPER_LABEL_FRACTION);
+   ps = Math.min(ps, Const.BEEPER_LABEL_MAX_SIZE);
+   if (ps < Const.BEEPER_LABEL_MIN_SIZE) ps = 0;
+   ctx.save();
+   ctx.fillStyle = Const.BEEPER_FILL_COLOR;
+   ctx.beginPath();
+   ctx.moveTo(x - beeperSize / 2, y);
+   ctx.lineTo(x, y + beeperSize / 2);
+   ctx.lineTo(x + beeperSize / 2, y);
+   ctx.lineTo(x, y - beeperSize / 2);
+   ctx.lineTo(x - beeperSize / 2, y);
+   ctx.fill();
+   ctx.stroke();
+   ctx.restore();
+   ctx.save();
+   if (ps && label) {
+      ctx.fillStyle = "black";
+      ctx.font = ps + "pt " + Const.BEEPER_LABEL_FONT;
+      //alert(ctx.measureText(label).width);
+      var x0 = x; // - ctx.measureText(label).width / 2;
+      var y0 = y + ps * Const.BEEPER_LABEL_DY;
+      ctx.fillText(label, x0, y0);
+   }
+   ctx.restore();
+};
 
 KarelView.drawCorners = function(canvasModel, karelModel, c) {
    var crossSize = canvasModel.getCornerSize() * Const.CROSS_FRACTION;

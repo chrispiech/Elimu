@@ -1,4 +1,4 @@
-function ProgressBox(engine, index, status) {
+function ProgressBox(engine, index, status, toolTip) {
 
    var HEIGHT_FRACTION = 0.55;
    var TEXT_FRACTION = 0.6;
@@ -15,6 +15,7 @@ function ProgressBox(engine, index, status) {
       var div = document.createElement('div');
       document.getElementById('progressBarDiv').appendChild(div);
       div.id = divId;
+      div.title = toolTip;
       var dim = {};
       dim['left']  = (1 - TEXT_FRACTION) / 2;
       dim['top']  = (1 - TEXT_FRACTION) / 2;

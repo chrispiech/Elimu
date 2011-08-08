@@ -15,7 +15,7 @@ function KarelIde(editor, canvas, initialWorld) {
    var that = {};
 
    // constants
-   var ACTION_HEARTBEATS = 1;
+   var ACTION_HEARTBEATS = 5;
    var HEART_BEAT = 8;	
    var REFRESH_HEARTBEATS = 100;
    var DEFAULT_CANVAS_WIDTH = 370;
@@ -23,7 +23,7 @@ function KarelIde(editor, canvas, initialWorld) {
    var COOKIE_NAME = 'karelCode';
 
    // instance variables
-   var context = canvas.getContext('2d');
+   if (canvas)var context = canvas.getContext('2d');
    var actionCountdown = ACTION_HEARTBEATS;
    var refreshCountdown = REFRESH_HEARTBEATS;
    var worldName = initialWorld;
@@ -31,7 +31,7 @@ function KarelIde(editor, canvas, initialWorld) {
    var worldLoaded = false;
 
    var karel = Karel(canvasModel);
-   var compileEngine = KarelEvalEngine(karel);
+   var compileEngine = null;
 
    // state flags
    var animating = false;
@@ -44,8 +44,10 @@ function KarelIde(editor, canvas, initialWorld) {
     * and load images.
     */ 
    function init() {
-      canvas.width = canvasModel.getWidth();
-      canvas.height = canvasModel.getHeight();
+      if (canvas) {
+         canvas.width = canvasModel.getWidth();
+         canvas.height = canvasModel.getHeight();
+      }
       if (!karelImages.haveCalledLoadImages()) {
          karelImages.loadImages(imagesLoaded);
       } else if (!karelImages.haveLoadedAllImages()) {
@@ -87,8 +89,12 @@ function KarelIde(editor, canvas, initialWorld) {
     * flag to be true so that the program starts rendering Karel's progress.
     * Should be called when the play button is pressed.
     */
-   that.playButton = function () {
+   that.playButton = function (playCallback) {
+      compileEngine = KarelCompiler(karel);
+      if (!worldLoaded) throw new Error('PLAY CALLED BEFORE WORLD LOADED');
       var code = getCode();
+      that.stopButton();
+      that.playCallback = playCallback;
       try {
          compileEngine.compile(code);
          animating = true;
@@ -164,6 +170,16 @@ function KarelIde(editor, canvas, initialWorld) {
       return karel.getModel();
     }
 
+    that.runUnitTest = function(inputWorld, outputWorld, callback) {
+       var tempIde1 = KarelIde(editor, null, inputWorld);
+       var tempIde2 = KarelIde(editor, null, outputWorld);
+       var simulationOver = function() {
+         var passed = tempIde1.getModel().equals(tempIde2.getModel());
+         callback(passed);
+       }
+       tempIde1.playButton(simulationOver);
+    }
+
 
    //----------------------------- PRIVATE METHODS --------------------------//
 
@@ -215,6 +231,7 @@ function KarelIde(editor, canvas, initialWorld) {
     * preloaded.
     */
    function loadWorld(worldName) {
+      worldName += '.w'
       if (!imagesReady) {
          alert('load world called before images ready');
       }
@@ -253,6 +270,9 @@ function KarelIde(editor, canvas, initialWorld) {
             alert(karelError);
             animating = false;
          }
+         if(!animating && that.playCallback) {
+            that.playCallback();
+         }
          actionCountdown = ACTION_HEARTBEATS;
       }
    }
@@ -264,8 +284,10 @@ function KarelIde(editor, canvas, initialWorld) {
     * world has been loaded. Draws Karel infront of beepers but behind walls.
     */
    function draw() {
-      clear();
-      karel.draw(context);
+      if (canvas) {
+         clear();
+         karel.draw(context);
+      }
    }
 
    /**

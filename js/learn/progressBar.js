@@ -22,11 +22,14 @@ function ProgressBar(engine) {
       
       var numLessons = progressModel.getNumLessons();
       for (var i = 0; i < numLessons; i++) {
-         progressBoxes.push(ProgressBox(engine, i + 1, 'none'));
+         var unit = progressModel.getUnitIndex();
+         var lesson = i + 1;
+         var toolTip = 'Lesson: ' + lesson;
+         progressBoxes.push(ProgressBox(engine, lesson, 'none', toolTip));
       }
 
       that.updateLessonIcons(progressModel);
-      that.resize();
+      that.resize(true);
    }
 
    that.updateLessonIcons = function(progressModel) {
@@ -40,9 +43,10 @@ function ProgressBar(engine) {
       }
    }
 
-   that.resize = function() {
+   that.resize = function(show) {
       var contentHeight = $('#content').height();
       var progressHeight = contentHeight * HEIGHT_FRACTION;
+      if(!show) progressHeight = 0;
       div.style.height = progressHeight + 'px';
    
       var y = contentHeight - progressHeight;

@@ -19,7 +19,6 @@ function KarelImages() {
 	imageNames[11] = "karelSouthTiny.png";
 	imageNames[12] = "karelEastTiny.png";
 	imageNames[13] = "karelWestTiny.png";
-	imageNames[14] = "tiny.gif";
 
 	var callback = null;
 	var imagesLoaded = 0;
