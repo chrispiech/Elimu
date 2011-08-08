@@ -20,7 +20,7 @@ var WORLDS = [
    '3x3',
    'pickBeeper',
    'pickBeepers',
-   'collectNewspaper',
+   'fiftySoln',
 ]
 
 var INITIAL_WORLD = '15x15'

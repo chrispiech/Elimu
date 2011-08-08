@@ -273,6 +273,10 @@ p {
    
 }
 
+.innerImage {
+   position:absolute;
+}
+
 .learn {
    background:white;
 }

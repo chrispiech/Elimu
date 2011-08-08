@@ -6,8 +6,22 @@ function ImageButton(dim, src, clickCallback) {
    var that = {};
    that.div = document.createElement('img');
    that = MakeAbsoluteDiv(that, 'centerAreaDiv', dim);
-   that.div.setAttribute('src', src);
+   that.div.setAttribute('src', 'images/puzzleFrame.png');
    that.div.className = 'imageButton';
+
+   var topOffset = dim.height * 0.2;
+   var innerDim = {
+      left:dim.left,
+      top:dim.top + topOffset,
+      width:dim.width,
+      height:dim.height - topOffset
+   }
+   that.innerImage = {};
+   that.innerImage.div = document.createElement('img');
+   that.innerImage = MakeAbsoluteDiv(that.innerImage, 'centerAreaDiv', innerDim);
+   that.innerImage.div.setAttribute('src', src);
+   that.innerImage.div.className = 'innerImage';
+   
 
    that.div.onclick = function() {
       clickCallback();
@@ -44,6 +58,7 @@ function ImageButton(dim, src, clickCallback) {
 
       function animateFadeAway() {
          $(that.iconElement.div).fadeOut('slow', onFadeAwayFinish);
+         //$(that.innerImage.div).fadeOut('slow');
       }
       
       setTimeout(animateFadeAway,ICON_TIMEOUT);
@@ -85,6 +100,7 @@ function ImageButton(dim, src, clickCallback) {
       if (that.iconElement) {
          that.iconElement.resize();
       }
+      that.innerImage.resize();
    }
    
    return that;

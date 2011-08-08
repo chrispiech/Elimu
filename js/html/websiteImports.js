@@ -97,16 +97,17 @@ function importCss() {
       return worldSelector;
    }
    
-function importEditor() {
+function importEditor(id, parentId) {
    var code = document.createElement('div');
    code.innerHTML = STARTER_CODE;
-   code.id        = 'mainIdeEditor';
-   var editorDiv = document.getElementById('mainIdeEditorDiv');
+   code.id        = id;
+   var editorDiv = document.getElementById(parentId);
    editorDiv.appendChild(code); 
-   var editor = ace.edit('mainIdeEditor');
+   var editor = ace.edit(id);
    editor.setTheme('ace/theme/jeremys');
    var JavaScriptMode = require("ace/mode/javascript").Mode;
    editor.getSession().setMode(new JavaScriptMode());
+   editor.setReadOnly(false);
    code.style.fontSize='16px';
    window._editor = editor;
    return editor; 

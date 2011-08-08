@@ -90,7 +90,7 @@ function KarelIde(editor, canvas, initialWorld) {
     * Should be called when the play button is pressed.
     */
    that.playButton = function (playCallback) {
-      compileEngine = KarelCompiler(karel);
+      compileEngine = KarelEvalEngine(karel);
       if (!worldLoaded) throw new Error('PLAY CALLED BEFORE WORLD LOADED');
       var code = getCode();
       that.stopButton();

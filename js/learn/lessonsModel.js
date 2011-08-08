@@ -302,6 +302,20 @@ function Unit7Lesson1(finishedCallback) {
    return that; 
 }
 
+function Unit6Lesson2(finishedCallback) {
+
+   var world = '3x3';
+   var starterCode = 'repeatLesson2.js';
+   var unitTests = {
+      '3x3':'fiftySoln',
+   };
+   var goalImages = {
+      'images/goals/start7.png' : 'images/goals/goal7.png',
+   };
+   var that = BasicIdeLesson(world, starterCode, unitTests, goalImages, finishedCallback);
+   return that; 
+}
+
 function Unit6Lesson1(finishedCallback) {
    var solution = 'karelCode/repeatLesson1.js';
    var world = '3x3';
@@ -601,7 +615,7 @@ function Unit2Lesson1(finishedCallback) {
    return that;
 }
 
-function Unit1Lesson1(finishedCallback) {
+function PictureLesson(buttonSrcs, labels, finishedCallback) {
    var that = {};
    var textDim = {left:0.342, top:0.014, width:0.316, height:0.074};
 
@@ -610,20 +624,6 @@ function Unit1Lesson1(finishedCallback) {
       {left:0.515, top:0.11, width:0.316, height:0.42},
       {left:0.169, top:0.56, width:0.316, height:0.42},
       {left:0.515, top:0.56, width:0.316, height:0.42}
-   ];
-
-   var buttonSrcs = [
-      './images/karelButtonFrame.png',
-      './images/beeperButtonFrame.png',
-      './images/worldButtonFrame.png',
-      './images/wallButtonFrame.png',
-   ];
-
-   var labels = [
-      'Karel',
-      'Beeper',
-      'World',
-      'Wall'
    ];
    
    that.generatePuzzle = function() {
@@ -672,10 +672,12 @@ function Unit1Lesson1(finishedCallback) {
       function finishedFadeOut() {
          for (var i = 0; i < that.elements.length; i++) {
             that.elements[i].deleteDiv();
+
          }
          that.generatePuzzle();
          for (var i =0; i < that.elements.length; i++) {
             that.elements[i].resize();
+            //$(that.elements[i].innerImage.div).fadeIn(600);
             $(that.elements[i].div).fadeIn(600);
          }
       }
@@ -685,6 +687,7 @@ function Unit1Lesson1(finishedCallback) {
          finishedCallback();
       } else {
          for (var i = 0; i < that.elements.length; i++) {
+            //$(that.elements[i].innerImage.div).fadeOut(600);
             $(that.elements[i].div).fadeOut(600);
          }
          setTimeout(finishedFadeOut, 600);
@@ -695,6 +698,22 @@ function Unit1Lesson1(finishedCallback) {
    that.generatePuzzle();
    
    return that;
+}
+
+function Unit1Lesson1(finishedCallback) {
+   var buttonSrcs = [
+      './images/karelIcon.png',
+      './images/beeperIcon.png',
+      './images/world.png',
+      './images/wall.png',
+   ];
+   var labels = [
+      'Karel',
+      'Beeper',
+      'World',
+      'Wall'
+   ];
+   return PictureLesson(buttonSrcs, labels, finishedCallback);;
 }
 
 
