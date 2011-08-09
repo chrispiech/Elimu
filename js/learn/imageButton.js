@@ -6,8 +6,11 @@ function ImageButton(dim, src, clickCallback) {
    var that = {};
    that.div = document.createElement('img');
    that = MakeAbsoluteDiv(that, 'centerAreaDiv', dim);
+   //var id = Counter.getUniqueId();
+   //that.div.id = id;
    that.div.setAttribute('src', 'images/puzzleFrame.png');
    that.div.className = 'imageButton';
+   
 
    var topOffset = dim.height * 0.2;
    var innerDim = {
@@ -21,11 +24,23 @@ function ImageButton(dim, src, clickCallback) {
    that.innerImage = MakeAbsoluteDiv(that.innerImage, 'centerAreaDiv', innerDim);
    that.innerImage.div.setAttribute('src', src);
    that.innerImage.div.className = 'innerImage';
-   
 
-   that.div.onclick = function() {
+   that.coverDiv = {};
+   that.coverDiv.div = document.createElement('span');
+   that.coverDiv = MakeAbsoluteDiv(that.coverDiv, 'centerAreaDiv', dim);
+   that.coverDiv.inheritVisibility();
+   that.coverDiv.div.className = 'coverDiv'
+
+   that.coverDiv.div.onclick = function() {
       clickCallback();
    }
+
+   var deleteFn = that.deleteDiv;
+   that.deleteDiv = function() {
+      deleteFn();
+      that.innerImage.deleteDiv();
+      that.coverDiv.deleteDiv();
+   } 
 
    that.createHoverIcon = function(iconSrc) {
       
@@ -101,6 +116,7 @@ function ImageButton(dim, src, clickCallback) {
          that.iconElement.resize();
       }
       that.innerImage.resize();
+      that.coverDiv.resize();
    }
    
    return that;

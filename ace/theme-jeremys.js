@@ -9,6 +9,9 @@ define("ace/theme/jeremys",["require","exports","module"],function(a,b,c){
     var colorForConditionals    = colorForKeyword;
     var colorForAssignment      = '#0099FF'; //aqua! 
     
+    /*This is a hack to get repeat to look like an operator for the karel section of the project, it should be taken out upon the completion of a Karel mode*/
+    var colorForRepeat          = colorForKeyword;
+    
     
     var d=a("pilot/dom"),e="\
 \
@@ -77,6 +80,10 @@ color: blue;\
 \
 .ace-tm .ace_line .ace_keyword {\
 color: " + colorForKeyword + ";\
+font-weight:bold;\
+}\
+.ace-tm .ace_line .ace_repeat {\
+color: " + colorForRepeat + ";\
 font-weight:bold;\
 }\
 \

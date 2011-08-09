@@ -220,7 +220,7 @@ function importLearnEngine() {
 
 function importJs() {
    importJsLibraries();
-   importCompiler();
+   //importCompiler();
    importKarelIde();
    importLearnEngine();
 }

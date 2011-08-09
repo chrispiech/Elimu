@@ -36,6 +36,8 @@ function KarelIde(editor, canvas, initialWorld) {
    // state flags
    var animating = false;
    var imagesReady = false;
+   var numActions = 0;
+   var silent = false;
 
    /**
     * Function: Init
@@ -90,17 +92,7 @@ function KarelIde(editor, canvas, initialWorld) {
     * Should be called when the play button is pressed.
     */
    that.playButton = function (playCallback) {
-      compileEngine = KarelEvalEngine(karel);
-      if (!worldLoaded) throw new Error('PLAY CALLED BEFORE WORLD LOADED');
-      var code = getCode();
-      that.stopButton();
-      that.playCallback = playCallback;
-      try {
-         compileEngine.compile(code);
-         animating = true;
-      } catch (compilerError) {
-         alert(compilerError);
-      }
+      that.runCode(playCallback);
    }
 
    /**
@@ -170,18 +162,63 @@ function KarelIde(editor, canvas, initialWorld) {
       return karel.getModel();
     }
 
+    that.setSilent = function(newSilent) {
+      silent = newSilent;
+    }
+
     that.runUnitTest = function(inputWorld, outputWorld, callback) {
        var tempIde1 = KarelIde(editor, null, inputWorld);
        var tempIde2 = KarelIde(editor, null, outputWorld);
-       var simulationOver = function() {
+       var simulationOver = function(error) {
          var passed = tempIde1.getModel().equals(tempIde2.getModel());
-         callback(passed);
+         callback(passed && !error);
        }
-       tempIde1.playButton(simulationOver);
+       tempIde1.setSilent(true);
+       tempIde1.runCode(simulationOver);
     }
+
+    that.runCode = function(finishedCallback) {
+      if (!worldLoaded) throw new Error('TRIED TO RUN BEFORE WORLD LOADED');
+      var code = getCode();
+      compileEngine = KarelEvalEngine(karel);
+      that.stopButton();
+
+      try {
+         compileEngine.compile(code);
+      } catch (compilerError) {
+         if (!silent) {
+            alert(compilerError);
+         }
+         finishedCallback(true);
+         return;
+      }
+      
+      if(silent) {
+         return runCodeNoDisplay(finishedCallback);
+      }
+      
+      that.playCallback = finishedCallback;
+      animating = true;
+      
+   }
+
+   function runCodeNoDisplay(finishedCallback) {
+      try {
+         while(true) {
+            var done = compileEngine.executeStep();
+            if(done) {
+               if(finishedCallback) finishedCallback(false);
+               break;
+            }
+         }      
+      } catch (karelError) {
+         if(finishedCallback) finishedCallback(true);
+      }
+   }
 
 
    //----------------------------- PRIVATE METHODS --------------------------//
+   
 
    /**
     * Function: Step
@@ -266,12 +303,15 @@ function KarelIde(editor, canvas, initialWorld) {
       if (actionCountdown == 0 ) {
          try {
             animating = !compileEngine.executeStep();
+            if(!animating && that.playCallback) that.playCallback(false);
+            numActions += 1;
          } catch (karelError) {
-            alert(karelError);
+            if (!silent) {
+               alert(karelError);
+            }
             animating = false;
-         }
-         if(!animating && that.playCallback) {
-            that.playCallback();
+            numActions = 0;
+            if(that.playCallback) that.playCallback(true);
          }
          actionCountdown = ACTION_HEARTBEATS;
       }

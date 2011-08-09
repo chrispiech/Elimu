@@ -13,6 +13,7 @@ main();';
 var WORLDS = [
    '15x15',
    '9x9',
+   '8x8',
    '7x7',
    '5x5',
    '4x4',
@@ -21,6 +22,10 @@ var WORLDS = [
    'pickBeeper',
    'pickBeepers',
    'fiftySoln',
+   '7x7MidSoln',
+   '5x5MidSoln',
+   'column1',
+   'column2'
 ]
 
 var INITIAL_WORLD = '15x15'

@@ -1,5 +1,4 @@
 function MakeAbsoluteDiv(that, parentId, dim) {
-
    that.widthFraction = dim.width;
    that.heightFraction = dim.height;
    that.leftFraction = dim.left;

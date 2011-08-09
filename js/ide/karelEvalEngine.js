@@ -110,13 +110,11 @@ function KarelEvalEngine(karel) {
       turnLeft();
       turnLeft();
    }
-
-   function random() {
-      return randomChance(0.5);
-   }
-
+   
    function random(chance) {
-      return Math.random() < chance;
+      var p = chance;
+      if(p == undefined) p = 0.5;
+      return Math.random() < p;
    }
 
    function paintCorner(color) {
