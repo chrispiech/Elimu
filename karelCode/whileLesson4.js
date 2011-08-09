@@ -16,5 +16,3 @@ while(beepersPresent()){
 pickBeeper();
 }
 }
-
-main();

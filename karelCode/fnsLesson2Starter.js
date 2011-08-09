@@ -6,8 +6,10 @@ function turnAround() {
 // your code here
 }
 
+function main(){
 move();
 putBeeper();
 turnAround();
 move();
 turnAround();
+}

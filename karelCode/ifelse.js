@@ -19,5 +19,3 @@ pickBeeper();
 putBeeper();
 }
 }
-
-main();

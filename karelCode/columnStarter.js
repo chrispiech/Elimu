@@ -8,5 +8,3 @@ while(frontIsClear()){
 move();
 }
 }
-
-main();

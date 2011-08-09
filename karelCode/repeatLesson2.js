@@ -1,7 +1,7 @@
 //Make karel place 50 beepers
 
 function place50Beepers() {
-for(var i = 0; i < 50; i++) {
+repeat(50) {
 // your code here
 }
 }
@@ -11,5 +11,3 @@ move();
 place50Beepers();
 move();  
 }
-
-main();

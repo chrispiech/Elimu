@@ -15,5 +15,3 @@ if(frontIsClear()){
 move();
 }
 }
-
-main();

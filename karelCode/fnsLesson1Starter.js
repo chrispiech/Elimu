@@ -10,8 +10,10 @@ turnLeft();
 }
 
 // We can now use turnRight()
+function main(){
 move();
 turnRight();
 move();
 turnRight();
 move();
+}

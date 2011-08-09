@@ -32,5 +32,3 @@ paintCorner('green');
 paintCorner('blue');
 }
 }
-
-main();

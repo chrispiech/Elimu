@@ -11,5 +11,3 @@ while(frontIsClear()) {
 // you fill this in
 }
 }
-
-main();

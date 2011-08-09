@@ -9,5 +9,3 @@ function main() {
 paintCorner('red');
 move();
 }
-
-main();

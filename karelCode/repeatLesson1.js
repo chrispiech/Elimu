@@ -1,7 +1,9 @@
 // Put a beeper in each corner.
-for(var i = 0; i < 4; i++){
+function main(){
+repeat(4){
 move();
 move();
 putBeeper();
 turnLeft();
+}
 }
