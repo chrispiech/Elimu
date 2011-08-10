@@ -3,31 +3,7 @@ var STARTER_CODE = "/**\n\
  * This is a free space for you to \n\
  * write any Karel program you want.\n\
  **/\n\
-function main() {\n\
-   test1();\n\
-   test2();\n\
-   test3();\n\
-}\n\
-\n\
-//pick beeper not defined?\n\
-function test1() {\n\
-   putBeeper();\n\
-   while(beepersPresent()){\n\
-      pickBeeper();\n\
-   }\n\
-}\n\
-\n\
-//paintCorner compiler error\n\
-function test2() {\n\
-   paintCorner('red');\n\
-}\n\
-\n\
-//random not defined\n\
-function test3() {\n\
-   if(random()){\n\
-      move();\n\
-   }\n\
-}";
+";
 
 var WORLDS = [
    '15x15',
