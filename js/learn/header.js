@@ -15,7 +15,12 @@ function Header() {
       height:1.1
    };
 
-
+   var referenceDim = {
+      left:0.86,
+      top:0,
+      width:0.14,
+      height:1.0,
+   }
    
    
    var homeButton = {};
@@ -36,12 +41,17 @@ function Header() {
       logo.style.height = homeButton.div.style.height;
       logo.style.width = homeButton.div.style.width;
    }
-
-   
    homeButton.div.className = 'nonFadeInDiv';
    div.appendChild(homeButton.div);
    link.appendChild(logo);
    homeButton.div.appendChild(link);
+
+   var referenceLink = {};
+   referenceLink.div = document.createElement('a');
+   referenceLink = MakeAbsoluteDiv(referenceLink, 'headerDiv', referenceDim);
+   referenceLink.div.setAttribute('href', 'javascript:ReferenceDialog.createReferenceDialog()');
+   referenceLink.div.className = 'resizableLink';
+   referenceLink.div.innerHTML = 'Reference'
 
    that.getHeight = function() {
       return $('#headerDiv').height();
@@ -55,6 +65,11 @@ function Header() {
       div.style.height = headerHeight + 'px';
       lessonTitle.resize();
       homeButton.resize();
+      var centerHeight = $('#headerDiv').height();
+      var referenceLinkHeight = centerHeight * 0.5;
+      referenceLink.div.style.fontSize = referenceLinkHeight + 'px';
+      referenceLink.div.style.lineHeight = centerHeight + 'px';
+      referenceLink.resize();
    }
 
    that.updateHeader = function(progressModel) {

@@ -5,20 +5,26 @@
    <script src="./js/html/websiteImports.js"></script>
 	<script>importCss();</script>
 	<script>importJs();</script>
+
 </head> 
 
 <body> 
 
-   <div id = 'mainIdeEditorDiv'>
-            <script>importEditor('mainIdeEditor','mainIdeEditorDiv');</script>
-         </div>
-   
    <script>
-      
+      function init() {
+         var boxy = null;
+         
+         document.body.onclick = function() {
+            ReferenceDialog.createReferenceDialog();
+         }
 
-     /* document.onready = function() {
-         $("#demo img[title]").tooltip({ position: "bottom center", opacity: 0.7});
-      }*/
+         window.onresize = function() { 
+            ReferenceDialog.resize();
+         }
+      }
+
+      init();
+
    </script>
 
 </body> 

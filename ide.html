@@ -53,8 +53,8 @@
          }
 
          window.onresize = function() { 
-            windowHeight = $(window).height() - 1;
-            windowWidth = $(window).width() - 1;
+            var windowHeight = $(window).height() - 1;
+            var windowWidth = $(window).width() - 1;
             var ide = document.getElementById('mainIde');
             var editorDiv = document.getElementById('mainIdeEditorDiv');
             var canvas = document.getElementById('mainIdeCanvasDiv');
@@ -88,6 +88,7 @@
             if (window._editor) {
                window._editor.renderer.onResize();
             }
+            ReferenceDialog.resize();
          }
 
          

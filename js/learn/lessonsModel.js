@@ -300,8 +300,8 @@ function Unit9Lesson2(finishedCallback) {
    var world = 'column1';
    var starterCode = 'columnStarter.js';
    var unitTests = {
-      'column1':'5x5FillSoln',
-      'column2':'8x8FillSoln',
+      'column1':'column1Soln',
+      'column2':'column2Soln',
    };
    var goalImages = {
       'images/goals/start16.PNG' : 'images/goals/goal16.PNG',
@@ -447,7 +447,7 @@ function Unit6Lesson2(finishedCallback) {
    var world = '3x3';
    var starterCode = 'repeatLesson2.js';
    var unitTests = {
-      '3x3':'pickBeepers',
+      '3x3':'putFifty',
    };
    var goalImages = {
       'images/goals/start7.PNG' : 'images/goals/goal7.PNG',

@@ -18,7 +18,7 @@ function importWebsiteHeader(selected) {
                <span id = "social">\
                <iframe src="http://www.facebook.com/plugins/like.php?href=stanfordkarel.com&amp;layout=button_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:22px;" allowTransparency="true"></iframe>\
                </span>\
-               <a class="smallLink" href="reference.html" rel="nofollow">Reference</a>\
+               <a class="smallLink" href="javascript:ReferenceDialog.createReferenceDialog()" rel="nofollow">Reference</a>\
             </div>\
          </div>\
       </div>\
@@ -28,6 +28,7 @@ function importWebsiteHeader(selected) {
 
 function importCss() {
    var html = '<link rel="stylesheet" href="css/style.css" type="text/css" />';
+   html += '<link rel="stylesheet" href="boxy/stylesheets/boxy.css" type="text/css" />';
    document.write(html);
 }
 
@@ -142,7 +143,8 @@ function importJsLibraries() {
       '<script src="./ace/theme-jeremys.js"></script>',
       '<script src="./ace/mode-javascript.js"></script>',
       '<script src="./lib/curvycorners.js"></script>',
-      '<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>'
+      '<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>',
+      '<script src="./boxy/jquery.boxy.js"></script>',
    ]
    importScripts(scripts);
 }
@@ -218,9 +220,17 @@ function importLearnEngine() {
 	importScripts(scripts);	
 }
 
+function importReference() {
+   var scripts = [
+		'<script src="./js/reference/referenceDialog.js"></script>',
+	]
+	importScripts(scripts);	
+}
+
 function importJs() {
    importJsLibraries();
    importCompiler();
    importKarelIde();
    importLearnEngine();
+   importReference();
 }

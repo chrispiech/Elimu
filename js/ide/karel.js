@@ -52,7 +52,7 @@ function Karel(canvasModel) {
       karelModel.paintCorner(color);
    }
 
-	that.beeperPresent = function() {
+	that.beepersPresent = function() {
 		return karelModel.beeperPresent();
 	}
 

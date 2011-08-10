@@ -180,7 +180,7 @@ function KarelIde(editor, canvas, initialWorld) {
     that.runCode = function(finishedCallback) {
       if (!worldLoaded) throw new Error('TRIED TO RUN BEFORE WORLD LOADED');
       var code = getCode();
-      compileEngine = KarelCompiler(karel);
+      compileEngine = KarelEvalEngine(karel);
       that.stopButton();
 
       try {

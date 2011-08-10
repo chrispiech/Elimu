@@ -17,6 +17,16 @@ html {
 	background:white ;
 }
 
+#reference {
+   height:100px;
+   width:100px;
+}
+
+#referenceImg {
+   width:100%;
+   height:100%;
+}
+
 .inner {
    margin-left:24px;
    margin-right:24px;
@@ -327,6 +337,19 @@ p {
    position:absolute;
 }
 
+.resizableLink {
+   position:absolute;
+   float:right;
+	line-height: 40px;
+margin: 0;
+margin-right:5px;
+   color:#ccc;
+}
+
+.resizableLink:hover{
+   color:#999;
+}
+
 .rounded {
    position:absolute;
    display:none;
@@ -498,7 +521,7 @@ p {
 	/*background:transparent url("../images/header.gif") repeat-x 0 0;*/
 	min-width:705px;
 	position:relative;
-	z-index:90000;
+	z-index:130;
 	margin: 0;
 	border-bottom: 2px solid #000;
 	background:#F1F1F1;
