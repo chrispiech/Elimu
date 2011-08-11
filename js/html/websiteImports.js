@@ -222,7 +222,8 @@ function importLearnEngine() {
 
 function importReference() {
    var scripts = [
-		'<script src="./js/reference/referenceDialog.js"></script>',
+		'<script src="./js/dialog/referenceDialog.js"></script>',
+		'<script src="./js/dialog/deployDialog.js"></script>',
 	]
 	importScripts(scripts);	
 }

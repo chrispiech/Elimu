@@ -162,6 +162,10 @@ function KarelIde(editor, canvas, initialWorld) {
       return karel.getModel();
     }
 
+    that.getCode = function() {
+      return getCode();
+    }
+
     that.setSilent = function(newSilent) {
       silent = newSilent;
     }
@@ -180,7 +184,8 @@ function KarelIde(editor, canvas, initialWorld) {
     that.runCode = function(finishedCallback) {
       if (!worldLoaded) throw new Error('TRIED TO RUN BEFORE WORLD LOADED');
       var code = getCode();
-      compileEngine = KarelEvalEngine(karel);
+      compileEngine = getCompiler();
+      
       that.stopButton();
 
       try {
@@ -202,6 +207,11 @@ function KarelIde(editor, canvas, initialWorld) {
       
    }
 
+   
+
+
+   //----------------------------- PRIVATE METHODS --------------------------//
+
    function runCodeNoDisplay(finishedCallback) {
       try {
          while(true) {
@@ -216,9 +226,10 @@ function KarelIde(editor, canvas, initialWorld) {
       }
    }
 
-
-   //----------------------------- PRIVATE METHODS --------------------------//
-   
+   function getCompiler() {
+       if (Const.USE_COMPILER) return KarelCompiler(karel);
+       return KarelEvalEngine(karel);
+    }
 
    /**
     * Function: Step

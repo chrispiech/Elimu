@@ -47,7 +47,7 @@ body {
 	font-size: medium;
 	background:#fff;
 	overflow-y: hidden ! important; overflow-x: auto ! important;
-	min-width:754px;
+	min-width:800px;
 	background:white ;
 }
 
@@ -105,9 +105,18 @@ body {
 }
 
 #deploy {
-	width:400px;
+	width:100%;
+	height:100%;
 	margin-left: auto ;
   	margin-right: auto ;
+}
+
+.deployInput {
+   font-size:x-large;
+}
+
+#deployError {
+   color:red;
 }
 
 #nextButton {
@@ -139,10 +148,22 @@ body {
 	font-size:12px;
 }
 
+#dialogDeploySuccess {
+   text-align: center;
+   font-size: x-large;
+}
+
+#userProgramLink{
+   font-size:45px;
+   color:'blue'
+}
+
 A:link {
 	color:'blue';
 	text-decoration:none;
 }
+
+
 
 A:visited {
 	color:'blue';
@@ -162,9 +183,6 @@ A:hover {
 	margin: 0;
 }
 
-p {
-	margin-top: 15px;
-}
 
 .stress {
 	color:#D14545;
@@ -205,14 +223,12 @@ p {
 /****************** Main IDE ********************/
 #mainIde {
    width:100%;
-   min-width:705px;
    background:white;
 }
 
 #mainIdeButtonBar {
    width:100%;
    height:40px;
-   min-width:720px;
    margin-top:7px;
 }
 
@@ -476,10 +492,6 @@ margin-right:5px;
     text-align:center;
 }
 
-p {
-   margin:0px;
-   font-size:40px;
-}
 
 .code {
    background:white;
@@ -519,7 +531,6 @@ p {
 #header {
 	height:40px;
 	/*background:transparent url("../images/header.gif") repeat-x 0 0;*/
-	min-width:705px;
 	position:relative;
 	z-index:130;
 	margin: 0;

@@ -37,6 +37,10 @@
          document.onready = function() {
             $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
          }
+
+         function deploy() {
+            DeployDialog.createDeployDialog(karelIde)
+         }
          
          window.onload = function() {
             initTabs();
@@ -44,6 +48,7 @@
             karelIde = KarelIde(window._editor, canvas, INITIAL_WORLD);
             $('#playButton').click(function(){karelIde.playButton()});
             $('#stopButton').click(function(){karelIde.stopButton()});
+            $('#uploadButton').click(function(){deploy()});
             $('#worldSelector').change(
                function() {
                   var worldName = $("#worldSelector option:selected").text();
@@ -90,6 +95,7 @@
                window._editor.renderer.onResize();
             }
             ReferenceDialog.resize();
+            DeployDialog.resize();
          }
 
          

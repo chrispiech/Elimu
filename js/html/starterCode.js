@@ -3,7 +3,9 @@ var STARTER_CODE = "/**\n\
  * This is a free space for you to \n\
  * write any Karel program you want.\n\
  **/\n\
-";
+function main(){\n\
+   //your code here\n\
+}\n";
 
 var WORLDS = [
    '15x15',

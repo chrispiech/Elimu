@@ -5,6 +5,11 @@
  * Currently Const is defined in the global scope.
  */
 var Const = {};
+Const.USE_COMPILER = true;
+
+//Const.ROOT_URL = 'http://stanford.edu/~cpiech/Elimu'
+Const.ROOT_URL = 'localhost:8000/'
+
 Const.MAX_CORNER_SIZE = 160;
 Const.KAREL_NORTH = 0;
 Const.KAREL_EAST = 1;
@@ -29,7 +34,7 @@ Const.MIN_BEEPER_LABEL_SIZE = 20;
 Const.WALL_THICKNESS_FRACTION = 0.1;
 Const.BACKGROUND_COLOR = 'white';
 
-Const.MIN_IDE_WIDTH = 705;
+Const.MIN_IDE_WIDTH = 740;
 Const.HEADER_HEIGHT = 50;
 Const.BUTTON_BAR_HEIGHT = 60;
 Const.PADDING = 24;

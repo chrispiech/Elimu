@@ -12,15 +12,10 @@
 
    <script>
       function init() {
-         var boxy = null;
          
-         document.body.onclick = function() {
-            ReferenceDialog.createReferenceDialog();
-         }
-
-         window.onresize = function() { 
-            ReferenceDialog.resize();
-         }
+         $.get('http://www.stanfordkarel.appspot.com/submitRemote?code=helloworld&title=Program&author=ChrisPiech', {} , function(data) {
+            alert(data);
+         });
       }
 
       init();
