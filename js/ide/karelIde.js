@@ -181,11 +181,9 @@ function KarelIde(editor, canvas, initialWorld) {
        tempIde1.runCode(simulationOver);
     }
 
-    that.runCode = function(finishedCallback) {
-      if (!worldLoaded) throw new Error('TRIED TO RUN BEFORE WORLD LOADED');
-      var code = getCode();
+    that.runSpecificCode = function(code, finishedCallback) {
       compileEngine = getCompiler();
-      
+
       that.stopButton();
 
       try {
@@ -197,13 +195,19 @@ function KarelIde(editor, canvas, initialWorld) {
          finishedCallback(true);
          return;
       }
-      
+
       if(silent) {
          return runCodeNoDisplay(finishedCallback);
       }
-      
+
       that.playCallback = finishedCallback;
       animating = true;
+    }
+
+    that.runCode = function(finishedCallback) {
+      if (!worldLoaded) throw new Error('TRIED TO RUN BEFORE WORLD LOADED');
+      var code = getCode();
+      that.runSpecificCode(code, finishedCallback)
       
    }
 

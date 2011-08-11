@@ -11,20 +11,44 @@
 <body> 
 
    <script>importWebsiteHeader('program.html');</script>
-   <div id ='content'  class="learn">
-      <div id ='headerDiv'></div>
-      <div id ='centerAreaDiv'></div>
-      <div id ='progressBarDiv'></div>
+   <p id="programTitle">Loading</p>
+   <div id="programButtonBar">
+   <div id="programButtonBarInner">
+   </div>
+   </div>
+   <div id ='content'>
    </div>
    <script>
       function init() {
-         var learnEngine = null;
+         var PROGRAM_PROPORTION = 0.95
+         var plate = null;
+         var programElement = null;
+         var buttonBar = null;
 
          function loadProgram(url) {
          }
 
+         function updateTitle(programObject){
+            var newTitle = programObject.title + ' by ' + programObject.author;
+            $('#programTitle').html(newTitle);
+         }
+
          function programLoaded(data){
-            alert(data);
+            //alert(data);
+            var programObject = JSON.parse(data);
+            
+            updateTitle(programObject);
+            var programDim = {
+               left : (1-PROGRAM_PROPORTION)/2,
+               top: 0,
+               width:PROGRAM_PROPORTION,
+               height:PROGRAM_PROPORTION + (1-PROGRAM_PROPORTION)/2
+            }
+            var startWorld = programObject.world;
+            var code = programObject.code;
+            programElement = ProgramElement(programDim, 'content', startWorld, code);
+            createButtonBar();
+            window.onresize();
          }
 
          function loadProgramFromHash() {
@@ -41,12 +65,36 @@
             $.post("http://www.stanfordkarel.appspot.com/loadRemote", postParameters,programLoaded);
          }
 
+         function createButtonBar() {
+            buttonBar = document.getElementById('programButtonBarInner');
+            var playButton = createImageButton(buttonBar, 'images/playButton.png', 'playButton', 'Run', 'programButton');
+            var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton', 'Reset', 'programButton');
+            var worldSelector = addWorldDropDown(buttonBar, 'programWorldDrop');
+            playButton.onclick = function() {
+               if(programElement)programElement.run();
+            }
+            stopButton.onclick = function() {
+               if(programElement)programElement.getIde().stopButton();
+            }
+            document.getElementById('worldSelector').onclick = function() {
+               alert('woah');
+            }
+         }
+
+         function centerButtonBar() {
+            if (!buttonBar) return;
+            var windowWidth = $(window).width() - 1;
+            windowWidth = Math.max(windowWidth, Const.MIN_IDE_WIDTH + Const.PADDING * 2);
+            var buttonBarWidth = $('#programButtonBarInner').width();
+            buttonBar.style.left = (windowWidth - buttonBarWidth)/2 + 'px'
+         }
+
          window.onload = function() {
             initTabs();
-          
+            plate = document.getElementById('content');
             window.onresize();
             loadProgramFromHash();
-            //$("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
          }  
 
          window.onhashchange = function() {
@@ -54,10 +102,21 @@
          }  
 
          window.onresize = function(){
-            if(learnEngine)learnEngine.onWindowResize();
-               ReferenceDialog.resize();
-            }     
-         }
+            var windowHeight = $(window).height() - 1;
+            var windowWidth = $(window).width() - 1;
+            var programHeight = windowHeight - Const.PROGRAM_HEADER_HEIGHT;
+            if (plate){
+               plate.style.height = (programHeight)+ 'px';
+               plate.style.width = (windowWidth)+ 'px';
+            }
+            if (programElement) {
+               programElement.resize();
+            }
+            ReferenceDialog.resize();
+            centerButtonBar();
+         } 
+                
+      }
       init();
    </script>
 

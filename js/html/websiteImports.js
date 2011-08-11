@@ -38,7 +38,7 @@ function importCss() {
     * Makes a button with an image that lives in src. 
     * Returns the button
     */
-   function createImageButton(parent, src, id, tooltip) {
+   function createImageButton(parent, src, id, tooltip, specialClass) {
       var button = document.createElement('button');
       var buttonImage = document.createElement('img');
       buttonImage.setAttribute('src', src);
@@ -48,6 +48,9 @@ function importCss() {
       button.title = tooltip;
       button.id = id;
       button.className = 'interactor';
+      if(specialClass){
+         button.className = specialClass;
+      }
       parent.appendChild(button);
       return button;
    }
@@ -74,11 +77,16 @@ function importCss() {
       addText(parent, '&nbsp;');
    }
    
-   function addWorldDropDown(parent) {
+   function addWorldDropDown(parent, specialId) {
       var worldDiv = document.createElement('div');
-      worldDiv.id = 'worldDiv'
+      if (specialId) {
+         worldDiv.id = specialId
+      } else {
+         worldDiv.id = 'worldDiv'
+      }
       addText(worldDiv, 'World: '); 
       var worldSelector = document.createElement('select');
+      
       worldSelector.id = 'worldSelector';
       worldSelector.setAttribute('name', 'world');
       worldSelector.setAttribute('size', 0);
@@ -208,6 +216,7 @@ function importLearnEngine() {
 		'<script src="./js/learn/karelIdeMessage.js"></script>',
 		'<script src="./js/learn/karelIdeButtons.js"></script>',
 		'<script src="./js/learn/karelIdeElement.js"></script>',
+		'<script src="./js/learn/programElement.js"></script>',
 		'<script src="./js/learn/imageButton.js"></script>',
 		'<script src="./js/learn/content.js"></script>',
 		'<script src="./js/learn/centerArea.js"></script>',

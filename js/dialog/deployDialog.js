@@ -10,10 +10,12 @@ DeployDialog._boxyExists = function() {
 
 DeployDialog.deploy = function() {
    var MIN_INPUT_LENGTH = 5;
+   var MAX_INPUT_LENGTH = 15;
 
    var code = DeployDialog._karelIdeHandle.getCode();
    var author = document.getElementById('deployAuthor').value;
    var title = document.getElementById('deployProgramName').value;
+   var world = document.getElementById('deployWorld').value;
    var errorMessages = {
       'Your Program':code,
       'Program Name':title,
@@ -25,8 +27,8 @@ DeployDialog.deploy = function() {
    }
    for (key in errorMessages) {
       value = errorMessages[key];
-      if (!isInputValid(value)){
-         DeployDialog.displayError(key + " is too short");
+      if (!isInputValid(value, key != 'Your Program')){
+         DeployDialog.displayError(key + " is either too short or too long");
          return
       }
    }
@@ -46,13 +48,15 @@ DeployDialog.deploy = function() {
    var postParameters = {
       'code':code,
       'author':author,
-      'title':title
+      'title':title,
+      'world':world
    }
    $.post("http://www.stanfordkarel.appspot.com/submitRemote", postParameters,submitHandler);
    
    
-   function isInputValid(input) {
-      return input.length >= MIN_INPUT_LENGTH;
+   function isInputValid(input, checkMax) {
+      if(!input.length >= MIN_INPUT_LENGTH) return false;
+      return !checkMax || input.length <= MAX_INPUT_LENGTH;
    }
 }
 
@@ -69,6 +73,7 @@ DeployDialog.createDeployDialog = function(karelIde) {
    if($('#deployError'))$('#deployError').remove();
    if($('#deployProgramName'))$('#deployProgramName').remove();
    if($('#deployAuthor'))$('#deployAuthor').remove();
+   if($('#deployWorld'))$('#deployWorld').remove();
 
    DeployDialog._karelIdeHandle = karelIde;
    var html = '<div id="deploy">\
@@ -77,6 +82,8 @@ DeployDialog.createDeployDialog = function(karelIde) {
 				<input type="text" name="programTitle" class="deployInput" id = "deployProgramName" size=30><br/><br/>\
 				<p><b>Your Name</b><br>\
 				<input class="deployInput" type="text" name="deployAuthor" id = "deployAuthor" size=30></p><br/>\
+				<p><b>Default World</b><br>\
+				<input class="deployInput" type="text" name="deployWorld" id = "deployWorld" size=30></p><br/>\
 				<p><b><span id="deployError"></span></b></p><br/>\
 				<p><button type="button" id="interactor" onClick="DeployDialog.deploy()"><b>Deploy: </b><IMG SRC="./images/uploadButton.png" HEIGHT=50 WIDTH=50 ALT="run" ALIGN="ABSMIDDLE"></button></form></p>\
 			</div>'
