@@ -34,18 +34,17 @@
       function init() {
          var karelIde = null;
 
-         document.onready = function() {
-            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
-         }
+         var onReadyCalled = false;
 
-         function deploy() {
-            DeployDialog.createDeployDialog(karelIde)
-         }
-         
-         window.onload = function() {
+         document.onready = function() {
+            if (onReadyCalled) return;
+            onReadyCalled = true;
+            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
+            
             initTabs();
             var canvas = document.getElementById('mainIdeCanvas');
             karelIde = KarelIde(window._editor, canvas, INITIAL_WORLD);
+            
             $('#playButton').click(function(){karelIde.playButton()});
             $('#stopButton').click(function(){karelIde.stopButton()});
             $('#uploadButton').click(function(){deploy()});
@@ -56,7 +55,30 @@
 		         }
             );
             window.onresize();
+            var programKey = Server.getProgramKey();
+            if (programKey) {
+               var loadingScreen = new Boxy("<p>Loading</p>", {title: "Loading", closeable: false, modal:true});
+               Server.loadProgramFromHash(function(data) {
+                  loadingScreen.hideAndUnload();
+                  programLoaded(data);
+               });
+            }
          }
+
+         function deploy() {
+            DeployDialog.createDeployDialog(karelIde)
+         }
+
+         function programLoaded(data) {
+            var programObject = JSON.parse(data);
+            var startWorld = programObject.world;
+            var code = programObject.code;
+            karelIde.setCode(code);
+         }
+
+         window.onhashchange = function() {
+            Server.loadProgramFromHash(programLoaded);
+         } 
 
          window.onresize = function() { 
             var windowHeight = $(window).height() - 1;

@@ -162,6 +162,11 @@ function KarelIde(editor, canvas, initialWorld) {
       return karel.getModel();
     }
 
+    that.setCode = function(code) {
+      if (editor == null) return null;
+      return editor.getSession().setValue(code);
+    }
+
     that.getCode = function() {
       return getCode();
     }

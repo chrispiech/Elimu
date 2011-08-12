@@ -229,6 +229,13 @@ function importLearnEngine() {
 	importScripts(scripts);	
 }
 
+function importController() {
+   var scripts = [
+		'<script src="./js/server/server.js"></script>',
+	]
+	importScripts(scripts);
+}
+
 function importReference() {
    var scripts = [
 		'<script src="./js/dialog/referenceDialog.js"></script>',
@@ -239,6 +246,7 @@ function importReference() {
 
 function importJs() {
    importJsLibraries();
+   importController();
    importCompiler();
    importKarelIde();
    importLearnEngine();

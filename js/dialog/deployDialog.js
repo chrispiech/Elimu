@@ -25,12 +25,21 @@ DeployDialog.deploy = function() {
       DeployDialog.displayError("Can not submit starter code.");
       return;
    }
+   
    for (key in errorMessages) {
       value = errorMessages[key];
-      if (!isInputValid(value, key != 'Your Program')){
-         DeployDialog.displayError(key + " is either too short or too long");
+      if (isInputShort(value)){
+         DeployDialog.displayError(key + " is too short");
          return
       }
+      if (key != 'Your Program' && isInputLong(value)) {
+         DeployDialog.displayError(key + " is too long");
+         return
+      }
+   }
+   if(world == '') {
+      DeployDialog.displayError("You must provide a Default World.");
+      return
    }
    DeployDialog.clearError();
 
@@ -39,11 +48,16 @@ DeployDialog.deploy = function() {
    var windowWidth = $(window).width() - 1;
    loadingScreen.centerAt(windowWidth * 0.5, windowHeight * 0.4);
    var submitHandler = function(data) {
-      var url = Const.ROOT_URL + '/program.html#/' + data;
-      var successHtml = '<div id="dialogDeploySuccess"><b>Success! Here is your link. You can share it anyone: </b><br/><br/><a id="userProgramLink" href="'+url+'">'+url+'</a></div>';
+      var html = '';
+      if(data == 'ERROR') {
+         html = '<div id="dialogDeploySuccess"><b>Error. Something went wrong.</b></div>'
+      } else {
+         var url = 'http://'+ document.location.hostname + '/program.html#/' + data;
+         var successHtml = '<div id="dialogDeploySuccess"><b>Success! Here is your link.<br/>You can share it with anyone: </b><br/><br/><a id="userProgramLink" href="'+url+'">'+url+'</a></div>';
+      }
       DeployDialog._boxy.setContent(successHtml);
       DeployDialog.resize();
-      loadingScreen.hideAndUnload()
+      loadingScreen.hideAndUnload();
    }
    var postParameters = {
       'code':code,
@@ -54,9 +68,12 @@ DeployDialog.deploy = function() {
    $.post("http://www.stanfordkarel.appspot.com/submitRemote", postParameters,submitHandler);
    
    
-   function isInputValid(input, checkMax) {
-      if(!input.length >= MIN_INPUT_LENGTH) return false;
-      return !checkMax || input.length <= MAX_INPUT_LENGTH;
+   function isInputShort(input) {
+      return input.length < MIN_INPUT_LENGTH;
+   }
+
+   function isInputLong(input) {
+      return input.length > MAX_INPUT_LENGTH;
    }
 }
 

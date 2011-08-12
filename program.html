@@ -33,10 +33,14 @@
             $('#programTitle').html(newTitle);
          }
 
+         function extend() {
+            var url = 'http://'+ document.location.hostname + '/ide.html#/' + Server.getProgramKey();
+            window.location = url;
+         }
+
          function programLoaded(data){
             //alert(data);
             var programObject = JSON.parse(data);
-            
             updateTitle(programObject);
             var programDim = {
                left : (1-PROGRAM_PROPORTION)/2,
@@ -46,39 +50,39 @@
             }
             var startWorld = programObject.world;
             var code = programObject.code;
+            
             programElement = ProgramElement(programDim, 'content', startWorld, code);
-            createButtonBar();
+            createButtonBar(startWorld);
+            $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
             window.onresize();
          }
 
-         function loadProgramFromHash() {
-            var hashText = window.location.hash;
-            var path = hashText.split('/');
-            if (path.length < 2) {
-               $('#content').html('No program found');
-               return;
-            }
-            var url = path[1]
-            var postParameters = {
-               'url':url
-            }
-            $.post("http://www.stanfordkarel.appspot.com/loadRemote", postParameters,programLoaded);
-         }
-
-         function createButtonBar() {
+         function createButtonBar(startWorld) {
             buttonBar = document.getElementById('programButtonBarInner');
             var playButton = createImageButton(buttonBar, 'images/playButton.png', 'playButton', 'Run', 'programButton');
             var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton', 'Reset', 'programButton');
-            var worldSelector = addWorldDropDown(buttonBar, 'programWorldDrop');
+            
+            var extendButton = createImageButton(buttonBar, 'images/fast.png', 'extendButton', 'Extend', 'programButton');
+            worldSelector = addWorldDropDown(buttonBar, 'programWorldDrop');
             playButton.onclick = function() {
                if(programElement)programElement.run();
             }
             stopButton.onclick = function() {
                if(programElement)programElement.getIde().stopButton();
             }
-            document.getElementById('worldSelector').onclick = function() {
-               alert('woah');
+            extendButton.onclick = extend;
+            $('#worldSelector').change(
+               function() {
+                  var worldName = $("#worldSelector option:selected").text();
+		            programElement.getIde().changeWorld(worldName);
+		         }
+            );
+            for(var i = 0; i < worldSelector.length; i++) {
+               if(worldSelector[i].text == startWorld) {
+                  worldSelector.selectedIndex = i;
+               }
             }
+            
          }
 
          function centerButtonBar() {
@@ -93,12 +97,12 @@
             initTabs();
             plate = document.getElementById('content');
             window.onresize();
-            loadProgramFromHash();
+            Server.loadProgramFromHash(programLoaded);
             $("[title]").tooltip({ position: "bottom center", opacity: 0.9});
          }  
 
          window.onhashchange = function() {
-            loadProgramFromHash();
+            Server.loadProgramFromHash(programLoaded);
          }  
 
          window.onresize = function(){

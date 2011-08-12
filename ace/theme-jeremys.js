@@ -140,7 +140,7 @@ color: blue;\
 }\
 \
 .ace-tm .ace_line .ace_comment.ace_doc.ace_tag {\
-color: red;\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_line .ace_constant.ace_numeric {\
@@ -178,8 +178,8 @@ background: rgb(232, 242, 254);\
 }\
 \
 .ace-tm .ace_marker-layer .ace_selected_word {\
-background: #CC3399;\
-border: 1px solid rgb(250, 100, 100);\
+background: rgb(181, 213, 255);\
+border: 1px solid darkblue;\
 }\
 \
 .ace_error {\
