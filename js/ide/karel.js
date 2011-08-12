@@ -56,32 +56,72 @@ function Karel(canvasModel) {
 		return karelModel.beeperPresent();
 	}
 
+	that.noBeepersPresent = function() {
+		return !karelModel.beeperPresent();
+	}
+
    that.frontIsClear = function() {
       return karelModel.frontIsClear();
+	}
+
+	that.frontIsBlocked = function() {
+      return !karelModel.frontIsClear();
+	}
+
+	that.random = function(p) {
+      var prob = 0.5;
+      if (p != undefined) {
+         prob = p;
+      }
+      return Math.random() > prob;
 	}
 
 	that.rightIsClear = function() {
 		return karelModel.rightIsClear();
 	}
 
+	that.rightIsBlocked = function() {
+		return !karelModel.rightIsClear();
+	}
+
 	that.leftIsClear = function() {
 		return karelModel.leftIsClear();
 	}
 
+   that.leftIsBlocked = function() {
+		return !karelModel.leftIsClear();
+	}
+	
 	that.facingNorth = function() {
 		return karelModel.facingNorth();	
+	}
+
+	that.notFacingNorth = function() {
+		return !karelModel.facingNorth();	
 	}
 
 	that.facingSouth = function() {
 		return karelModel.facingSouth();	
 	}
 
+	that.notFacingSouth = function() {
+		return !karelModel.facingSouth();	
+	}
+
 	that.facingEast = function() {
 		return karelModel.facingEast();	
 	}
 
+	that.notFacingEast = function() {
+		return !karelModel.facingEast();	
+	}
+
 	that.facingWest = function() {
 		return karelModel.facingWest();	
+	}
+
+	that.notFacingWest = function() {
+		return !karelModel.facingWest();	
 	}
 
    that.loadWorld = function(text, canvasModel) {
