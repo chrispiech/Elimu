@@ -2,7 +2,7 @@ function importWebsiteHeader(selected) {
    var tabsData = {
       'learn.html':'Learn',
       'ide.html':'Karel IDE',
-      'share.html':'Share',
+      'share.html':'Community',
    }
    var tabHtml = '';
    for (key in tabsData) {

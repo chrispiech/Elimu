@@ -9,16 +9,49 @@
 
 <body> 
    <script>importWebsiteHeader('share.html');</script>
-   <p>Coming soon!</p>
+   <div id="featuredPrograms">Featured</b><br/>
+
+      <script>
+         var programMap = {
+            'Maze' : 'DNE',
+            'Wordsearch' : 'DNE',
+            'Beeper Sweeper': 'DNE',
+            'Climb Mountain' : 'DNE',
+         }
+         for(var key in programMap) {
+            var url = 'google.com';
+            var link = '<div class="commLinkDiv"><a class="commLink" href="'+url+'">'+key+'</a></div>'
+            document.write(link);
+         }
+      
+      </script>
+   
+   </div>
+   <div id="commetBox">
+      <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="stanfordkarel.com" num_posts="10" width="400"></fb:comments>
+   </div>
    <script>
       function init() {
          
-         window.onload = function() {
+         document.onready = function() {
             initTabs();
+            window.onresize();
          }    
 
          window.onresize = function(){
             ReferenceDialog.resize();
+            var windowHeight = $(window).height() - 1;
+            var windowWidth = $(window).width() - 1;
+            windowWidth = Math.max(windowWidth, Const.MIN_IDE_WIDTH);
+
+            var featuredLeft = Const.PADDING;
+            var featuredHeight = windowHeight - Const.HEADER_HEIGHT;
+            var featuredWidth = windowWidth - Const.COMMENT_WIDTH - 2*Const.PADDING;
+
+            var featured = document.getElementById('featuredPrograms');
+            featured.style.height = featuredHeight + 'px';
+            featured.style.width = featuredWidth + 'px';
+            featured.style.left = featuredLeft + 'px'
          }     
       }
       init();
