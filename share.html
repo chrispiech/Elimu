@@ -19,7 +19,7 @@
             'Climb Mountain' : 'DNE',
          }
          for(var key in programMap) {
-            var url = 'google.com';
+            var url = programMap[key];
             var link = '<div class="commLinkDiv"><a class="commLink" href="'+url+'">'+key+'</a></div>'
             document.write(link);
          }
