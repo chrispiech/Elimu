@@ -64,7 +64,6 @@ text-align: center;
 
 #commetBox {
    float:right;
-   height:100%;
    background:#f1f1f1;
 }
 
@@ -92,7 +91,7 @@ body {
 	font-family: Optima, "Lucida Grande", Lucida, Verdana, Geneva, Arial, sans-serif;
 	font-size: medium;
 	background:#fff;
-	overflow-y: hidden ! important; overflow-x: auto ! important;
+	
 	min-width:850px;
 	background:white ;
 }

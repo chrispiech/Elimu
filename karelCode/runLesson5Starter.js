@@ -3,6 +3,8 @@
 //a beeper on each
 //corner of the first
 //row
+function main(){
 putBeeper();
 move();
 putBeeper();
+}
