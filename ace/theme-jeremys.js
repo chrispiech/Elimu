@@ -24,10 +24,7 @@ color: " + colorForAssignment + ";\
 }\
 .ace-tm .ace_line .ace_while, .ace-tm .ace_line .ace_for{\
 color: " + colorForIterators + ";\
-<<<<<<< HEAD
 font-weight:bold;\
-=======
->>>>>>> parent of 5a708ef... Revert b1389016ad1582435894a403f4e4d8b88929523f^..HEAD
 }\
 .ace-tm .ace_line .ace_function{\
 color: " + colorForFunction + ";\
