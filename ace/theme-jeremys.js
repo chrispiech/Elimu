@@ -23,10 +23,12 @@ font-weight:bold;\
 color: " + colorForAssignment + ";\
 }\
 .ace-tm .ace_line .ace_while, .ace-tm .ace_line .ace_for{\
-color: " + colorForIterators + ";
+color: " + colorForIterators + ";\
+font-weight:bold;\
 }\
 .ace-tm .ace_line .ace_function{\
 color: " + colorForFunction + ";\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_editor {\
@@ -82,6 +84,7 @@ font-weight:bold;\
 }\
 .ace-tm .ace_line .ace_repeat {\
 color: " + colorForRepeat + ";\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_line .ace_constant.ace_buildin {\
@@ -90,6 +93,7 @@ color: pink;\
 \
 .ace-tm .ace_line .ace_constant.ace_language {\
 color: pink;\
+font-weight:bold;\
 }\
 \
 .ace-tm .ace_line .ace_constant.ace_library {\
