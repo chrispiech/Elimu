@@ -123,14 +123,14 @@ function importEditor(id, parentId) {
 }
 
 function importButtonBar() {
-   var buttonBar = document.getElementById('buttonBar');
+   var buttonBar = document.getElementById('buttonBarInner');
    var playButton = createImageButton(buttonBar, 'images/uploadButton.png', 'uploadButton', 'Share');
    //addSpace(buttonBar);
    var playButton = createImageButton(buttonBar, 'images/playButton.png', 'playButton', 'Run');
    //addSpace(buttonBar);
    var stopButton = createImageButton(buttonBar, 'images/stopButton.png', 'stopButton', 'Reset');
    //addSpace(buttonBar);
-   var worldSelector = addWorldDropDown(buttonBar);
+   var worldSelector = addWorldDropDown(buttonBar, 'programWorldDrop');
 }
 
 function importScripts(list) {

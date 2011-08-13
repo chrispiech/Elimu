@@ -34,6 +34,13 @@ text-align: center;
    position: absolute;
 }
 
+#buttonBarInner {
+   margin-top:15px;
+   line-height:36px;
+   float: left;
+   position: absolute;
+}
+
 #programWorldDrop {
    float:left;
 }
@@ -256,8 +263,8 @@ A:hover {
 }
 
 .interactor {
-   margin-top:7px;
-   margin-right:8px;
+   float:left;
+   margin-right:5px;
 }
 
 .rightBar {
