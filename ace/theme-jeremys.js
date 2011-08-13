@@ -23,7 +23,7 @@ font-weight:bold;\
 color: " + colorForAssignment + ";\
 }\
 .ace-tm .ace_line .ace_while, .ace-tm .ace_line .ace_for{\
-color: " + colorForIterators + ";\
+color: " + colorForIterators + ";
 }\
 .ace-tm .ace_line .ace_function{\
 color: " + colorForFunction + ";\
