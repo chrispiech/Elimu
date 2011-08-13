@@ -14,15 +14,8 @@ var WORLDS = [
    '7x7',
    '5x5',
    '4x4',
-   'turnArounds',
    '3x3',
-   'pickBeeper',
-   'pickBeepers',
-   'fiftySoln',
-   '7x7MidSoln',
-   '5x5MidSoln',
-   'column1',
-   'column2'
+   'maze'
 ]
 
 var INITIAL_WORLD = '15x15'
