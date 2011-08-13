@@ -76,6 +76,13 @@
             var startWorld = programObject.world;
             var code = programObject.code;
             karelIde.setCode(code);
+            karelIde.changeWorld(startWorld);
+            var worldSelector = document.getElementById('worldSelector');
+            for(var i = 0; i < worldSelector.length; i++) {
+               if(worldSelector[i].text == startWorld) {
+                  worldSelector.selectedIndex = i;
+               }
+            }
          }
 
          window.onhashchange = function() {
