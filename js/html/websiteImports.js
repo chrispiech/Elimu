@@ -151,7 +151,8 @@ function importJsLibraries() {
       '<script src="./ace/theme-jeremys.js"></script>',
       '<script src="./ace/mode-javascript.js"></script>',
       '<script src="./lib/curvycorners.js"></script>',
-      '<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>',
+	  '<script src="./lib/jquery.js"></script>',
+      //'<script src="http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"></script>',
       '<script src="./boxy/jquery.boxy.js"></script>',
    ]
    importScripts(scripts);

@@ -17,12 +17,17 @@ function CenterArea() {
          that.lesson.elements[i].resize();
       }
    }
+   
 
    that.fadeOutElements = function(finishedCallback) {
-      for (var i = 0; i < that.lesson.elements.length; i++) {
-         $(that.lesson.elements[i].div).fadeOut(600);
-      }
-      setTimeout(finishedCallback, 600);
+      var executeFade = function() {
+		 var fadeOutTime = 900;
+	     for (var i = 0; i < that.lesson.elements.length; i++) {
+            $(that.lesson.elements[i].div).fadeOut(fadeOutTime);
+         }
+         setTimeout(finishedCallback, fadeOutTime);
+	  }
+      setTimeout(executeFade, 100);
    }
 
    that.createLesson = function(progressModel, lessonsModel, finishCallback) {

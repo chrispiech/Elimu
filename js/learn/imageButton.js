@@ -86,6 +86,7 @@ function ImageButton(dim, src, clickCallback) {
 
       function fadeAwayAnimation() {
          $(that.iconElement.div).fadeOut('slow');
+		 $(that.coverDiv.div).fadeOut('slow');
          $(label.div).fadeOut('slow', animationFinished);
       }
 
@@ -95,6 +96,7 @@ function ImageButton(dim, src, clickCallback) {
 
       function onFadeAwayFinish() {
          that.iconElement.deleteDiv();
+		 that.coverDiv.deleteDiv();
          label.deleteDiv();
          animationFinished();
       }
