@@ -117,6 +117,8 @@ function importEditor(id, parentId) {
    var JavaScriptMode = require("ace/mode/javascript").Mode;
    editor.getSession().setMode(new JavaScriptMode());
    editor.setReadOnly(false);
+   // this line turns off automatic error detection
+   editor.getSession().setUseWorker(false);
    code.style.fontSize='16px';
    window._editor = editor;
    return editor; 

@@ -16,7 +16,7 @@ function KarelIde(editor, canvas, initialWorld) {
 
    // constants
    var ACTION_HEARTBEATS = 5;
-   var HEART_BEAT = 8;	
+   var HEART_BEAT = 5;	
    var REFRESH_HEARTBEATS = 100;
    var DEFAULT_CANVAS_WIDTH = 370;
    var DEFAULT_CANVAS_HEIGHT = 370;
