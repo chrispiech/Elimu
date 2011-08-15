@@ -12,7 +12,7 @@ function Header() {
       left:0, 
       top:0, 
       width:0.246, 
-      height:1.1
+      height:1
    };
 
    var referenceDim = {

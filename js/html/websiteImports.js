@@ -144,6 +144,7 @@ function importScripts(list) {
 function importJsLibraries() {
    var scripts = [
       '<script src="./lib/jquery.js"></script>',
+      '<script src="./lib/browser_detect.js"></script>',
       '<script src="./lib/util.js"></script>',
       '<script src="./lib/tabs.js"></script>',
       '<script src="./codeMirror/js/codemirror.js"></script>',
