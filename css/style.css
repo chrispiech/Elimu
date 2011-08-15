@@ -484,6 +484,12 @@ margin-right:5px;
    position:absolute;
 }
 
+.coverDivNoHighlight{
+   position:absolute;
+   -moz-border-radius: 7px;
+   border-radius: 7px;
+}
+
 .coverDiv{
    position:absolute;
    -moz-border-radius: 7px;
