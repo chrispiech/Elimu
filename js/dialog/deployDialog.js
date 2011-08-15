@@ -48,6 +48,7 @@ DeployDialog.deploy = function() {
    var windowWidth = $(window).width() - 1;
    loadingScreen.centerAt(windowWidth * 0.5, windowHeight * 0.4);
    var submitHandler = function(data) {
+	  console.log('submtter ' + data);
       var html = '';
       if(data == 'ERROR') {
          html = '<div id="dialogDeploySuccess"><b>Error. Something went wrong.</b></div>'
