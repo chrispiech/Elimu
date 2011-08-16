@@ -1,4 +1,4 @@
-function KarelIdeElement(dim,parent, settings) {
+function KarelIdeElement(dim, parent, settings) {
    var that = {};
 
    
@@ -7,22 +7,36 @@ function KarelIdeElement(dim,parent, settings) {
    that = MakeAbsoluteDiv(that, parent, dim);
 
    var BUTTON_HEIGHT = 0.1;
-   if (!settings.buttonBar) BUTTON_HEIGHT = 0;
+   if ( !settings.buttonBar ) BUTTON_HEIGHT = 0;
    var EDITOR_WIDTH = 0.5;
    var MESSAGE_HEIGHT = 0.06;
    var MESSAGE_WIDTH = 0.4;
-   var editorDim = {left:0, top:BUTTON_HEIGHT, width:EDITOR_WIDTH, height:1-BUTTON_HEIGHT};
-   var canvasDim = {left:EDITOR_WIDTH+0.01, top:BUTTON_HEIGHT, width:1-EDITOR_WIDTH-0.01, height:1-BUTTON_HEIGHT};
-   var buttonBarDim = {left:0, top:0, width:1, height:BUTTON_HEIGHT};
-   var messageDim = {left:(1-MESSAGE_WIDTH)/2, top:0, width:MESSAGE_WIDTH, height:MESSAGE_HEIGHT};
-
+   var editorDim    = {left:    0, 
+                       top:     BUTTON_HEIGHT, 
+                       width:   EDITOR_WIDTH, 
+                       height:  1 - BUTTON_HEIGHT};
+   var canvasDim    = {left:    EDITOR_WIDTH + 0.01,
+                       top:     BUTTON_HEIGHT, 
+                       width:   1 - EDITOR_WIDTH - 0.01, 
+                       height:  1 - BUTTON_HEIGHT};
+   var buttonBarDim = {left:    0,
+                       top:     0, 
+                       width:   1, 
+                       height:  BUTTON_HEIGHT};
+   var messageDim   = {left:    (1 - MESSAGE_WIDTH) / 2,
+                       top:0, 
+                       width:MESSAGE_WIDTH, 
+                       height:MESSAGE_HEIGHT};
+   
    var karelDiv = that.div; 
    
    var editor = KarelEditorElement(editorDim, 'ide');
    var canvas = KarelCanvasElement(canvasDim, 'ide');
    var messageElement = KarelIdeMessage(messageDim, 'ide');
    
-   var karelIde = KarelIde(editor.getEditor(), canvas.getCanvas(), settings.world);
+   var karelIde = KarelIde(editor.getEditor(), 
+                           canvas.getCanvas(), 
+                           settings.world);
 
    if (settings.buttonBar) {
       var buttonBar = KarelIdeButtons(buttonBarDim, 'ide', karelIde);
