@@ -75,10 +75,10 @@ text-align: center;
 }
 
 #featuredPrograms {
-   position:absolute;
    font-size:30px;
    text-align:center;
    padding-top:30px;
+   float:left;
 }
 
 #featuredProgram {
