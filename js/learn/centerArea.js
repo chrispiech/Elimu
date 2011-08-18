@@ -23,7 +23,7 @@ function CenterArea() {
       var executeFade = function() {
 		 var fadeOutTime = 900;
 	     for (var i = 0; i < that.lesson.elements.length; i++) {
-            that.lesson.elements[i].fadeOut(fadeOutTime);
+            $(that.lesson.elements[i].div).fadeOut(fadeOutTime);
          }
          setTimeout(finishedCallback, fadeOutTime);
 	  }

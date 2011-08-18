@@ -15,10 +15,6 @@ function KarelEditorElement(dim, parentId) {
    that.editor.setTheme('ace/theme/jeremys');
    var JavaScriptMode = require("ace/mode/javascript").Mode;
    that.editor.getSession().setMode(new JavaScriptMode());
-   
-   // this line turns off automatic error detection
-   that.editor.getSession().setUseWorker(false);
-   
    that.div.style.fontSize='20px';
 
    that.getEditor = function() {
@@ -33,7 +29,6 @@ function KarelEditorElement(dim, parentId) {
    function animateCharType() {
       while(true) {
          if (that.animateIndex >= that.code.length ) {
-            that.animateCallback();
             that.animateCallback();
             return;
          }

@@ -181,7 +181,6 @@ function BasicIdeLesson(world, starterCode, unitTests, goalImages, finishedCallb
 
    function finished() {
       runButton.setEnabled();
-	   that.ide.getEditor().focus();
    }
 
    function animateCode() {
@@ -726,48 +725,6 @@ function ButtonLesson(buttonMap, world, solution, finishedCallback) {
    return that;
 } 
 
-function PictureDemo(buttonSrcs, labels, finishedCallback) {
-   var that = {};
-   var textDim = {left:0.342, top:0.014, width:0.316, height:0.074};
-
-   var positions = [
-      {left:0.169, top:0.11, width:0.316, height:0.42},
-      {left:0.515, top:0.11, width:0.316, height:0.42},
-      {left:0.169, top:0.56, width:0.316, height:0.42},
-      {left:0.515, top:0.56, width:0.316, height:0.42}
-   ];
-   
-   that.elements = [];
-   that.imageButtons = [];
-   for (var i = 0; i < buttonSrcs.length; i++) {
-	 var callback = function(){};
-	 var button = ImageButton(positions[i], buttonSrcs[i], callback, false);
-	 that.elements.push(button);
-	 that.imageButtons.push(button);
-  }
-  
-  that.demoImage = function() {
-     if (that.imageIndex == that.imageButtons.length) {
-	    finishedCallback();
-		return;
-     }
-	 var labelText = labels[that.imageIndex];
-	 var labelDim = that.imageButtons[that.imageIndex].getLabelSlotDim();
-     var label = TextBox(labelDim, labelText);
-     label.setTextHeightFraction(0.6);
-	 label.resize();
-     that.elements.push(label);
-	 $(label.div).fadeIn(500);
-	 that.imageIndex += 1;
-	 setTimeout(that.demoImage, 2000);
-  }
-  
-  that.imageIndex = 0;
-  setTimeout(that.demoImage, 500);
-  
-  return that;
-}
-
 function PictureLesson(buttonSrcs, labels, finishedCallback, demo) {
    var that = {};
    var textDim = {left:0.342, top:0.014, width:0.316, height:0.074};
@@ -793,7 +750,6 @@ function PictureLesson(buttonSrcs, labels, finishedCallback, demo) {
       }
       
       that.elements = [];
-	  that.imageButtons = [];
       for (var i = 0; i < buttonSrcs.length; i++) {
          var buttonIndex = orderMap.indexOf(i);
          var callback;
@@ -803,15 +759,14 @@ function PictureLesson(buttonSrcs, labels, finishedCallback, demo) {
             case 2: callback = function(){that.buttonClicked(2)}; break;
             case 3: callback = function(){that.buttonClicked(3)}; break;
          }
-         var button = ImageButton(positions[i], buttonSrcs[buttonIndex], callback, true);
+         var button = ImageButton(positions[i], buttonSrcs[buttonIndex], callback);
          that.elements.push(button);
-		 that.imageButtons.push(button);
       }
 
       that.answerIndex = orderMap[that.questionIndex];
       var questionLabel = labels[that.questionIndex];
-	  var labelDim = textDim;
-      that.questionBox = TextBox(labelDim, questionLabel);
+      that.questionBox = TextBox(textDim, questionLabel);
+      //that.questionBox.setHeightFraction(0.2);
       that.questionBox.setTextHeightFraction(0.6);
       that.elements.push(that.questionBox);
    }
@@ -861,22 +816,6 @@ function PictureLesson(buttonSrcs, labels, finishedCallback, demo) {
    return that;
 }
 
-function Unit1Lesson2(finishedCallback) {
-   var buttonSrcs = [
-      './images/karelIcon.png',
-      './images/beeperIcon.png',
-      './images/world.png',
-      './images/wall.png',
-   ];
-   var labels = [
-      'Karel',
-      'Beeper',
-      'World',
-      'Wall'
-   ];
-   return PictureLesson(buttonSrcs, labels, finishedCallback, false);
-}
-
 function Unit1Lesson1(finishedCallback) {
    var buttonSrcs = [
       './images/karelIcon.png',
@@ -890,7 +829,7 @@ function Unit1Lesson1(finishedCallback) {
       'World',
       'Wall'
    ];
-   return PictureDemo(buttonSrcs, labels, finishedCallback, true);
+   return PictureLesson(buttonSrcs, labels, finishedCallback, true);
 }
 
 

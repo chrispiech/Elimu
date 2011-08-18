@@ -9,10 +9,6 @@ function MakeAbsoluteDiv(that, parentId, dim) {
       document.getElementById(parentId).appendChild(that.div);
    }
    
-   that.fadeOut = function(time) {
-      $(that.div).fadeOut(time);
-   }
-   
    that.deleteDiv = function() {
       document.getElementById(parentId).removeChild(that.div);
    }

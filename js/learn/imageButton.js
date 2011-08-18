@@ -1,4 +1,4 @@
-function ImageButton(dim, src, clickCallback, clickable) {
+function ImageButton(dim, src, clickCallback) {
 
    var ICON_WIDTH = 0.5;
    var ICON_TIMEOUT = 500;
@@ -29,20 +29,10 @@ function ImageButton(dim, src, clickCallback, clickable) {
    that.coverDiv.div = document.createElement('span');
    that.coverDiv = MakeAbsoluteDiv(that.coverDiv, 'centerAreaDiv', dim);
    that.coverDiv.inheritVisibility();
-   if (clickable){
-      that.coverDiv.div.className = 'coverDiv';
-   } else {
-      that.coverDiv.div.className = 'coverDivNoHighlight'; 
-   }
+   that.coverDiv.div.className = 'coverDiv'
 
    that.coverDiv.div.onclick = function() {
       clickCallback();
-   }
-   
-   var fadeFn = that.fadeOut;
-   that.fadeOut = function(time) {
-      fadeFn(time);
-	  that.innerImage.fadeOut(time);
    }
 
    var deleteFn = that.deleteDiv;
@@ -88,22 +78,6 @@ function ImageButton(dim, src, clickCallback, clickable) {
       
       setTimeout(animateFadeAway,ICON_TIMEOUT);
    }
-   
-   that.getLabelSlotDim = function() {
-      return { 
-         left: dim.left, 
-         top: dim.top, 
-		 width: dim.width,
-		 height: 0.2 * dim.height
-      };
-   }
-   
-   that.getLabelSlotPos = function() {
-      return {
-	     left: that.left + 'px',
-		 top: that.top + 'px'
-	  }
-   }
 
    // This code NEEDs to be refractored to reduce repeated
    // code with that.animateIncorrect
@@ -128,7 +102,10 @@ function ImageButton(dim, src, clickCallback, clickable) {
       }
 
       label.div.className = 'roundedNoShadow';
-      $($(label.div)).animate(that.getLabelSlotPos(), 'fast', onFlyAnimationFinish); 
+      $($(label.div)).animate({ 
+            left: that.left + 'px', 
+            top: that.top + 'px', 
+        }, 'fast', onFlyAnimationFinish); 
       label.leftFraction = that.leftFraction;
       label.topFraction = that.topFraction;
       
