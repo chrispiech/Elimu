@@ -201,7 +201,7 @@ function importCompiler() {
 
 function importLearnEngine() {
    var scripts = [
-        '<script src="./js/learn/fixBackspace.js"></script>',
+        //'<script src="./js/learn/fixBackspace.js"></script>',
 		'<script src="./js/learn/makeAbsoluteDiv.js"></script>',
 		'<script src="./js/learn/unitProgress.js"></script>',
 		'<script src="./js/learn/progressModel.js"></script>',
