@@ -18,11 +18,6 @@ trapfunction = function(event)
     return true;
 }
 
-document.onkeyup = function(event)
-{
-    document.getElementById("keypressed").innerHTML = ""; // clear the message
-    return true;
-}
 
 document.onkeydown = trapfunction; // IE, Firefox, Safari
 document.onkeypress = trapfunction; // only Opera needs the backspace nullifying in onkeypress
