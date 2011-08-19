@@ -136,7 +136,7 @@ KarelView.prototype.drawKarel = function(ctx, x, y, sqSize, dir) {
 };
 
 KarelView.BEEPER_FRACTION = 0.75;
-KarelView.BEEPER_FILL_COLOR = "#12C4FF";
+KarelView.BEEPER_FILL_COLOR = "#CCCCCC";
 KarelView.BEEPER_LABEL_FRACTION = 0.2;
 KarelView.BEEPER_LABEL_MIN_SIZE = 6;
 KarelView.BEEPER_LABEL_MAX_SIZE = 18;
