@@ -2,7 +2,7 @@
  * Class: KarelModel
  * -----------------
  * The KarelModel class is in charge of storing and updating
- * the underlying representation of Karel and her world. 
+ * the underlying representation of Karel and her world.
  * Supports deep copy.
  */
 function KarelModel() {
@@ -48,7 +48,7 @@ function KarelModel() {
 			case Const.KAREL_WEST: newCol = newCol - 1; break;
 			case Const.KAREL_NORTH: newRow = newRow - 1; break;
 			case Const.KAREL_SOUTH: newRow = newRow + 1; break;
-			default: alert("invalid that.dir: " + that.dir); break;		
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		if(that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol)) {
 			that.karelRow = newRow;
@@ -64,8 +64,8 @@ function KarelModel() {
 			case Const.KAREL_EAST:  newD = Const.KAREL_NORTH; break;
 			case Const.KAREL_WEST:  newD = Const.KAREL_SOUTH; break;
 			case Const.KAREL_NORTH: newD = Const.KAREL_WEST; break;
-			case Const.KAREL_SOUTH: newD = Const.KAREL_EAST; break;	
-			default: alert("invalid that.dir: " + that.dir); break;	
+			case Const.KAREL_SOUTH: newD = Const.KAREL_EAST; break;
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		that.dir = newD;
    }
@@ -76,8 +76,8 @@ function KarelModel() {
 			case Const.KAREL_EAST:  newD = Const.KAREL_SOUTH; break;
 			case Const.KAREL_WEST:  newD = Const.KAREL_NORTH; break;
 			case Const.KAREL_NORTH: newD = Const.KAREL_EAST; break;
-			case Const.KAREL_SOUTH: newD = Const.KAREL_WEST; break;	
-			default: alert("invalid that.dir: " + that.dir); break;	
+			case Const.KAREL_SOUTH: newD = Const.KAREL_WEST; break;
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		that.dir = newD;
    }
@@ -100,8 +100,8 @@ function KarelModel() {
 			case Const.KAREL_EAST:  newD = Const.KAREL_WEST; break;
 			case Const.KAREL_WEST:  newD = Const.KAREL_EAST; break;
 			case Const.KAREL_NORTH: newD = Const.KAREL_SOUTH; break;
-			case Const.KAREL_SOUTH: newD = Const.KAREL_NORTH; break;	
-			default: alert("invalid that.dir: " + that.dir); break;	
+			case Const.KAREL_SOUTH: newD = Const.KAREL_NORTH; break;
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		that.dir = newD;
    }
@@ -158,7 +158,7 @@ function KarelModel() {
 			case Const.KAREL_WEST: newCol = newCol - 1; break;
 			case Const.KAREL_NORTH: newRow = newRow - 1; break;
 			case Const.KAREL_SOUTH: newRow = newRow + 1; break;
-			default: alert("invalid that.dir: " + that.dir); break;		
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
 	}
@@ -171,7 +171,7 @@ function KarelModel() {
 			case Const.KAREL_WEST: newRow = newRow - 1; break;
 			case Const.KAREL_NORTH: newCol = newCol + 1; break;
 			case Const.KAREL_SOUTH: newCol = newCol - 1; break;
-			default: alert("invalid that.dir: " + that.dir); break;		
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
 	}
@@ -184,25 +184,25 @@ function KarelModel() {
 			case Const.KAREL_WEST: newRow = newRow + 1; break;
 			case Const.KAREL_NORTH: newCol = newCol - 1; break;
 			case Const.KAREL_SOUTH: newCol = newCol + 1; break;
-			default: alert("invalid that.dir: " + that.dir); break;		
+			default: alert("invalid that.dir: " + that.dir); break;
 		}
 		return that.walls.isMoveValid(that.karelRow, that.karelCol, newRow, newCol);
 	}
 
 	that.facingNorth = function() {
-		return virtualDirection == KAREL_NORTH;	
+		return that.dir == Const.KAREL_NORTH;
 	}
 
 	that.facingSouth = function() {
-		return virtualDirection == KAREL_SOUTH;	
+		return that.dir == Const.KAREL_SOUTH;
 	}
 
 	that.facingEast = function() {
-		return virtualDirection == KAREL_EAST;	
+		return that.dir == Const.KAREL_EAST;
 	}
 
 	that.facingWest = function() {
-		return virtualDirection == KAREL_WEST;	
+		return that.dir == Const.KAREL_WEST;
 	}
 
    that.loadWorld = function(worldText, canvasModel) {
@@ -210,7 +210,7 @@ function KarelModel() {
 
 		// get world dimension
 		loadDimensionLine(lines[0]);
-		
+
 		that.beepers = Beepers(that.rows, that.cols);
 		that.walls = Walls(that.rows, that.cols);
       that.squareColors = SquareColors(that.rows, that.cols);
@@ -256,7 +256,7 @@ function KarelModel() {
       that.karelRow = row;
       that.karelCol = col;
    }
-   
+
    function loadWallLine(line) {
       var coord = extractCoord(line);
       if (line.indexOf('west') != -1) {
@@ -304,7 +304,7 @@ function KarelModel() {
 			loadWallLine(elements[1]);
 		} else if (key == "Beeper") {
 			loadBeeperLine(elements[1]);
-		} 
+		}
 	}
 
    return that;
